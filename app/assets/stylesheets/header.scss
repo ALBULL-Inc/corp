@@ -1,0 +1,13 @@
+// header CSS
+section#header {
+  height: 48px;
+  border-bottom: 1px solid #ccc;
+
+  #logo {
+    text-align: center;
+    height: 48px;
+    img {
+      height: 40px;
+    }
+  }
+}

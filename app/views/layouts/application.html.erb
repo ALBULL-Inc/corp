@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render partial: "/layouts/header" %>
+
+<%- if notice || alert %>
+<%- if notice %><p id="notice"><%= notice %></p><%- end -%>
+<%- if alert %><p id="alert"><%= alert %></p><%- end -%>
+<%- end -%>
+
+<section id="main_contents">
+  <%= yield %>
+</section>
+
+<%= render partial: "/layouts/footer" %>
+</body>
+</html>
