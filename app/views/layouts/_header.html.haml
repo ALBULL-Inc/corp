@@ -1,0 +1,20 @@
+%section#header.navbar.navbar-default(role="navigation")
+  .container
+    .navbar-header
+      %a#logo.navbar-brand(href=root_path)= image_tag('layout/header/logo.png', alt: '株式会社ユア')
+    .collapse.navbar-collapse#navbar-collapse
+      %ul.nav.navbar-nav.navbar-right.ml30
+        %span
+          = link_to 'https://www.facebook.com/1596482943975074/', class: "btn btn-social-icon btn-facebook mt25" do
+            %span.fa.fa-facebook
+        %span
+          = link_to 'https://twitter.com/yourcorp', class: "btn btn-social-icon btn-twitter mt25" do
+            %span.fa.fa-twitter
+
+      %ul.nav.navbar-nav.navbar-right
+        %li.mr50
+          = link_to '会社概要', about_us_path
+        %li.mr50
+          = link_to '採用情報', 'https://www.facebook.com/1596482943975074/'
+        %li.mr50
+          = link_to 'お問合せ', 'https://www.facebook.com/1596482943975074/'

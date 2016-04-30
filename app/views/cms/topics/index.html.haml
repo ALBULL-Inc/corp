@@ -1,0 +1,27 @@
+%h1 Listing topics
+
+%table
+  %thead
+    %tr
+      %th Enable
+      %th Title
+      %th Body
+      %th Publish at
+      %th
+      %th
+      %th
+
+  %tbody
+    - @topics.each do |topic|
+      %tr
+        %td= topic.enable
+        %td= topic.title
+        %td= topic.body
+        %td= topic.publish_at
+        %td= link_to 'Show', [:cms,topic]
+        %td= link_to 'Edit', edit_cms_topic_path(topic)
+        %td= link_to 'Destroy', [:cms,topic], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Topic', new_cms_topic_path

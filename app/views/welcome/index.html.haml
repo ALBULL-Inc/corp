@@ -1,0 +1,43 @@
+#carousel-topic.carousel.slide(data-ride="carousel" height="400px")
+  %ol.carousel-indicators
+    - @carousels.each.with_index do |carousel, i|
+      %li.active(data-target="#carousel-topic" data-slide-to="#{i}")
+
+  .carousel-inner(role="listbox")
+    - @carousels.each do |carousel|
+      .item.active
+        = image_tag(carousel.carousel_img, alt: carousel.title)
+        .carousel-caption
+          %h3= carousel.title
+
+  %a.left.carousel-control(href="#carousel-topic" role="button" data-slide="prev")
+    %span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+    %span.sr-only
+      Previous
+  %a.right.carousel-control(href="#carousel-topic" role="button" data-slide="next")
+    %span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
+    %span.sr-only
+      Next
+
+
+.row
+  .col-md-8
+    %h3.pa5.border-under
+      TOPICs
+    %table.table.table-bordered
+      - @topics.each do |topic|
+        %tr
+          %td.col-md-2=l topic.publish_at.to_date, format: :topic
+          %td= link_to topic.title, topic
+
+  .col-md-4
+    %h4.pa5.border-under
+      理念・ビジョン
+    %table.table.table-bordered
+      %tr
+        %td= link_to "私たちの経営理念", mission_path
+      %tr
+        %td= link_to "私たちの保育理念", policy_childcare_path
+      %tr
+        %td= link_to "私たちのビジョン", vision_path
+

@@ -1,0 +1,28 @@
+= form_for [:cms,@topic] do |f|
+  - if @topic.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@topic.errors.count, "error")} prohibited this topic from being saved:"
+      %ul
+        - @topic.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :enable
+    = f.check_box :enable
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :body
+    = f.text_area :body, class: "form-control"
+  .form-group
+    = f.label :publish_at
+    = f.datetime_select :publish_at, class: "form-control"
+  .form-group
+    = f.label :carousel
+    = f.check_box :carousel
+  .form-group
+    = f.label :carousel_img
+    = f.text_field :carousel_img, class: "form-control"
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"

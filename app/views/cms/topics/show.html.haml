@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Enable:
+  = @topic.enable
+%p
+  %b Title:
+  = @topic.title
+%p
+  %b Body:
+  = @topic.body
+%p
+  %b Publish at:
+  = @topic.publish_at
+
+= link_to 'Edit', edit_cms_topic_path(@topic)
+\|
+= link_to 'Back', cms_topics_path
