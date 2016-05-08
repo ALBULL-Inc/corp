@@ -22,6 +22,7 @@ gem 'unicorn'
 gem 'whenever', :require => false
 gem 'aws-sdk'
 gem 'slack-notifier'
+gem 'dotenv-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
