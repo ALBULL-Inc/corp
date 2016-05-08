@@ -1,0 +1,8 @@
+aws:
+  access_key_id:
+  secret_access_key:
+  ec2_endpoint:
+  elb_endpoint:
+
+slack:
+  webhook_url:
