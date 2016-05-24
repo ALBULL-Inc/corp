@@ -9,7 +9,7 @@ set :repo_url, 'git@github.com:your-corp/corp.git'
 set :rbenv_ruby, File.read('.ruby-version').strip
 
 #set :linked_files, %W{.env config/database.yml config/settings/#{fetch :stage}.yml config/settings/slack_notifier.yml}
-set :linked_files, %W{config/database.yml}
+set :linked_files, %W{config/database.yml .env}
 set :linked_dirs, %w{log public/sitemaps tmp/pids tmp/cache tmp/sockets vendor/bundle}
 
 set :keep_releases, 5
