@@ -10,20 +10,18 @@ class WelcomeController < ApplicationController
   #= Your Corpとは
   # GET /about_us
   def about_us
+    add_breadcrumb "株式会社ユアとは", about_us_url
   end
 
-  #= 私たちのビジョン
+  #= 企業理念
   # GET /mission
   def mission
-  end
-
-  #= 私たちのビジョン
-  # GET /vision
-  def vision
+    add_breadcrumb "企業理念", mission_url
   end
 
   #= 保育理念
   # GET /policy/childcare
   def policy_childcare
+    add_breadcrumb "保育理念", policy_childcare_url
   end
 end

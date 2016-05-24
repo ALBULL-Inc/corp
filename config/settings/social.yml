@@ -1,0 +1,10 @@
+default: &default
+  facebook: 1234567890
+
+development:
+  <<: *default
+  facebook: 12323
+
+production:
+  <<: *default
+  facebook: 792672787501172

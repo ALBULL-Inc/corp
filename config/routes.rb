@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   get '/about_us', to: 'welcome#about_us'
   get '/mission', to: 'welcome#mission'
-  get '/vision', to: 'welcome#vision'
   get '/policy/childcare', to: 'welcome#policy_childcare'
   root to: "welcome#index"
 end

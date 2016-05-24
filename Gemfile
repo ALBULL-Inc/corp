@@ -24,6 +24,9 @@ gem 'aws-sdk'
 gem 'slack-notifier'
 gem 'dotenv-rails'
 
+gem 'meta-tags', require: 'meta_tags'
+gem 'breadcrumbs_on_rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
