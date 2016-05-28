@@ -1,0 +1,15 @@
+.text-center.mb10
+  .fb-page(data-href="https://www.facebook.com/your.corp.025" data-show-faces="true")
+
+.want-push.text-center.mb5.f12{style: "display: none;"}
+  = link_to "このサイトの最新情報を受け取る", "#", onclick: "return false;"
+
+%footer
+  %ul.footer-link.f12.mb5.pt5
+    %li= link_to '会社概要', about_us_path
+    %li= link_to '採用情報', about_us_path
+    %li= link_to 'お問合せ', about_us_path
+  .pb5.t-center
+    &copy;Your Corp.
+
+= render partial: 'common/analytics'

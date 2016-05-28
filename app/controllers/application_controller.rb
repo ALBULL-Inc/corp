@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  include Jpmobile::ViewSelector
 
   before_action :constant
   before_action :add_breadcrumb_of_root
+
+  protect_from_forgery with: :exception
 
   private
     def constant
