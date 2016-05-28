@@ -5,23 +5,21 @@
       .title
         = topic.title
 
-.row
-  .col-md-12
-    %h3.border-under
-      TOPICs
-    %table.table
-      - @topics.each do |topic|
-        %tr
-          %td.f11=l topic.publish_at.to_date, format: :topic
-          %td= link_to topic.title, topic
+.col-md-12
+  %h3.border-under
+    TOPICs
+  %table.table
+    - @topics.each do |topic|
+      %tr
+        %td.f11=l topic.publish_at.to_date, format: :topic
+        %td= link_to topic.title, topic
 
 
-.row
-  .col-md-12
-    %h4.border-under
-      私たちの目指すコト
-    %table.table
-      %tr
-        %td= link_to "» 私たちの企業理念", mission_path
-      %tr
-        %td= link_to "» 私たちの保育理念", policy_childcare_path
+.col-md-12
+  %h4.border-under
+    私たちの目指すコト
+  %table.table
+    %tr
+      %td= link_to "» 私たちの企業理念", mission_path
+    %tr
+      %td= link_to "» 私たちの保育理念", policy_childcare_path
