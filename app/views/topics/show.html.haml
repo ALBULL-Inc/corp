@@ -2,24 +2,23 @@
 
 %h1.f22= @topic.title
 
-.row
-  .col-md-8
-    %p.t-right
-      =l @topic.publish_at.to_date, format: :topic
+.col-md-8
+  %p.t-right
+    =l @topic.publish_at.to_date, format: :topic
 
-    - if @topic.carousel_img.present?
-      .mb15
-        = image_tag @topic.carousel_img, width: "100%"
+  - if @topic.carousel_img.present?
+    .mb15
+      = image_tag @topic.carousel_img, width: "100%"
 
-    %p
-      = @topic.body.html_safe
+  %p
+    = @topic.body.html_safe
 
-  .col-md-4
-    %h4.pa5.border-under
-      最新のTOPICs
-    %table.table.table-bordered
-      - @topics.each do |topic|
-        %tr
-          %td
-            %span.f11= l topic.publish_at.to_date, format: :topic
-            = link_to topic.title, topic
+.col-md-4
+  %h4.pa5.border-under
+    最新のTOPICs
+  %table.table.table-bordered
+    - @topics.each do |topic|
+      %tr
+        %td
+          %span.f11= l topic.publish_at.to_date, format: :topic
+          = link_to topic.title, topic
