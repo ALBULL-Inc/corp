@@ -1,0 +1,19 @@
+.row
+  .col-md-2
+
+  .col-md-8
+    - if @recruits.present?
+      私たちは、「あなたの想いは、全て形に」を企業理念とし、「３つの想いを大切に」保育事業を行っています。
+      %br
+      ママの視点でどんどん想いを実現していきませんか？是非ご応募お待ちしております。
+
+      %h3.pa5.border-under
+        採用中一覧
+      %table.table.table-bordered
+        - @recruits.each do |recruit|
+          %tr
+            %td= link_to recruit.title, recruit
+            %td.col-md-4
+              = recruit.working_place
+    - else
+      現在募集しておりません。募集開始しましたら掲載いたします。

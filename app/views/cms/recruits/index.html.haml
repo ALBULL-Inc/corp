@@ -1,0 +1,33 @@
+%h1 Listing recruits
+
+%table
+  %thead
+    %tr
+      %th Enable
+      %th Title
+      %th Job content
+      %th Qualification
+      %th Compensation
+      %th Working place
+      %th Position
+      %th
+      %th
+      %th
+
+  %tbody
+    - @recruits.each do |recruit|
+      %tr
+        %td= recruit.enable
+        %td= recruit.title
+        %td= recruit.job_content
+        %td= recruit.qualification
+        %td= recruit.compensation
+        %td= recruit.working_place
+        %td= recruit.position
+        %td= link_to 'Show', [:cms,recruit]
+        %td= link_to 'Edit', edit_cms_recruit_path(recruit)
+        %td= link_to 'Destroy', [:cms,recruit], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Recruit', new_cms_recruit_path

@@ -1,0 +1,31 @@
+= form_for [:cms,@recruit] do |f|
+  - if @recruit.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@recruit.errors.count, "error")} prohibited this recruit from being saved:"
+      %ul
+        - @recruit.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :enable
+    = f.check_box :enable
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :job_content
+    = f.text_area :job_content, class: "form-control"
+  .form-group
+    = f.label :qualification
+    = f.text_area :qualification, class: "form-control"
+  .form-group
+    = f.label :compensation
+    = f.text_area :compensation, class: "form-control"
+  .form-group
+    = f.label :working_place
+    = f.text_field :working_place, class: "form-control"
+  .form-group
+    = f.label :position
+    = f.number_field :position, class: "form-control"
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"
