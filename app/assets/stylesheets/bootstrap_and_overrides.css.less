@@ -36,3 +36,16 @@ table.table > tbody > tr > td {
   border: 0;
   border-bottom: 1px solid #ddd;
 }
+
+label.require:after {
+  &:extend(.label);
+  &:extend(.label-danger);
+  margin-left: 8px;
+  content: "必須";
+  font-size: 10px;
+}
+
+#error_explanation {
+  &:extend(.alert);
+  &:extend(.alert-danger);
+}

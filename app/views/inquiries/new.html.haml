@@ -1,1 +1,24 @@
-お問合せ
+.col-md-3
+
+.col-md-6
+
+  %h3 お問合せ
+  = form_for @inquiry, url: inquiry_path do |f|
+    - if @inquiry.errors.any?
+      #error_explanation
+        %ul
+          - @inquiry.errors.full_messages.each do |msg|
+            %li= msg
+    .form-group
+      = f.label :email, class: "require"
+      = f.email_field :email, class: "form-control", placeholder: "your@domain.com"
+    .form-group
+      = f.label :name, class: "require"
+      = f.text_field :name, class: "form-control", placeholder: "佐藤 優亜"
+    .form-group
+      = f.label :body, class: "require"
+      = f.text_area :body, size: "10x10", class: "form-control"
+    .actions
+      = f.submit t('Send'), class: "btn btn-primary"
+
+.col-md-3

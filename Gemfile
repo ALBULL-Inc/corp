@@ -15,6 +15,7 @@ gem 'whenever', :require => false
 gem 'aws-sdk'
 gem 'slack-notifier'
 gem 'dotenv-rails'
+gem 'config'
 
 gem 'meta-tags', require: 'meta_tags'
 gem 'breadcrumbs_on_rails'
