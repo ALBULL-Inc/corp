@@ -1,0 +1,10 @@
+ja:
+  activemodel:
+    models:
+      inquiry: お問合せ
+    attributes:
+      inquiry:
+        email: メールアドレス
+        name: お名前
+        body: お問い合わせ内容
+

@@ -15,6 +15,7 @@ gem 'whenever', :require => false
 gem 'aws-sdk'
 gem 'slack-notifier'
 gem 'dotenv-rails'
+gem 'config'
 
 gem 'meta-tags', require: 'meta_tags'
 gem 'breadcrumbs_on_rails'
@@ -39,5 +40,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano3-unicorn'
+
+  gem 'quiet_assets'
 end
 

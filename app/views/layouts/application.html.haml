@@ -10,13 +10,15 @@
 
   %body
     = render partial: 'layouts/header'
-    - if notice || alert
-      - if notice
-        %p#notice= notice
-      - if alert
-        %p#alert= alert
-
     %section#main_contents
+      - if notice || alert || flash.success
+        - if flash.success
+          %p.alert.alert-success= flash.success
+        - if notice
+          %p.alert.alert-warning= notice
+        - if alert
+          %p.alert.alert-danger= alert
+
       = yield
 
     = render 'layouts/footer'

@@ -62,6 +62,7 @@ section#main_contents {
 }
 
 section#footer {
+  clear: both;
   margin-top: 20px;
 }
 section#footer > #main-contents {

@@ -1,0 +1,23 @@
+.col-md-2
+
+.col-md-8
+
+  %h3= @recruit.title
+
+  %table.table.table-bordered
+    %tr
+      %th.col-md-2 職務内容
+      %td= @recruit.job_content
+    %tr
+      %th.col-md-2 応募資格
+      %td= @recruit.qualification
+    %tr
+      %th.col-md-2 待遇処遇
+      %td= @recruit.compensation
+    %tr
+      %th.col-md-2 勤務地
+      %td= @recruit.working_place
+
+  = link_to '« 一覧へ戻る', recruits_path
+
+.col-md-2

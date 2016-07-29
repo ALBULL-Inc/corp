@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430125327) do
+ActiveRecord::Schema.define(version: 20160625133456) do
+
+  create_table "recruits", force: :cascade do |t|
+    t.boolean  "enable"
+    t.string   "title"
+    t.text     "job_content"
+    t.text     "qualification"
+    t.text     "compensation"
+    t.string   "working_place"
+    t.integer  "position"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "recruits", ["enable", "position"], name: "index_recruits_on_enable_and_position"
 
   create_table "topics", force: :cascade do |t|
     t.boolean  "enable"
