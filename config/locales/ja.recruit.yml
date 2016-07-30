@@ -4,6 +4,7 @@ ja:
       recruit: 採用情報
     attributes:
       recruit:
+        enable: 有効?
         title: 件名
         job_content: 職務内容
         qualification: 応募資格
