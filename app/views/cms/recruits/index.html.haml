@@ -1,18 +1,16 @@
 %h1 Listing recruits
 
-%table
+%table.table
   %thead
     %tr
-      %th Enable
-      %th Title
-      %th Job content
-      %th Qualification
-      %th Compensation
-      %th Working place
-      %th Position
-      %th
-      %th
-      %th
+      %th= Recruit.human_attribute_name :enable
+      %th= Recruit.human_attribute_name :title
+      %th= Recruit.human_attribute_name :job_content
+      %th= Recruit.human_attribute_name :qualification
+      %th= Recruit.human_attribute_name :compensation
+      %th= Recruit.human_attribute_name :working_place
+      %th= Recruit.human_attribute_name :position
+      %th{colspan: 3}
 
   %tbody
     - @recruits.each do |recruit|
@@ -24,9 +22,10 @@
         %td= recruit.compensation
         %td= recruit.working_place
         %td= recruit.position
-        %td= link_to 'Show', [:cms,recruit]
-        %td= link_to 'Edit', edit_cms_recruit_path(recruit)
-        %td= link_to 'Destroy', [:cms,recruit], :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          = link_to 'Show', [:cms,recruit], class: 'btn btn-info'
+          = link_to 'Edit', edit_cms_recruit_path(recruit), class: 'btn btn-warning'
+          = link_to 'Destroy', [:cms,recruit], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
 
 %br
 
