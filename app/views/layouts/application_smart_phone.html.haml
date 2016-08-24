@@ -14,6 +14,7 @@
     %link(rel="manifest" href="/manifest.json")
 
   %body
+    = render partial: 'layouts/snippet'
     = render partial: 'layouts/header'
     .page-wrapper
       - if notice || alert

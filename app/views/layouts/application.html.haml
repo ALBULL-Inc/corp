@@ -9,6 +9,7 @@
     %link(rel="manifest" href="/manifest.json")
 
   %body
+    = render partial: 'layouts/snippet'
     = render partial: 'layouts/header'
     %section#main_contents
       - if notice || alert || flash.success
