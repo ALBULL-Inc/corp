@@ -5,6 +5,6 @@
 
 = display_meta_tags site: t('site.name'), description: t('site.description'), title: @breadcrumbs.try(:last).try(:name),
   og: {title: t('site.name'), url: root_url}, reverse: true,
-  twitter: {card: 'website', site: '@g_MusiQ'},
+  twitter: {card: 'website', site: '@yourcorp'},
   canonical: @breadcrumbs.try(:last).try(:path) || root_url
 %meta{property: 'fb:app_id', content: @c_social[:facebook]}
