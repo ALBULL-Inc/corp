@@ -1,9 +1,8 @@
-lock '3.5.0'
+lock '3.7.1'
 
 set :log_level, :info
 
 set :application, 'corp'
-set :scm, :git
 set :repo_url, 'git@github.com:your-corp/corp.git'
 
 set :rbenv_ruby, File.read('.ruby-version').strip
