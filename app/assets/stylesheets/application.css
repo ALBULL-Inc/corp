@@ -3,6 +3,7 @@
  *= require_self
  *= require common
  *= require header
+ *= require error_explanation
  */
 
 body {

@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
   root to: "welcome#index"
 
-  resources :recruits
-  resources :topics, only: [:index, :show]
-  resource :inquiry, only: [:new, :create]
-
   get '/about_us', to: 'welcome#about_us'
   get '/mission', to: 'welcome#mission'
   get '/policy/childcare', to: 'welcome#policy_childcare'
 
+  # concerns
+  concern :inquirable do
+    resource :inquiry, only: [:new]
+  end
+
+  # routings
+  resources :recruits
+  resources :topics, only: [:index, :show]
+  resource :inquiry, only: [:new, :create]
+
+  # cms routings
   namespace :cms do
     root to: "dashboards#index"
     resources :topics
