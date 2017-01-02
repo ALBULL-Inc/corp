@@ -1,0 +1,16 @@
+.wrapper
+  %h1= t("Resend confirmation instructions")
+
+  %p.f12.pt10.pb10
+    メールアドレス宛てに、確認メールが届きます。
+    %br/
+    メール内のURLより確認を完了させてください。
+
+  .row
+    .col-md-5
+      = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+        .f12= devise_error_messages!
+        .form-group
+          = f.label :email
+          = f.email_field :email, :autofocus => true, class: 'form-control', placeholder: '登録時に入力したメールアドレス'
+        %p.text-center= f.submit t("Resend confirmation instructions"), class: 'btn btn-primary'

@@ -21,6 +21,11 @@ gem 'meta-tags', require: 'meta_tags'
 gem 'breadcrumbs_on_rails'
 gem 'jpmobile'
 
+gem 'devise'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+#gem 'omniauth-line'
+
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'

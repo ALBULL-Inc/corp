@@ -1,0 +1,16 @@
+.wrapper
+  %h1= t("reset password")
+
+  %p.f12.pt10.pb10
+    メールアドレス宛てに、パスワード再設定のご案内が届きます。
+    %br/
+    メール内のURLよりパスワード再設定ページへお進みください。
+
+  .row
+    .col-md-4
+      = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+        .f12= devise_error_messages!
+        .form-group
+          = f.label :email
+          = f.email_field :email, :autofocus => true, class: 'form-control', placeholder: '登録時に入力したメールアドレス'
+        %p.text-center= f.submit t("Send me reset password instructions"), class: 'btn btn-primary'

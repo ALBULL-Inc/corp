@@ -7,4 +7,4 @@
   og: {title: t('site.name'), url: root_url}, reverse: true,
   twitter: {card: 'website', site: '@yourcorp'},
   canonical: @breadcrumbs.try(:last).try(:path) || root_url
-%meta{property: 'fb:app_id', content: @c_social[:facebook]}
+%meta{property: 'fb:app_id', content: Settings[:facebook][:app_id]}

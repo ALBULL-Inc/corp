@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   # routings
+  devise_for :accounts, path: '',
+    path_names: {sign_in: :login, sign_out: :logout}
   resources :recruits
   resources :topics, only: [:index, :show]
   resource :inquiry, only: [:new, :create]
