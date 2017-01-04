@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230222419) do
+ActiveRecord::Schema.define(version: 20170102225519) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
     t.string   "provider"
     t.string   "uid"
     t.string   "email"
+    t.string   "access_token"
     t.string   "avatar"
     t.text     "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["access_token"], name: "index_account_o_auths_on_access_token"
     t.index ["account_id"], name: "index_account_o_auths_on_account_id"
     t.index ["email"], name: "index_account_o_auths_on_email"
     t.index ["provider"], name: "index_account_o_auths_on_provider"
@@ -47,6 +49,19 @@ ActiveRecord::Schema.define(version: 20161230222419) do
     t.index ["confirmation_token"], name: "index_accounts_on_confirmation_token", unique: true
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "account_id"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "nickname"
+    t.integer  "gender",     limit: 1, default: 0
+    t.integer  "blood",      limit: 1, default: 0
+    t.date     "birthday"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["account_id"], name: "index_profiles_on_account_id"
   end
 
   create_table "recruits", force: :cascade do |t|

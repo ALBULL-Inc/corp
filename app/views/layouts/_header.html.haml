@@ -25,7 +25,7 @@
     .text-right
       - if account_signed_in?
         logged in:
-        = current_account.email
+        = link_to current_account.nickname, profile_path
         = link_to "#{glyph 'log-out'}".html_safe, destroy_account_session_path, method: :delete
       - else
         = link_to "#{glyph 'log-in'} Log in".html_safe, new_account_session_path

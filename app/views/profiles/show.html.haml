@@ -1,0 +1,28 @@
+- set_meta_tags title: "#{@profile.nickname}さんのページ"
+
+.col-md-2
+
+.col-md-8
+  %h1 マイページ
+
+  %p
+    %b Nickname:
+    = @profile.nickname
+  %p
+    %b Firstname:
+    = @profile.firstname
+  %p
+    %b Lastname:
+    = @profile.lastname
+  %p
+    %b Gender:
+    = gender2str @profile.gender
+  %p
+    %b Birthday:
+    - if @profile.birthday?
+      =l @profile.birthday
+
+  = link_to "編集", edit_profile_path
+
+  %h2 経歴
+

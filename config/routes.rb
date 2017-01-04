@@ -12,7 +12,14 @@ Rails.application.routes.draw do
 
   # routings
   devise_for :accounts, path: '',
-    path_names: {sign_in: :login, sign_out: :logout}
+    path_names: {sign_in: :login, sign_out: :logout},
+    controllers: {
+      omniauth_callbacks: 'callbacks/omniauth',
+#      registrations: 'devise_ext/registrations',
+#      confirmations: 'devise_ext/confirmations',
+#      sessions:      'devise_ext/sessions'
+    }
+  resource :profile, only: [:show, :edit, :update]
   resources :recruits
   resources :topics, only: [:index, :show]
   resource :inquiry, only: [:new, :create]

@@ -1,0 +1,38 @@
+
+.col-md-2
+
+.col-md-8
+  %h1 Editing profile
+
+  = form_for @profile, url: profile_path do |f|
+    - if @profile.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@profile.errors.count, "error")} prohibited this recruit from being saved:"
+        %ul
+          - @profile.errors.full_messages.each do |msg|
+            %li= msg
+
+    .form-group
+      = f.label :nickname
+      = f.text_field :nickname, class: "form-control"
+    .form-group
+      = f.label :firstname
+      = f.text_field :firstname, class: "form-control"
+    .form-group
+      = f.label :lastname
+      = f.text_field :lastname, class: "form-control"
+    .form-group
+      = f.label :gender
+      %br
+      = f.radio_button :gender, Gender::MALE
+      = f.label "gender_#{Gender::MALE}", gender2str(Gender::MALE)
+      %span.mr10
+      = f.radio_button :gender, Gender::FEMALE
+      = f.label "gender_#{Gender::FEMALE}", gender2str(Gender::FEMALE)
+    .form-group
+      = f.label :birthday
+      = f.date_field :birthday, class: "form-control"
+    .actions
+      = f.submit 'Save', class: "btn btn-primary"
+
+  = link_to 'Back', profile_path

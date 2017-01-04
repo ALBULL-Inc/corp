@@ -5,6 +5,7 @@ class CreateAccountOAuths < ActiveRecord::Migration[5.0]
       t.string :provider,                       index: true
       t.string :uid,                            index: true
       t.string :email,                          index: true
+      t.string :access_token,                   index: true
       t.string :avatar
       t.text :data
 
