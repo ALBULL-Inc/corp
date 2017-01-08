@@ -3,6 +3,8 @@ class ProfilesController < ApplicationController
   before_action :set_profile
 
   def show
+    @backgrounds = @profile.backgrounds
+    @qualifications = @profile.qualifications
   end
 
   def edit
@@ -26,6 +28,10 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-      params.require(:profile).permit(:nickname, :firstname, :lastname, :gender, :birthday)
+      params.require(:profile).permit(
+        :nickname, :firstname, :lastname, :gender, :birthday,
+        backgrounds_attributes: [:id, :background_type, :joined_on, :left_on, :site, :_destroy],
+        qualifications_attributes: [:id, :issued_on, :title, :outline]
+      )
     end
 end

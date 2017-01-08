@@ -4,6 +4,8 @@
 
 .col-md-8
   %h1 マイページ
+  .text-right
+    = link_to "編集", edit_profile_path, class: 'btn btn-primary'
 
   %p
     %b Nickname:
@@ -22,7 +24,28 @@
     - if @profile.birthday?
       =l @profile.birthday
 
-  = link_to "編集", edit_profile_path
-
   %h2 経歴
+  - @backgrounds.each do |background|
+    %p
+      %b Type:
+      = background2str(background.background_type)
+    %p
+      %b Joined On:
+      =l background.joined_on
 
+    %p
+      %b Site:
+      = background.site
+
+  %h2 保有資格・免許
+  - @qualifications.each do |qualification|
+    %p
+      %b Issued On:
+      =l qualification.issued_on
+
+    %p
+      %b tile:
+      = qualification.title
+    %p
+      %b outline:
+      = qualification.outline

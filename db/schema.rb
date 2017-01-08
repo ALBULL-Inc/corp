@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102225519) do
+ActiveRecord::Schema.define(version: 20170108112749) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -51,6 +51,33 @@ ActiveRecord::Schema.define(version: 20170102225519) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "backgrounds", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "background_type"
+    t.date     "joined_on"
+    t.date     "left_on"
+    t.string   "site"
+    t.string   "department"
+    t.text     "outline"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["background_type"], name: "index_backgrounds_on_background_type"
+    t.index ["joined_on"], name: "index_backgrounds_on_joined_on"
+    t.index ["profile_id", "background_type", "joined_on"], name: "idx_backgrounds_compo_001"
+    t.index ["profile_id"], name: "index_backgrounds_on_profile_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "contact_type"
+    t.string   "content"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["contact_type"], name: "index_contacts_on_contact_type"
+    t.index ["profile_id", "contact_type"], name: "index_contacts_on_profile_id_and_contact_type"
+    t.index ["profile_id"], name: "index_contacts_on_profile_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.integer  "account_id"
     t.string   "firstname"
@@ -62,6 +89,18 @@ ActiveRecord::Schema.define(version: 20170102225519) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.index ["account_id"], name: "index_profiles_on_account_id"
+  end
+
+  create_table "qualifications", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.date     "issued_on"
+    t.string   "title"
+    t.text     "outline"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["issued_on"], name: "index_qualifications_on_issued_on"
+    t.index ["profile_id", "issued_on"], name: "index_qualifications_on_profile_id_and_issued_on"
+    t.index ["profile_id"], name: "index_qualifications_on_profile_id"
   end
 
   create_table "recruits", force: :cascade do |t|

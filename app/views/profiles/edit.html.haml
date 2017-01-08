@@ -4,35 +4,109 @@
 .col-md-8
   %h1 Editing profile
 
-  = form_for @profile, url: profile_path do |f|
+  = nested_form_for @profile, url: profile_path do |f|
     - if @profile.errors.any?
       #error_explanation
         %h2= "#{pluralize(@profile.errors.count, "error")} prohibited this recruit from being saved:"
         %ul
           - @profile.errors.full_messages.each do |msg|
             %li= msg
+    .row
+      .col-md-6
+        .form-group
+          = f.label :firstname
+          = f.text_field :firstname, class: "form-control"
+      .col-md-6
+        .form-group
+          = f.label :lastname
+          = f.text_field :lastname, class: "form-control"
+    .row
+      .col-md-6
+        .form-group
+          = f.label :nickname
+          = f.text_field :nickname, class: "form-control"
+    .row
+      .col-md-6
+        .form-group
+          = f.label :birthday
+          = f.date_field :birthday, class: "form-control"
+    .row
+      .col-md-6
+        .form-group
+          = f.label :gender
+          %br
+          = f.radio_button :gender, Gender::MALE
+          = f.label "gender_#{Gender::MALE}", gender2str(Gender::MALE)
+          %span.mr10
+          = f.radio_button :gender, Gender::FEMALE
+          = f.label "gender_#{Gender::FEMALE}", gender2str(Gender::FEMALE)
 
-    .form-group
-      = f.label :nickname
-      = f.text_field :nickname, class: "form-control"
-    .form-group
-      = f.label :firstname
-      = f.text_field :firstname, class: "form-control"
-    .form-group
-      = f.label :lastname
-      = f.text_field :lastname, class: "form-control"
-    .form-group
-      = f.label :gender
-      %br
-      = f.radio_button :gender, Gender::MALE
-      = f.label "gender_#{Gender::MALE}", gender2str(Gender::MALE)
-      %span.mr10
-      = f.radio_button :gender, Gender::FEMALE
-      = f.label "gender_#{Gender::FEMALE}", gender2str(Gender::FEMALE)
-    .form-group
-      = f.label :birthday
-      = f.date_field :birthday, class: "form-control"
+    %h2 経歴
+    .row
+      .col-md-1
+        %b= Background.human_attribute_name('background_type')
+      .col-md-3
+        %b= Background.human_attribute_name('joined_on')
+      .col-md-3
+        %b= Background.human_attribute_name('left_on')
+      .col-md-4
+        %b= Background.human_attribute_name('site')
+      .col-md-1
+        %b 削除
+
+    = f.fields_for :backgrounds do |back_f|
+      .row.mb5
+        .form-group
+          .col-md-1
+            = back_f.collection_select :background_type, collection_values, :first, :last, class: "form-control"
+          .col-md-3
+            = back_f.date_field :joined_on, class: "form-control"
+          .col-md-3
+            = back_f.date_field :left_on, class: "form-control"
+          .col-md-4
+            = back_f.text_field :site, class: "form-control"
+
+          .col-md-1
+            - if back_f.object.id
+              = back_f.check_box :_destroy
+            - else
+              = back_f.link_to_remove "削除", class: 'btn btn-danger'
+
     .actions
+      = f.link_to_add "経歴追加", :backgrounds, class: 'btn btn-info'
+
+    %h2 保有資格・免許
+    .row
+      .col-md-3
+        %b= Qualification.human_attribute_name('issued_on')
+      .col-md-5
+        %b= Qualification.human_attribute_name('title')
+      .col-md-3
+        %b= Qualification.human_attribute_name('outline')
+      .col-md-1
+        %b 削除
+
+    = f.fields_for :qualifications do |qual_f|
+      .row.mb5
+        .form-group
+          .col-md-3
+            = qual_f.date_field :issued_on, class: "form-control"
+          .col-md-5
+            = qual_f.text_field :title, class: "form-control"
+          .col-md-3
+            = qual_f.text_area :outline, class: "form-control"
+
+          .col-md-1
+            - if qual_f.object.id
+              = qual_f.check_box :_destroy
+            - else
+              = qual_f.link_to_remove "削除", class: 'btn btn-danger'
+
+    .actions
+      %p.f11 ※日付までわからない場合は1日で入力ください
+      = f.link_to_add "保有資格・免許追加", :qualifications, class: 'btn btn-info'
+
+    .actions.mt20
       = f.submit 'Save', class: "btn btn-primary"
 
   = link_to 'Back', profile_path

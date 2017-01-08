@@ -16,6 +16,7 @@ gem 'aws-sdk'
 gem 'slack-notifier'
 gem 'dotenv-rails'
 gem 'config'
+gem 'nested_form'
 
 gem 'meta-tags', require: 'meta_tags'
 gem 'breadcrumbs_on_rails'

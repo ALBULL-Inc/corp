@@ -2,11 +2,11 @@ module ProfilesHelper
   def gender2str(gender)
     case gender
     when Gender::MALE
-      "男"
+      t('gender.male')
     when Gender::FEMALE
-      "女"
+      t('gender.female')
     else
-      ""
+      t('gender.other')
     end
   end
 end

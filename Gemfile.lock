@@ -157,6 +157,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mysql2 (0.4.5)
+    nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
@@ -307,6 +308,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   meta-tags
   mysql2
+  nested_form
   omniauth-facebook
   omniauth-google-oauth2
   puma (~> 3.0)
