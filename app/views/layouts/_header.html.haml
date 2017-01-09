@@ -13,6 +13,15 @@
         %span
           = link_to 'https://www.instagram.com/yourcorp/', class: "btn btn-social-icon btn-instagram mt25", rel: :nofollow, target: :_blank do
             %span.fa.fa-instagram
+        %span
+          - if account_signed_in?
+            = link_to profile_path, class: "btn btn-social-icon mt25", rel: :nofollow do
+              %span.fa= "#{glyph 'home'}".html_safe
+            = link_to destroy_account_session_path, method: :delete, class: "btn btn-social-icon mt25", rel: :nofollow do
+              %span.fa= "#{glyph 'log-out'}".html_safe
+          - else
+            = link_to new_account_session_path, class: "btn btn-social-icon mt25", rel: :nofollow do
+              %span.fa= "#{glyph 'log-in'}".html_safe
 
       %ul.nav.navbar-nav.navbar-right
         %li.mr50
@@ -21,11 +30,3 @@
           = link_to '採用情報', recruits_path
         %li.mr50
           = link_to 'お問合せ', new_inquiry_path
-
-    .text-right
-      - if account_signed_in?
-        logged in:
-        = link_to current_account.nickname, profile_path
-        = link_to "#{glyph 'log-out'}".html_safe, destroy_account_session_path, method: :delete
-      - else
-        = link_to "#{glyph 'log-in'} Log in".html_safe, new_account_session_path
