@@ -10,7 +10,7 @@ module BackgroundsHelper
     end
   end
 
-  def collection_values
+  def background_types_options
     Background::TYPE.to_a.map do |k,v|
       [v, t("background.#{k}")]
     end

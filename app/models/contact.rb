@@ -1,4 +1,5 @@
 class Contact < ApplicationRecord
+  crypt :content
   TYPE = {
     email:   1,
     tel:     2,

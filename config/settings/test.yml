@@ -2,3 +2,6 @@ facebook:
   page_id: 1234567890
   app_id: 5678901234
   app_secret: abcdefghijklmn
+
+crypt:
+  secret: ''

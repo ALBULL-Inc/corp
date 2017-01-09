@@ -31,7 +31,8 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(
         :nickname, :firstname, :lastname, :gender, :birthday,
         backgrounds_attributes: [:id, :background_type, :joined_on, :left_on, :site, :_destroy],
-        qualifications_attributes: [:id, :issued_on, :title, :outline]
+        qualifications_attributes: [:id, :issued_on, :title, :outline],
+        contacts_attributes: [:id, :contact_type, :content]
       )
     end
 end
