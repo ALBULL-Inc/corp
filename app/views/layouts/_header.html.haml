@@ -17,8 +17,6 @@
           - if account_signed_in?
             = link_to profile_path, class: "btn btn-social-icon mt25", rel: :nofollow do
               %span.fa= "#{glyph 'home'}".html_safe
-            = link_to destroy_account_session_path, method: :delete, class: "btn btn-social-icon mt25", rel: :nofollow do
-              %span.fa= "#{glyph 'log-out'}".html_safe
           - else
             = link_to new_account_session_path, class: "btn btn-social-icon mt25", rel: :nofollow do
               %span.fa= "#{glyph 'log-in'}".html_safe

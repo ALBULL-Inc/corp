@@ -5,3 +5,10 @@
       %a.brand(href=root_path)
         = image_tag('layout/header/logo.png', alt: '株式会社ユア')
         %span.f10= "- #{t('site.mission')} -"
+    - if account_signed_in?
+      - if params[:controller] == "accounts"
+        = link_to "#{glyph 'log-out'}".html_safe, destroy_account_session_path, method: :delete, class: "links logout"
+      - else
+        = link_to "#{glyph 'home'}".html_safe, profile_path, class: "links mypage"
+    - else
+      = link_to "#{glyph 'log-in'}".html_safe, new_account_session_path, class: "links login"

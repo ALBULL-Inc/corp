@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      profile: プロフィール
+    attributes:
+      profile:
+        nickname: ニックネーム(呼称)
+        firstname: 名
+        lastname: 姓
+        gender: 性別
+        birthday: 生年月日
+
+  "Editing profile": "プロフィール編集"

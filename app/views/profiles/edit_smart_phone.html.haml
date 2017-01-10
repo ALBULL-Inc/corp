@@ -28,11 +28,6 @@
     .row
       .col-md-6
         .form-group
-          = f.label :birthday
-          = f.date_field :birthday, class: "form-control"
-    .row
-      .col-md-6
-        .form-group
           = f.label :gender
           %br
           = f.radio_button :gender, Gender::MALE
@@ -40,6 +35,11 @@
           %span.mr10
           = f.radio_button :gender, Gender::FEMALE
           = f.label "gender_#{Gender::FEMALE}", gender2str(Gender::FEMALE)
+    .row
+      .col-md-6
+        .form-group
+          = f.label :birthday
+          = f.date_field :birthday, class: "form-control"
 
     %h2 経歴
     .row
@@ -133,6 +133,6 @@
       = f.link_to_add "連絡先追加", :contacts, class: 'btn btn-info'
 
     .actions.mt20
-      = f.submit t('Save'), class: "btn btn-primary"
+      = f.submit class: "btn btn-primary"
 
   = link_to t('Back'), profile_path
