@@ -4,22 +4,13 @@
 
   %h3= @recruit.title
 
-  %table.table.table-bordered.mt20
-    %tr
-      %th.col-md-2 職務内容
-      %td= @recruit.job_content
-    %tr
-      %th.col-md-2 応募資格
-      %td= @recruit.qualification
-    %tr
-      %th.col-md-2 待遇処遇
-      %td= @recruit.compensation
-    %tr
-      %th.col-md-2 勤務地
-      %td= @recruit.working_place
+  = render @recruit
 
   .actions.t-center
-    = link_to 'このお仕事に応募する', new_inquiry_path, class: 'btn btn-primary'
+    - if @recruit.application?(current_account)
+      #{Entry.model_name.human}済みです
+    - else
+      = link_to 'このお仕事に応募する', new_recruit_entry_path(@recruit), class: 'btn btn-primary'
 
   .links.mt10
     = link_to '« 一覧へ戻る', recruits_path

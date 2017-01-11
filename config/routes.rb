@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 #      sessions:      'devise_ext/sessions'
     }
   resource :profile, only: [:show, :edit, :update]
-  resources :recruits
+  resources :recruits do
+    resource :entry, only: [:new, :create]
+  end
   resources :topics, only: [:index, :show]
   resource :inquiry, only: [:new, :create]
 

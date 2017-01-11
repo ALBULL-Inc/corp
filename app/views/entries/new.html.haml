@@ -1,0 +1,14 @@
+
+.col-md-2
+
+.col-md-8
+  この#{Recruit.model_name.human}に#{Entry.model_name.human}しますか？
+  = render @recruit
+  = form_for @entry, url: recruit_entry_path(@recruit) do |f|
+    .form-group
+      = f.label :comment
+      = f.text_area :comment, class: "form-control"
+    .text-center
+      = f.submit "#{Entry.model_name.human}する", class: 'btn btn-success'
+
+  = link_to "« #{Recruit.model_name.human}詳細に戻る", @recruit

@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      entry: エントリー
+    attributes:
+      entry:
+        account: ユーザー
+        recruit: 求人
+        status: 応募ステータス
+        comment: 意気込み

@@ -8,6 +8,7 @@ class Account < ApplicationRecord
   has_one :profile, dependent: :destroy
   delegate :firstname, :lastname, :nickname, :gender, :blood, :birthday, to: :profile
   has_many :oauths, class_name: 'AccountOAuth', dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   # Scope
   default_scope -> { eager_load(:profile) }

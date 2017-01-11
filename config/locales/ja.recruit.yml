@@ -1,7 +1,7 @@
 ja:
   activerecord:
     models:
-      recruit: 採用情報
+      recruit: 求人
     attributes:
       recruit:
         enable: 有効?
@@ -11,4 +11,3 @@ ja:
         compensation: 待遇処遇
         working_place: 勤務地
         position: 表示順
-

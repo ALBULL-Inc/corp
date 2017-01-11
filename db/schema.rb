@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108112749) do
+ActiveRecord::Schema.define(version: 20170110101736) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -76,6 +76,21 @@ ActiveRecord::Schema.define(version: 20170108112749) do
     t.index ["contact_type"], name: "index_contacts_on_contact_type"
     t.index ["profile_id", "contact_type"], name: "index_contacts_on_profile_id_and_contact_type"
     t.index ["profile_id"], name: "index_contacts_on_profile_id"
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "recruit_id"
+    t.integer  "status"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "recruit_id", "status"], name: "index_entries_on_account_id_and_recruit_id_and_status"
+    t.index ["account_id", "status"], name: "index_entries_on_account_id_and_status"
+    t.index ["account_id"], name: "index_entries_on_account_id"
+    t.index ["recruit_id", "status"], name: "index_entries_on_recruit_id_and_status"
+    t.index ["recruit_id"], name: "index_entries_on_recruit_id"
+    t.index ["status"], name: "index_entries_on_status"
   end
 
   create_table "profiles", force: :cascade do |t|
