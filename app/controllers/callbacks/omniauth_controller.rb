@@ -9,7 +9,7 @@ class Callbacks::OmniauthController < ApplicationController
     provider_common
   end
 
-  def twitter
+  def line
     provider_common
   end
 
