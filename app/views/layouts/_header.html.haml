@@ -3,23 +3,23 @@
     .navbar-header
       %a#logo.navbar-brand(href=root_path)= image_tag('layout/header/logo.png', alt: '株式会社ユア')
     .collapse.navbar-collapse#navbar-collapse
-      %ul.nav.navbar-nav.navbar-right.ml30
+      %ul.nav.navbar-nav.navbar-right.ml30.mt25
         %span
-          = link_to 'https://www.facebook.com/1596482943975074/', class: "btn btn-social-icon btn-facebook mt25", rel: :nofollow, target: :_blank do
-            %span.fa.fa-facebook
+          = link_to 'https://www.facebook.com/1596482943975074/', class: "", rel: :nofollow, target: :_blank do
+            = fa_icon 'facebook-square 2x'
         %span
-          = link_to 'https://twitter.com/yourcorp', class: "btn btn-social-icon btn-twitter mt25", rel: :nofollow, target: :_blank do
-            %span.fa.fa-twitter
+          = link_to 'https://twitter.com/yourcorp', class: "", rel: :nofollow, target: :_blank do
+            = fa_icon 'twitter-square 2x'
         %span
-          = link_to 'https://www.instagram.com/yourcorp/', class: "btn btn-social-icon btn-instagram mt25", rel: :nofollow, target: :_blank do
-            %span.fa.fa-instagram
-        %span
+          = link_to 'https://www.instagram.com/yourcorp/', class: "", rel: :nofollow, target: :_blank do
+            = fa_icon 'instagram 2x'
+        %span.ml15
           - if account_signed_in?
-            = link_to profile_path, class: "btn btn-social-icon mt25", rel: :nofollow do
-              %span.fa= "#{glyph 'home'}".html_safe
+            = link_to profile_path, class: "", rel: :nofollow do
+              = fa_icon 'home 2x'
           - else
-            = link_to new_account_session_path, class: "btn btn-social-icon mt25", rel: :nofollow do
-              %span.fa= "#{glyph 'log-in'}".html_safe
+            = link_to new_account_session_path, class: "", rel: :nofollow do
+              = fa_icon 'sign-in 2x'
 
       %ul.nav.navbar-nav.navbar-right
         %li.mr50
