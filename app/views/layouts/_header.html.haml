@@ -15,10 +15,14 @@
             = fa_icon 'instagram 2x'
         %span.ml15
           - if account_signed_in?
-            = link_to profile_path, class: "", rel: :nofollow do
-              = fa_icon 'home 2x'
+            - if params[:controller] == "profiles"
+              = link_to destroy_account_session_path, method: :delete, class: "", title: 'ログアウト', rel: :nofollow do
+                = fa_icon 'sign-out 2x'
+            - else
+              = link_to profile_path, class: "", title: 'マイページ', rel: :nofollow do
+                = fa_icon 'home 2x'
           - else
-            = link_to new_account_session_path, class: "", rel: :nofollow do
+            = link_to new_account_session_path, class: "", title: 'ログイン', rel: :nofollow do
               = fa_icon 'sign-in 2x'
 
       %ul.nav.navbar-nav.navbar-right
