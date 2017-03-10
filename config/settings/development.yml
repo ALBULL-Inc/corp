@@ -8,5 +8,10 @@ google:
   app_id: 525719430643-he803ihaeam5fqo96kot8gs3avc8rr2g.apps.googleusercontent.com
   app_secret: e0tLCZnnTC7zbFEep6lB2Huu
 
+line:
+  page_id: 
+  app_id: 1504344530
+  app_secret: 26caac8819928cc10be4bae9ef13fcc0
+
 crypt:
   secret: 'e84794a20e7d063e1126c41169ebc682a44279ffc91358fb8a0abc21fa8b5cc3cae87eac11d699c27a51609b3e4cf2273524594792cc7561108cc2ce739872c3'

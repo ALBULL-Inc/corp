@@ -23,11 +23,17 @@ class Callbacks::OmniauthController < ApplicationController
       redirect_to root_path and return unless info
       oauth = AccountOAuth.find_or_initialize_by(provider: auth.provider, uid: auth.uid)
       if oauth.new_record?
+        if auth.provider.eql?('line') && !account_signed_in?
+          msg = 'このLINEアカウントは登録されていないためログイン出来ません。' \
+            '他の方法でログイン後マイページよりLINEの紐付けを行ってください。'
+          redirect_to new_account_session_path, notice: msg and return
+        end
         oauth.email  = info.email
         oauth.avatar = info.image
         oauth.data   = auth.to_json
 
-        account = info.email.present? ? Account.find_by_email(info.email) : nil
+        account = account_signed_in? ? current_account : nil
+        account ||= info.email.present? ? Account.find_by_email(info.email) : nil
         oauth.account_id = account.id if account
         unless account
           raw_info = auth[:extra][:raw_info]

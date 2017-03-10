@@ -1,6 +1,6 @@
 class Account < ApplicationRecord
   devise :database_authenticatable, :confirmable, :recoverable, :registerable,# :lockable,
-    :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google]
+    :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google, :line]
 
   attr_writer :email_require
 
