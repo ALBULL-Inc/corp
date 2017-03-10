@@ -9,7 +9,7 @@ class InquiriesController < ApplicationController
     unless @inquiry.valid?
       render :new and return
     end
-    @inquiry.send!
+    @inquiry.send!(current_account)
     redirect_to root_path, notice: "お問い合わせありがとうございます。ご返信まで少々お待ちください。"
   end
 
