@@ -4,11 +4,23 @@
     = render partial: 'layouts/meta_tags'
     = csrf_meta_tags
     = stylesheet_link_tag "sp/application", :media => "all", "data-turbolinks-track" => true
-    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', :sizes => '144x144'
-    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', rel: 'apple-touch-icon-precomposed', type: 'image/png', :sizes => '114x114'
-    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png',   rel: 'apple-touch-icon-precomposed', type: 'image/png', :sizes => '72x72'
-    = favicon_link_tag 'apple-touch-icon-precomposed.png',         rel: 'apple-touch-icon-precomposed', type: 'image/png'
-    = favicon_link_tag 'favicon.ico', rel: 'shortcut icon'
+    = favicon_link_tag '/apple-touch-icon-180x180.png', type: 'image/png', :sizes => '180x180', rel: 'apple-touch-icon'
+    = favicon_link_tag '/apple-touch-icon-152x152.png', type: 'image/png', :sizes => '152x152', rel: 'apple-touch-icon'
+    = favicon_link_tag '/apple-touch-icon-144x144.png', type: 'image/png', :sizes => '144x144', rel: 'apple-touch-icon'
+    = favicon_link_tag '/apple-touch-icon-120x120.png', type: 'image/png', :sizes => '120x120', rel: 'apple-touch-icon'
+    = favicon_link_tag '/apple-touch-icon-114x114.png', type: 'image/png', :sizes => '114x114', rel: 'apple-touch-icon'
+    = favicon_link_tag '/apple-touch-icon-76x76.png',   type: 'image/png', :sizes => '76x76',   rel: 'apple-touch-icon'
+    = favicon_link_tag '/apple-touch-icon-72x72.png',   type: 'image/png', :sizes => '72x72',   rel: 'apple-touch-icon'
+    = favicon_link_tag '/apple-touch-icon-60x60.png',   type: 'image/png', :sizes => '60x60',   rel: 'apple-touch-icon'
+    = favicon_link_tag '/apple-touch-icon-57x57.png',   type: 'image/png', :sizes => '57x57',   rel: 'apple-touch-icon'
+    = favicon_link_tag '/android-chrome-192x192.png',   type: 'image/png', :sizes => '192x192', rel: 'icon'
+    = favicon_link_tag '/favicon-196x196.png',          type: 'image/png', :sizes => '96x96',   rel: 'icon'
+    = favicon_link_tag '/favicon-160x160.png',          type: 'image/png', :sizes => '96x96',   rel: 'icon'
+    = favicon_link_tag '/favicon-96x96.png',            type: 'image/png', :sizes => '96x96',   rel: 'icon'
+    = favicon_link_tag '/favicon-48x48.png',            type: 'image/png', :sizes => '48x48',   rel: 'icon'
+    = favicon_link_tag '/favicon-32x32.png',            type: 'image/png', :sizes => '32x32',   rel: 'icon'
+    = favicon_link_tag '/favicon-16x16.png',            type: 'image/png', :sizes => '16x16',   rel: 'icon'
+    = favicon_link_tag '/favicon.ico',                  type: 'image/vnd.microsoft.icon',       rel: 'shortcut icon'
     %script{src: "https//platform.twitter.com/widgets.js"}
     %script{src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", async: true}
     %link(rel="manifest" href="/manifest.json")
