@@ -4,8 +4,11 @@
 .col-md-2
 .col-md-8
   %h1= t"Log in"
+  %h2.f22= "▼ ソーシャルサービスでログイン"
   %p= render "devise/shared/social_links"
 
+  .mt30.mb20
+    %h2.f22= "▼ メールアドレスでログイン"
   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     .form-group
       = f.label :email, t("email")
