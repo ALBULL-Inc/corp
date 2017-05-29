@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:your-corp/corp.git'
 set :rbenv_ruby, File.read('.ruby-version').strip
 
 #set :linked_files, %W{.env config/database.yml config/settings/#{fetch :stage}.yml config/settings/slack_notifier.yml}
-set :linked_files, %W{config/database.yml config/settings/#{fetch :stage}.yml .env}
+set :linked_files, %W{config/database.yml config/settings/slack.yml config/settings/#{fetch :stage}.yml .env}
 set :linked_dirs, %w{log public/sitemaps tmp/pids tmp/cache tmp/sockets vendor/bundle}
 
 set :keep_releases, 5
@@ -20,9 +20,9 @@ namespace :deploy do
     on roles(:app,:web), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      #invoke 'unicorn:restart'
-      invoke 'unicorn:stop'
-      invoke 'unicorn:start'
+      invoke 'unicorn:restart'
+      #invoke 'unicorn:stop'
+      #invoke 'unicorn:start'
     end
   end
 
