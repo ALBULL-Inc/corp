@@ -9,7 +9,7 @@ class Inquiry
     if current_account
       self.body << "\n\nYourCorpID: #{current_account.id}"
     end
-    notifier = Slack::Notifier.new Settings.slack.webhook_url.inquiry, username: "pippi", channel: "#inquiry"
+    notifier = Slack::Notifier.new Settings.slack.webhook_url.inquiry, username: "pippi"
     inquery_payload = {
       title: "#{self.name}(#{self.email})さんからお問い合わせです",
       title_link: "mailto:#{self.email}",
