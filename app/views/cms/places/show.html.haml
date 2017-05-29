@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Organization:
+  = @place.organization&.name
+%p
+  %b Name:
+  = @place.name
+%p
+  %b Address:
+  = @place.address
+%p
+  %b Tel:
+  = @place.tel
+%p
+  %b Fax:
+  = @place.fax
+
+= link_to 'Edit', edit_cms_place_path(@place)
+\|
+= link_to 'Back', cms_places_path

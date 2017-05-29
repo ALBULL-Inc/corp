@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110101736) do
+ActiveRecord::Schema.define(version: 20170402140313) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -91,6 +91,29 @@ ActiveRecord::Schema.define(version: 20170110101736) do
     t.index ["recruit_id", "status"], name: "index_entries_on_recruit_id_and_status"
     t.index ["recruit_id"], name: "index_entries_on_recruit_id"
     t.index ["status"], name: "index_entries_on_status"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.text     "address"
+    t.string   "tel"
+    t.string   "fax"
+    t.text     "memo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.string   "name"
+    t.string   "key"
+    t.text     "address"
+    t.string   "tel"
+    t.string   "fax"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["key"], name: "index_places_on_key"
+    t.index ["organization_id"], name: "index_places_on_organization_id"
   end
 
   create_table "profiles", force: :cascade do |t|

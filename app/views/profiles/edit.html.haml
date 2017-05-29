@@ -14,12 +14,12 @@
     .row
       .col-md-6
         .form-group
-          = f.label :firstname
-          = f.text_field :firstname, class: "form-control"
-      .col-md-6
-        .form-group
           = f.label :lastname
           = f.text_field :lastname, class: "form-control"
+      .col-md-6
+        .form-group
+          = f.label :firstname
+          = f.text_field :firstname, class: "form-control"
     .row
       .col-md-6
         .form-group
@@ -133,6 +133,6 @@
       = f.link_to_add "連絡先追加", :contacts, class: 'btn btn-info'
 
     .actions.mt20
-      = f.submit t('Save'), class: "btn btn-primary"
+      = f.submit class: "btn btn-primary"
 
   = link_to t('Back'), profile_path

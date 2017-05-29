@@ -25,11 +25,14 @@ Rails.application.routes.draw do
   end
   resources :topics, only: [:index, :show]
   resource :inquiry, only: [:new, :create]
+  resources :places, only: [:index, :show]
 
   # cms routings
   namespace :cms do
     root to: "dashboards#index"
     resources :topics
     resources :recruits
+    resources :organizations
+    resources :places
   end
 end

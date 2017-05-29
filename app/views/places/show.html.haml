@@ -1,0 +1,32 @@
+- set_meta_tags title: @place.name
+
+.row(style="line-height: 1.8em;")
+  .col-md-3
+
+  .col-md-6
+    = @place.organization&.name
+    %h1.f22= @place.name
+
+    %table.table
+      %tr
+        %td(colspan="4")
+          %span
+            = @place.address
+      %tr
+        %td{width: '10px'}
+          %span tel:
+        %td
+          %span= @place.tel
+        %td{width: '10px'}
+          %span fax:
+        %td
+          %span= @place.fax
+
+  - if false
+    %h2.f16.pt20 保護者様メニュー
+    %table
+      %tr
+        %td(width="100px")
+          = link_to "photos", root_path
+        %td(width="100px")
+          = link_to "notice", root_path

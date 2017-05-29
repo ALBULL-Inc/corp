@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      place: 運営施設
+    attributes:
+      place:
+        organization_id: 所有事業者
+        name: 名称
+        address: 所在地
+        tel: tel
+        fax: fax

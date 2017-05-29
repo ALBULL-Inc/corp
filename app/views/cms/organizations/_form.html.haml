@@ -1,0 +1,22 @@
+= form_for [:cms,@organization] do |f|
+  - if @organization.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@organization.errors.count, "error")} prohibited this organization from being saved:"
+      %ul
+        - @organization.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :address
+    = f.text_field :address, class: "form-control"
+  .form-group
+    = f.label :tel
+    = f.text_field :tel, class: "form-control"
+  .form-group
+    = f.label :fax
+    = f.text_field :fax, class: "form-control"
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"

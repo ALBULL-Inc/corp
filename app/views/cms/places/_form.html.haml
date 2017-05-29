@@ -1,0 +1,28 @@
+= form_for [:cms,@place] do |f|
+  - if @place.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@place.errors.count, "error")} prohibited this place from being saved:"
+      %ul
+        - @place.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :organization_id
+    .select-box= f.collection_select :organization_id, Organization.all, :id, :name, class: "form-control"
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :key
+    = f.text_field :key, class: "form-control"
+  .form-group
+    = f.label :address
+    = f.text_field :address, class: "form-control"
+  .form-group
+    = f.label :tel
+    = f.text_field :tel, class: "form-control"
+  .form-group
+    = f.label :fax
+    = f.text_field :fax, class: "form-control"
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"
