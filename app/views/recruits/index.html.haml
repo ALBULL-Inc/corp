@@ -8,13 +8,14 @@
     %br
     あなたの想いをどんどん実現していきませんか？是非ご応募お待ちしております！
 
-    %h3.pa5.border-under
+    %h3.f22.pa10.pb0
       採用中一覧
-    %table.table.table-bordered
+    %div.mb10(style="border-bottom: 2px solid #cec")
+    %table.table
       - @recruits.each do |recruit|
         %tr
-          %td= link_to recruit.title, recruit
-          %td.col-md-4
+          %td.pa15.pl20= link_to recruit.title, recruit
+          %td.pa15.pl20.col-md-4
             = recruit.working_place
   - else
     .mt25

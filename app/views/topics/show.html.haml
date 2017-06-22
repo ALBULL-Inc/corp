@@ -14,11 +14,12 @@
     = @topic.body.html_safe
 
 .col-md-4
-  %h4.pa5.border-under
-    最新のTOPICs
-  %table.table.table-bordered
+  %h3.f22.pa10.pb0
+    最新のトピックス
+  %div.mb10(style="border-bottom: 2px solid #cec")
+  %table.table
     - @topics.each do |topic|
       %tr
-        %td
+        %td.pa15.pl20
           %span.f11= l topic.publish_at.to_date, format: :topic
           = link_to topic.title, topic
