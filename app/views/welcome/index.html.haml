@@ -13,31 +13,33 @@
           %h3= carousel.title
 
   %a.left.carousel-control(href="#carousel-topic" role="button" data-slide="prev")
-    %span= fa_icon 'chevron-left'
+    %span(style="position: absolute; top: 50%;")= fa_icon 'chevron-left', style: "font-size: 30px;"
     %span.sr-only
       Previous
   %a.right.carousel-control(href="#carousel-topic" role="button" data-slide="next")
-    %span= fa_icon 'chevron-right'
+    %span(style="position: absolute; top: 50%;")= fa_icon 'chevron-right', style: "font-size: 30px;"
     %span.sr-only
       Next
 
 
 .row
   .col-md-8
-    %h3.pa5.border-under
-      TOPICs
-    %table.table.table-bordered
+    %h2.f22.pa10.pb0
+      トピックス
+    %div.mb10(style="border-bottom: 2px solid #cec")
+    %table.table
       - @topics.each do |topic|
         %tr
-          %td.col-md-2=l topic.publish_at.to_date, format: :topic
-          %td= link_to topic.title, topic
+          %td.pa15.pl20.col-md-2=l topic.publish_at.to_date, format: :topic
+          %td.pa15.pl20= link_to topic.title, topic
 
   .col-md-4
-    %h4.pa5.border-under
-      私たちの目指すコト
-    %table.table.table-bordered
+    %h3.f22.pa10.pb0
+      私たちの理念
+    %div.mb10(style="border-bottom: 2px solid #cec")
+    %table.table
       %tr
-        %td= link_to "私たちの企業理念", mission_path
+        %td.pa15.pl20= link_to "» 企業理念", mission_path
       %tr
-        %td= link_to "私たちの保育理念", policy_childcare_path
+        %td.pa15.pl20= link_to "» 保育理念", policy_childcare_path
 

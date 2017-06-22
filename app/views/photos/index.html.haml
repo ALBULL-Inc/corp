@@ -1,0 +1,17 @@
+- set_meta_tags title: "#{@place.name}の写真一覧"
+
+.row(style="line-height: 1.8em;")
+  .col-md-3
+
+  .col-md-6
+    %h1.f22.f-bold= "#{@place.name}の写真一覧"
+
+    %table.table.mt30
+      - @photos.each.with_index do |photo,idx|
+        = idx % 5 == 0 ? tag(:tr) : nil
+        %td
+          = link_to image_tag(photo.image.thumb('120x120#').url),
+            photo.image.thumb('1125x2001').url, target: :_blank
+
+    .t-center
+      = paginate @photos

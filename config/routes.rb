@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   end
   resources :topics, only: [:index, :show]
   resource :inquiry, only: [:new, :create]
-  resources :places, only: [:index, :show]
+  resources :places, only: [:index, :show] do
+    resources :photos, only: [:index]
+  end
 
   # cms routings
   namespace :cms do

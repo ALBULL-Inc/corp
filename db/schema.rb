@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402140313) do
+ActiveRecord::Schema.define(version: 20170615093655) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -103,6 +103,12 @@ ActiveRecord::Schema.define(version: 20170402140313) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string   "image_uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "places", force: :cascade do |t|
     t.integer  "organization_id"
     t.string   "name"
@@ -114,6 +120,23 @@ ActiveRecord::Schema.define(version: 20170402140313) do
     t.datetime "updated_at",      null: false
     t.index ["key"], name: "index_places_on_key"
     t.index ["organization_id"], name: "index_places_on_organization_id"
+  end
+
+  create_table "places_photos", force: :cascade do |t|
+    t.integer  "place_id"
+    t.integer  "photo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_places_photos_on_photo_id"
+    t.index ["place_id"], name: "index_places_photos_on_place_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.string   "image_uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", force: :cascade do |t|
