@@ -1,54 +1,80 @@
 - set_meta_tags title: "#{@profile.nickname}さんのページ"
 
+
 .col-md-2
 
 .col-md-8
-  %h1 マイページ
+  %h1.f28 #{@profile.nickname || @profile.lastname}さんのマイページ
   .text-right
     = link_to "編集", edit_profile_path, class: 'btn btn-primary'
 
-  %p
-    %b Nickname:
-    = @profile.nickname
-  %p
-    %b Firstname:
-    = @profile.firstname
-  %p
-    %b Lastname:
-    = @profile.lastname
-  %p
-    %b Gender:
-    = gender2str @profile.gender
-  %p
-    %b Birthday:
-    - if @profile.birthday?
-      =l @profile.birthday
+  - if false
+    .row
+      .col-xs-2.f10
+        ふりがな
+      .col-xs-2
+        やまだ
+      .col-xs-2
+        たろう
 
-  %h2 経歴
+  .row
+    .col-xs-2
+      氏名
+    .col-xs-2.f24
+      = @profile.lastname
+    .col-xs-2.f24
+      = @profile.firstname
+    .col-xs-1.f10
+      ニック
+      %br
+      ネーム
+    .col-xs-3.f24
+      = @profile.nickname
+  .row
+    .col-xs-2
+      生年月日
+    .col-xs-4.f16
+      - if @profile.birthday?
+        =l @profile.birthday, format: :middle
+    .col-xs-1
+      性別
+    .col-xs-3.f16
+      = gender2str @profile.gender
+
+  - @profile.contacts.each do |contact|
+    .row.mt10
+      .col-xs-2
+        = t("contact.#{Contact::TYPE.key(contact.contact_type)}")
+      .col-xs-4.f16
+        = contact.content
+
+
+  %h2.mt35.f18 経歴
   - @backgrounds.each do |background|
-    %p
-      %b Type:
-      = background2str(background.background_type)
-    %p
-      %b Joined On:
-      =l background.joined_on
+    .row.mt10
+      .col-xs-2.t-center
+        = background2str(background.background_type)
+      .col-xs-1
+        =l background.joined_on, format: :ym
+      .col-xs-1.t-right
+        〜
+      .col-xs-1
+        - if background.left_on
+          =l background.left_on, format: :ym
+      .col-xs-1
+      .col-xs-4
+        = background.site
 
-    %p
-      %b Site:
-      = background.site
-
-  %h2 保有資格・免許
+  %h2.mt35.f18 保有資格・免許
   - @qualifications.each do |qualification|
-    %p
-      %b Issued On:
-      =l qualification.issued_on
-
-    %p
-      %b tile:
-      = qualification.title
-    %p
-      %b outline:
-      = qualification.outline
+    .row.mt10
+      .col-xs-2.t-center
+        =l qualification.issued_on, format: :ym
+      .col-xs-4
+        = qualification.title
+      .col-xs-4
+        = qualification.outline
 
   - if current_account.line_oauth.nil?
-    = link_to "LINEと紐付ける", account_line_omniauth_authorize_path, class: 'btn btn-primary'
+    .mt35
+      = link_to "LINEと紐付ける", account_line_omniauth_authorize_path, class: 'btn btn-primary', title: 'LINEと紐付けるとLINEログインが可能になります'

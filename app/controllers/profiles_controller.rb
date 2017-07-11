@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   before_action :set_profile
 
   def show
-    @backgrounds = @profile.backgrounds
+    @backgrounds = @profile.backgrounds.order(:background_type, :joined_on)
     @qualifications = @profile.qualifications
   end
 
