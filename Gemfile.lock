@@ -287,6 +287,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.8.0)
+    sitemap_generator (5.0.5)
+      builder
     slack-notifier (2.1.0)
     spring (2.0.1)
       activesupport (>= 4.2)
@@ -375,6 +377,7 @@ DEPENDENCIES
   s3_file_field
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  sitemap_generator
   slack-notifier
   spring
   spring-watcher-listen (~> 2.0.0)

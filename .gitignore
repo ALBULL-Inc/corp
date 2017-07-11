@@ -18,6 +18,7 @@
 !/log/.keep
 /tmp
 .env*
+sitemap.xml*
 
 config/settings.local.yml
 config/settings/*.local.yml

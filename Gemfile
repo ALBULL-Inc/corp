@@ -26,6 +26,7 @@ gem 'kaminari'
 gem 'meta-tags', require: 'meta_tags'
 gem 'breadcrumbs_on_rails'
 gem 'jpmobile'
+gem 'sitemap_generator'
 
 gem 'devise'
 gem 'omniauth-facebook'
