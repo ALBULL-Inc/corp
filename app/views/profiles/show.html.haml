@@ -41,7 +41,7 @@
     .col-xs-3.f16
       = gender2str @profile.gender
 
-  - @profile.contacts.each do |contact|
+  - @contacts.each do |contact|
     .row.mt10
       .col-xs-2
         = t("contact.#{Contact::TYPE.key(contact.contact_type)}")

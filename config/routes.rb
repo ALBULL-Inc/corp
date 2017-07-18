@@ -36,5 +36,7 @@ Rails.application.routes.draw do
     resources :recruits
     resources :organizations
     resources :places
+
+    resources :accounts, only: [:index, :show, :edit, :update]
   end
 end

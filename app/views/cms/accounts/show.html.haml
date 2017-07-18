@@ -1,0 +1,41 @@
+%p
+  %b 氏名:
+  = @account.lastname
+  = @account.firstname
+%p
+  %b Email:
+  = @account.email
+%p
+  %b nickname:
+  = @account.nickname
+%p
+  %b 性別:
+  = gender2str @account.gender
+%p
+  %b 血液型:
+  = blood2str @account.blood
+%p
+  %b 最新ログイン日時:
+  =l @account.current_sign_in_at if @account.current_sign_in_at
+  ( #{@account.current_sign_in_ip} )
+%p
+  %b 前回ログイン日時:
+  =l @account.last_sign_in_at if @account.last_sign_in_at
+  ( #{@account.last_sign_in_ip} )
+%p
+  %b Email確認メール送信日時:
+  =l @account.confirmation_sent_at if @account.confirmation_sent_at
+%p
+  %b Email確認日時:
+  =l @account.confirmed_at if @account.confirmed_at
+%p
+  %b 未確認Email:
+  = @account.unconfirmed_email
+
+%p
+  %b 登録日:
+  =l @account.created_at
+%p
+  %b 更新日:
+  =l @account.updated_at
+

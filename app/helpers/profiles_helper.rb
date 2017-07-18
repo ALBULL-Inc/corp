@@ -9,4 +9,19 @@ module ProfilesHelper
       t('gender.other')
     end
   end
+
+  def blood2str(blood)
+    case blood
+    when Blood::A
+      t('blood.a')
+    when Blood::B
+      t('blood.b')
+    when Blood::O
+      t('blood.o')
+    when Blood::AB
+      t('blood.ab')
+    else
+      t('blood.other')
+    end
+  end
 end

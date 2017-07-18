@@ -40,6 +40,22 @@
           %span.mr10
           = f.radio_button :gender, Gender::FEMALE
           = f.label "gender_#{Gender::FEMALE}", gender2str(Gender::FEMALE)
+    .row
+      .col-md-6
+        .form-group
+          = f.label :blood
+          %br
+          = f.radio_button :blood, Blood::A
+          = f.label "blood_#{Blood::A}", blood2str(Blood::A)
+          %span.mr10
+          = f.radio_button :blood, Blood::B
+          = f.label "blood_#{Blood::B}", blood2str(Blood::B)
+          %span.mr10
+          = f.radio_button :blood, Blood::O
+          = f.label "blood_#{Blood::O}", blood2str(Blood::O)
+          %span.mr10
+          = f.radio_button :blood, Blood::AB
+          = f.label "blood_#{Blood::B}", blood2str(Blood::AB)
 
     %h2 経歴
     .row
