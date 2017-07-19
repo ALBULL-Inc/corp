@@ -30,6 +30,9 @@
   %p
     %b #{Entry.human_attribute_name(:comment)}:
     = entry.comment
+  %p
+    %b #{Entry.human_attribute_name(:created_at)}:
+    =l entry.created_at
 
 = link_to 'Edit', edit_cms_recruit_path(@recruit)
 \|
