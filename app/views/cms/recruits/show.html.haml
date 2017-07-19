@@ -19,6 +19,18 @@
   %b Working place:
   = @recruit.working_place
 
+%h2= Entry.model_name.human
+- @recruit.entries.each do |entry|
+  %p
+    %b #{Entry.human_attribute_name(:account)}:
+    = link_to entry.account.fullname, cms_account_path(entry.account)
+  %p
+    %b #{Entry.human_attribute_name(:status)}:
+    = entry.status
+  %p
+    %b #{Entry.human_attribute_name(:comment)}:
+    = entry.comment
+
 = link_to 'Edit', edit_cms_recruit_path(@recruit)
 \|
 = link_to 'Back', cms_recruits_path

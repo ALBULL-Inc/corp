@@ -4,7 +4,7 @@ class RecruitsController < ApplicationController
   # GET /recruits
   # GET /recruits.json
   def index
-    @recruits = Recruit.all
+    @recruits = Recruit.enables
   end
 
   # GET /recruits/1
@@ -63,7 +63,7 @@ class RecruitsController < ApplicationController
 
   private
     def set_recruit
-      @recruit = Recruit.find(params[:id])
+      @recruit = Recruit.enables.find(params[:id])
     end
 
     def recruit_params

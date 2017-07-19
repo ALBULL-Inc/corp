@@ -6,7 +6,7 @@ class Account < ApplicationRecord
 
   # Association
   has_one :profile, dependent: :destroy
-  delegate :firstname, :lastname, :nickname, :gender, :blood, :birthday, to: :profile
+  delegate :firstname, :lastname, :nickname, :gender, :blood, :birthday, :fullname, to: :profile
   has_many :oauths, class_name: 'AccountOAuth', dependent: :destroy
   has_many :entries, dependent: :destroy
   has_one :line_oauth, -> { where(provider: 'line') }, class_name: 'AccountOAuth'
