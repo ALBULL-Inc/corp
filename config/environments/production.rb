@@ -1,4 +1,6 @@
 Rails.application.configure do
+  routes.default_url_options[:host]     = 'your-corp.jp'
+  routes.default_url_options[:protocol] = 'https'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
