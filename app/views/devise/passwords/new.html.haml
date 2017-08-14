@@ -1,7 +1,9 @@
 .col-md-2
 .col-md-8
 
-  %h1 Forgot your password?
+  %h1 パスワードの再設定
+  %p
+    登録したメールアドレスを入力してください。再設定のご案内メールをお送りします。
   = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
     = devise_error_messages!
     .form-group
@@ -9,4 +11,5 @@
       = f.email_field :email, :autofocus => true, class: 'form-control'
     %p= f.submit t("Send me reset password instructions"), class: 'btn btn-primary'
 
-    = render "devise/shared/links"
+    .mt20
+      = render "devise/shared/links"

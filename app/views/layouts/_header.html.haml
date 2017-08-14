@@ -1,15 +1,16 @@
 %section#header.navbar.navbar-default(role="navigation")
-  .container
+  .container(itemscope itemtype="http://schema.org/Organization")
+    %link(itemprop="url" href="https://your-corp.jp")
     .navbar-header
-      %a#logo.navbar-brand(href=root_url title='株式会社ユア')= image_tag('layout/header/logo.png', alt: '株式会社ユア')
+      %a#logo.navbar-brand(href=root_url title='株式会社ユア' itemprop="url")= image_tag(asset_url('layout/header/logo.png'), alt: '株式会社ユア', itemprop: "logo")
     .collapse.navbar-collapse#navbar-collapse
       %ul.nav.navbar-nav.navbar-right.ml30.mt25
         %span
-          = link_to fa_icon('facebook-square 2x'), 'https://www.facebook.com/1596482943975074/', class: "", rel: :nofollow, title: 'Facebook', target: :_blank
+          = link_to fa_icon('facebook-square 2x'), 'https://www.facebook.com/1596482943975074/', class: "", rel: :nofollow, title: 'Facebook', target: :_blank, itemprop: "sameAs"
         %span
-          = link_to fa_icon('twitter-square 2x'), 'https://twitter.com/yourcorp', class: "", rel: :nofollow, title: 'Twitter', target: :_blank
+          = link_to fa_icon('twitter-square 2x'), 'https://twitter.com/yourcorp', class: "", rel: :nofollow, title: 'Twitter', target: :_blank, itemprop: "sameAs"
         %span
-          = link_to fa_icon('instagram 2x'), 'https://www.instagram.com/yourcorp/', class: "", rel: :nofollow, title: 'instagram', target: :_blank
+          = link_to fa_icon('instagram 2x'), 'https://www.instagram.com/yourcorp/', class: "", rel: :nofollow, title: 'instagram', target: :_blank, itemprop: "sameAs"
         %span.ml15
           - if account_signed_in?
             - if params[:controller] == "profiles"

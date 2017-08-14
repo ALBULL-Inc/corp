@@ -3,12 +3,15 @@ class ProfilesController < ApplicationController
   before_action :set_profile
 
   def show
+    add_breadcrumb "マイページ", profile_url
     @contacts = @profile.contacts
     @backgrounds = @profile.backgrounds.order(:background_type, :joined_on)
     @qualifications = @profile.qualifications
   end
 
   def edit
+    add_breadcrumb "マイページ", profile_url
+    add_breadcrumb "編集", edit_profile_url
   end
 
   def update

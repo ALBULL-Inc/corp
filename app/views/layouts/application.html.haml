@@ -1,6 +1,9 @@
 !!! 5
 %html(lang="ja")
   %head(prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#")
+    - viewport_content = "width=device-width,initial-scale=1.0"
+    - viewport_content << ",maximum-scale=1,user-scalable=no" if request.smart_phone?
+    %meta{name: "viewport", content: viewport_content}
     = render partial: 'layouts/meta_tags'
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true
@@ -12,6 +15,9 @@
     = render partial: 'layouts/snippet'
     = render partial: 'layouts/header'
     %section#main_contents
+      .mb15
+        = render_breadcrumbs builder: ::CustomBreadcrumbsBuilder
+
       - if notice || alert || flash.success
         - if flash.success
           %p.alert.alert-success= flash.success

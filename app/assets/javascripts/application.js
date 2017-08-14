@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
+// require turbolinks
 //= require jquery_nested_form
 //= require s3_file_field
 //= require_tree .

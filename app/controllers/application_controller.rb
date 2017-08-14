@@ -17,8 +17,9 @@ class ApplicationController < ActionController::Base
 
   private
     def add_breadcrumb_of_root
-      return if params[:controller] == 'welcome'
-      add_breadcrumb "#{view_context.glyph 'home'} Home", root_path
+      #return if params[:controller] == 'welcome'
+      return if request.path == '/'
+      add_breadcrumb "#{view_context.fa_icon 'home'} Home", root_path
     end
 
     def store_location

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/about_us', to: 'welcome#about_us'
   get '/mission', to: 'welcome#mission'
   get '/policy/childcare', to: 'welcome#policy_childcare'
+  get '/policy/privacy', to: 'welcome#policy_privacy'
+  get '/terms', to: 'welcome#terms'
 
   # concerns
   concern :inquirable do

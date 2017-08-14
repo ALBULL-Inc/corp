@@ -3,6 +3,8 @@ class EntriesController < ApplicationController
   before_action :set_recruit
 
   def new
+    add_breadcrumb @recruit.title, recruit_url(@recruit)
+    add_breadcrumb "エントリー", new_recruit_entry_url(@recruit)
     @entry = current_account.entries.build(recruit: @recruit)
   end
 

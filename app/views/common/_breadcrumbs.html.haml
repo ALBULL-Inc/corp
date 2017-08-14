@@ -1,0 +1,14 @@
+- if elements.present?
+  %ul.breadcrumb(itemscope itemtype="http://schema.org/BreadcrumbList")
+    - elements[0..-2].each.with_index(1) do |element,index|
+      %li(itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem")
+        - if element.path.present?
+          %a(href="#{element.path}" itemscope itemtype="http://schema.org/Thing" itemprop="item" href="#{element.path}")
+            %span(itemprop="name")= element.name.html_safe
+        - else
+          %span(itemprop="name")= element.name.html_safe
+        %meta(itemprop="position" content="#{index}")
+
+      %span.divider &gt;
+
+    = elements.last.name.html_safe

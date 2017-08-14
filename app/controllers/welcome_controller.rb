@@ -7,10 +7,10 @@ class WelcomeController < ApplicationController
     @topics = Topic.enables.limit(5)
   end
 
-  #= Your Corpとは
+  #= 会社概要
   # GET /about_us
   def about_us
-    add_breadcrumb "株式会社ユアとは", about_us_url
+    add_breadcrumb "会社概要", about_us_url
   end
 
   #= 企業理念
@@ -23,5 +23,17 @@ class WelcomeController < ApplicationController
   # GET /policy/childcare
   def policy_childcare
     add_breadcrumb "保育理念", policy_childcare_url
+  end
+
+  #= プライバシーポリシー
+  # GET /policy/privacy
+  def policy_privacy
+    add_breadcrumb "プライバシーポリシー", policy_privacy_url
+  end
+
+  #= 利用規約
+  # GET /terms
+  def terms
+    add_breadcrumb "利用規約", terms_url
   end
 end

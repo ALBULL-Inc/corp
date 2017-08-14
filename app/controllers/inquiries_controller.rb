@@ -1,6 +1,7 @@
 class InquiriesController < ApplicationController
 
   def new
+    add_breadcrumb "お問合せ", new_inquiry_url
     @inquiry = Inquiry.new
   end
 
