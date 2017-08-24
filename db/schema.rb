@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615093655) do
+ActiveRecord::Schema.define(version: 20170818033350) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -116,8 +116,13 @@ ActiveRecord::Schema.define(version: 20170615093655) do
     t.text     "address"
     t.string   "tel"
     t.string   "fax"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "captain_name"
+    t.string   "captain_message_title"
+    t.string   "captain_message"
+    t.string   "captain_thumbnail_uid"
+    t.text     "message"
     t.index ["key"], name: "index_places_on_key"
     t.index ["organization_id"], name: "index_places_on_organization_id"
   end

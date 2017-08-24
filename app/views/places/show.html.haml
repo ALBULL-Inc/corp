@@ -1,32 +1,148 @@
-- set_meta_tags title: @place.name, description: "株式会社ユアが運営する「#{@place.name}」についてご紹介しております。"
+- set_meta_tags title: @place.name, description: @place.message
 
-.row(style="line-height: 1.8em;")
-  .col-md-3
+.l-body
+  %header.l-header
+    %h1.l-header__heading
+      = link_to place_url(@place) do
+        %span.l-header__title--top= @place.organization.name
+        %span.l-header__title--bottom= @place.name
+    %nav.l-header__navigation.p-navigation
+      %ul.p-navigation__list
+        %li.p-navigation__item
+          %a.js-anchor{href: "#section-1"} 園長メッセージ
+        %li.p-navigation__item
+          %a.js-anchor{href: "#section-2"} 保育理念
+        -#%li.p-navigation__item
+          %a.js-anchor{href: "#section-3"} 保育士紹介
+        %li.p-navigation__item
+          %a.js-anchor{href: "#section-4"} アクセス
+        %li
+          = link_to profile_path, class: "c-mypageButton", rel: :nofollow do
+            %span 保護者の方
+  %main
+    .p-mainvisual
+      .p-mainvisual__inner.js-parallax
+    -# 保育園について
+    %section.p-about
+      .p-container
+        .p-about__header
+          %h2.c-heading{"data-heading" => "about"} #{@place.name}について
+        .p-about__content
+          %p= bbr @place.message
+    -#/保育園について
 
-  .col-md-6
-    = @place.organization&.name
-    %h1.f22= @place.name
+    -# 園長メッセージ
+    %section#section-1.p-message
+      .p-container
+        .p-message__header
+          %h2.c-heading{"data-heading" => "message"} 園長メッセージ
+        %section.p-message__section
+          .p-message__image
+            = image_tag @place.captain_thumbnail&.url, alt: @place.captain_name, size: "280x280"
+            %dl.p-message__name
+              %dt 園長
+              %dd= @place.captain_name
+          .p-message__text
+            %h3.p-message__heading= @place.captain_message_title
+            %p= bbr @place.captain_message
+    -#/園長メッセージ
 
-    %table.table
-      %tr
-        %td(colspan="4")
-          %span
-            = @place.address
-      %tr
-        %td{width: '10px'}
-          %span tel:
-        %td
-          %span= @place.tel
-        %td{width: '10px'}
-          %span fax:
-        %td
-          %span= @place.fax
+    -# 保育理念
+    %section#section-2.p-vision
+      .p-vision__container.p-container
+        .p-vision__header
+          %h2.c-heading{"data-heading" => "vision"} 保育理念
+          %p.p-vision__lead 川口ひまわり保育園は、3つの「想い」を大切にしています
+        %ul.p-vision__list
+          %li
+            .c-vision
+              %dl.c-vision__description
+                %dt.c-vision__title 想いつき
+                %dd 人と人との繋がりを大切にし、自分を大切にしながらも他人を優先できる人になれるよう、優しさ、親切心、想いやりの心を育みます。
+          %li
+            .c-vision
+              %dl.c-vision__description
+                %dt.c-vision__title 想い出
+                %dd 幼少期に育まれた全てのことを、物、形、記憶として次世代へ繋げていける保育を目指します。
+          %li
+            .c-vision
+              %dl.c-vision__description
+                %dt.c-vision__title 想いやり
+                %dd 人と人との繋がりを大切にし、自分を大切にしながらも他人を優先できる人になれるよう、優しさ、親切心、想いやりの心を育みます。
+    -#/保育理念
+    -# 保育士紹介
+      %section#section-3.p-staff
+        .p-staff__container.p-container
+          .p-staff__header
+            %h2.c-heading{"data-heading" => "staff"} 保育士紹介
+          %ul.p-staff__list
+            %li
+              .c-staff
+                .c-staff__image
+                  %img{:alt => "川口花子", :src => "//placehold.it/180"}/
+                %dl.c-staff__description
+                  %dt
+                    %span.c-staff__name> 川口 花子
+                    （保育士歴3年）
+                  %dd
+                    毎日子どもと一緒に成長しています。
+                    %br/
+                    ここに保育に対する想いなど。
+                    %br/
+                    ここに保育に対する想いなど。
+            %li
+              .c-staff
+                .c-staff__image
+                  %img{:alt => "川口花子", :src => "//placehold.it/180"}/
+                %dl.c-staff__description
+                  %dt
+                    %span.c-staff__name> 川口 花子
+                    （保育士歴3年）
+                  %dd
+                    毎日子どもと一緒に成長しています。
+                    %br/
+                    ここに保育に対する想いなど。
+                    %br/
+                    ここに保育に対する想いなど。
+            %li
+              .c-staff
+                .c-staff__image
+                  %img{:alt => "川口花子", :src => "//placehold.it/180"}/
+                %dl.c-staff__description
+                  %dt
+                    %span.c-staff__name> 川口 花子
+                    （保育士歴3年）
+                  %dd
+                    毎日子どもと一緒に成長しています。
+                    %br/
+                    ここに保育に対する想いなど。
+                    %br/
+                    ここに保育に対する想いなど。
+    -#/保育士紹介
+    -# アクセス
+    %section#section-4.p-access
+      .p-access__container.p-container
+        .p-access__top
+          .p-access__header
+            %h2.p-access__heading.c-heading{"data-heading" => "access"} アクセス
+          %dl.p-access__description
+            %dt= @place.name
+            %dd= @place.address
+        #js-map.p-access__map
+        %p.p-access__link
+          %a{href: "https://goo.gl/maps/avsMMksa3LJ2", target: "_blank"} 大きな地図で見る
+    -#/アクセス
+  -#/main
 
-  - if false
-    %h2.f16.pt20 保護者様メニュー
-    %table
-      %tr
-        %td(width="100px")
-          = link_to "photos", root_path
-        %td(width="100px")
-          = link_to "notice", root_path
+  %footer.l-footer
+    .l-footer__container.p-container
+      %ul.l-footer__list
+        %li
+          = link_to 'プライバシーポリシー', policy_privacy_url
+        %li
+          = link_to '利用規約', terms_url
+        %li
+          = link_to '運営会社', about_us_url
+        %li
+          = link_to 'お問合せ', new_inquiry_url
+      %small.l-footer__copyright &copy; #{link_to "Your Corp", root_url}. All rights reserved.

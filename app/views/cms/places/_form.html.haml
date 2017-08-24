@@ -24,5 +24,21 @@
   .form-group
     = f.label :fax
     = f.text_field :fax, class: "form-control"
+  .form-group
+    = f.label :message
+    = f.text_area :message, class: "form-control"
+
+  .form-group
+    = f.label :captain_name
+    = f.text_field :captain_name, class: "form-control"
+  .form-group
+    = f.label :captain_message_title
+    = f.text_field :captain_message_title, class: "form-control"
+  .form-group
+    = f.label :captain_message
+    = f.text_area :captain_message, class: "form-control"
+  .form-group
+    = f.label :captain_thumbnail
+    = f.file_field :captain_thumbnail, class: "form-control"
   .actions
     = f.submit 'Save', class: "btn btn-primary"

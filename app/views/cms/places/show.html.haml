@@ -15,6 +15,21 @@
 %p
   %b Fax:
   = @place.fax
+%p
+  %b Message:
+  = @place.message
+%p
+  %b CaptainName:
+  = @place.captain_name
+%p
+  %b CaptainMessageTitle:
+  = @place.captain_message_title
+%p
+  %b CaptainMessage:
+  = @place.captain_message
+%p
+  %b CaptainThumbnail:
+  = image_tag @place.captain_thumbnail&.url||"", size: "280x280"
 
 = link_to 'Edit', edit_cms_place_path(@place)
 \|
