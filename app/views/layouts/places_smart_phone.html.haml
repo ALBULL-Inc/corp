@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+  %head(prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#")
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    = render partial: 'layouts/meta_tags'
+    = csrf_meta_tags
+    = stylesheet_link_tag "sp/places", :media => "all", "data-turbolinks-track" => true
+    = render partial: 'layouts/favicon_link'
+    %script{src: "https://platform.twitter.com/widgets.js"}
+    %script{src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", async: true}
+    %link(rel="manifest" href="/manifest.json")
+  %body
+    = render partial: 'layouts/snippet'
+
+    = yield
+
+    %script{src: "https://maps.googleapis.com/maps/api/js?key=#{Settings.google.map_key}"}
+    = javascript_include_tag "places", "data-turbolinks-track" => true

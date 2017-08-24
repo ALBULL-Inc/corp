@@ -7,6 +7,12 @@ class CreatePlaces < ActiveRecord::Migration[5.0]
       t.text :address
       t.string :tel
       t.string :fax
+      t.text :message
+
+      t.string :captain_name
+      t.string :captain_message_title
+      t.text :captain_message
+      t.string :captain_thumbnail_uid
 
       t.timestamps
     end

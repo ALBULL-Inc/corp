@@ -1,0 +1,19 @@
+!!! 5
+%html(lang="ja")
+  %head(prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#")
+    = render partial: 'layouts/meta_tags'
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    = csrf_meta_tags
+    = stylesheet_link_tag "places", :media => "all", "data-turbolinks-track" => true
+    = favicon_link_tag '/favicon.ico', rel: 'shortcut icon'
+    %script{src: "https://platform.twitter.com/widgets.js", async: true}
+    %link(rel="manifest" href="/manifest.json")
+    %meta{:content => "width=1280", :name => "viewport"}/
+
+  %body
+    = render partial: 'layouts/snippet'
+
+    = yield
+
+    %script{src: "https://maps.googleapis.com/maps/api/js?key=#{Settings.google.map_key}"}
+    = javascript_include_tag "places", "data-turbolinks-track" => true

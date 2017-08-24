@@ -1,4 +1,6 @@
 class Place < ApplicationRecord
+  dragonfly_accessor :captain_thumbnail
+
   validates :organization_id, :name, :key, presence: true
   validates :key, uniqueness: true
 
