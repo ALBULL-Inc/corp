@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20170818033350) do
     t.datetime "updated_at",            null: false
     t.string   "captain_name"
     t.string   "captain_message_title"
-    t.string   "captain_message"
+    t.text     "captain_message"
     t.string   "captain_thumbnail_uid"
     t.text     "message"
     t.index ["key"], name: "index_places_on_key"
