@@ -74,3 +74,11 @@
       = link_to entry.recruit.title, entry.recruit
     .col-xs-4
       = entry.comment
+
+%h2.mt35.f18 OAuth連携
+- @account.oauths.each do |oauth|
+  .row.mt10
+    .col-xs-2.t-center
+      =l oauth.created_at
+    .col-xs-4
+      = oauth.provider

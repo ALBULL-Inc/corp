@@ -14,6 +14,8 @@ class Account < ApplicationRecord
   # Scope
   default_scope -> { eager_load(:profile) }
 
+  before_create :build_profile
+
   # OAuthでの登録はemailは不問
   def email_required?
     (@email_require || !email.blank?) && super
