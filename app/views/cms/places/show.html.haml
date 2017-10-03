@@ -31,6 +31,20 @@
   %b CaptainThumbnail:
   = image_tag @place.captain_thumbnail&.url||"", size: "280x280"
 
+%p
+  %b Let:
+  = @place.let
+%p
+  %b Lng:
+  = @place.lng
+%p
+  %b Gmap url:
+  = @place.gmap_url
+
+%p
+  %b Position:
+  = @place.position
+
 = link_to 'Edit', edit_cms_place_path(@place)
 \|
 = link_to 'Back', cms_places_path

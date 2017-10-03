@@ -69,6 +69,6 @@ class Cms::PlacesController < Cms::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:organization_id, :enable, :name, :key, :address, :tel, :fax, :message, :captain_name, :captain_message_title, :captain_message, :captain_thumbnail, :position)
+      params.require(:place).permit(:organization_id, :enable, :name, :key, :address, :tel, :fax, :message, :captain_name, :captain_message_title, :captain_message, :captain_thumbnail, :let, :lng, :gmap_url, :position)
     end
 end
