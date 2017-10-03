@@ -38,7 +38,7 @@
           %h2.c-heading{"data-heading" => "message"} 園長メッセージ
         %section.p-message__section
           .p-message__image
-            = image_tag @place.captain_thumbnail&.url, alt: @place.captain_name, size: "280x280"
+            = image_tag @place.captain_thumbnail&.url || "", alt: @place.captain_name, size: "280x280"
             %dl.p-message__name
               %dt 園長
               %dd= @place.captain_name
