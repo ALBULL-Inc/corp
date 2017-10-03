@@ -7,6 +7,9 @@
           %li= msg
 
   .form-group
+    = f.check_box :enable
+    = f.label :enable
+  .form-group
     = f.label :organization_id
     .select-box= f.collection_select :organization_id, Organization.all, :id, :name, class: "form-control"
   .form-group
@@ -40,5 +43,8 @@
   .form-group
     = f.label :captain_thumbnail
     = f.file_field :captain_thumbnail, class: "form-control"
+  .form-group
+    = f.label :position
+    = f.text_field :position, class: "form-control"
   .actions
     = f.submit 'Save', class: "btn btn-primary"

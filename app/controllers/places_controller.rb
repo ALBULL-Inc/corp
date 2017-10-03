@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
 
   def index
     add_breadcrumb "運営施設一覧", places_url
-    @places = Place.all
+    @places = Place.enables
   end
 
   def show

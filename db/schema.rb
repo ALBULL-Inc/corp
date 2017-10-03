@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818033350) do
+ActiveRecord::Schema.define(version: 20171003075844) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -67,6 +67,19 @@ ActiveRecord::Schema.define(version: 20170818033350) do
     t.index ["profile_id"], name: "index_backgrounds_on_profile_id"
   end
 
+  create_table "children", force: :cascade do |t|
+    t.integer  "family_id"
+    t.integer  "place_id"
+    t.string   "first_name"
+    t.string   "first_name_kana"
+    t.string   "nickname"
+    t.date     "birthday"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["family_id"], name: "index_children_on_family_id"
+    t.index ["place_id"], name: "index_children_on_place_id"
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.integer  "profile_id"
     t.integer  "contact_type"
@@ -93,6 +106,23 @@ ActiveRecord::Schema.define(version: 20170818033350) do
     t.index ["status"], name: "index_entries_on_status"
   end
 
+  create_table "families", force: :cascade do |t|
+    t.string   "title"
+    t.string   "title_kana"
+    t.string   "encrypted_code"
+    t.string   "md5_code"
+    t.string   "remember_token"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "months", force: :cascade do |t|
+    t.string   "ym",                         null: false
+    t.boolean  "fixed",      default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.text     "address"
@@ -116,13 +146,15 @@ ActiveRecord::Schema.define(version: 20170818033350) do
     t.text     "address"
     t.string   "tel"
     t.string   "fax"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "captain_name"
     t.string   "captain_message_title"
     t.text     "captain_message"
     t.string   "captain_thumbnail_uid"
     t.text     "message"
+    t.boolean  "enable",                default: false, null: false
+    t.integer  "position",              default: 99999, null: false
     t.index ["key"], name: "index_places_on_key"
     t.index ["organization_id"], name: "index_places_on_organization_id"
   end
@@ -192,6 +224,15 @@ ActiveRecord::Schema.define(version: 20170818033350) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["enable", "publish_at", "carousel"], name: "index_topics_on_enable_and_publish_at_and_carousel"
+  end
+
+  create_table "usage_records", force: :cascade do |t|
+    t.integer  "month_id"
+    t.integer  "child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_usage_records_on_child_id"
+    t.index ["month_id"], name: "index_usage_records_on_month_id"
   end
 
 end

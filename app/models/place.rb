@@ -9,6 +9,9 @@ class Place < ApplicationRecord
   has_many :places_photos
   has_many :photos, through: :places_photos
 
+  default_scope ->{ order(:position) }
+  scope :enables, ->{ where(arel_table[:enable].eq(true)) }
+
   def to_param
     self.key
   end
