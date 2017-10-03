@@ -53,8 +53,8 @@ function initializeMap() {
     return;
   }
 
-  var lat = $('#js-map')[0].attr('let'),
-      lng = $('#js-map')[0].attr('lng');
+  var lat = $('#js-map').attr('let'),
+      lng = $('#js-map').attr('lng');
 
   var gmaps = new GMaps({
     div: '#js-map',
