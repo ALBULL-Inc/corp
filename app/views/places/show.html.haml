@@ -8,8 +8,9 @@
         %span.l-header__title--bottom= @place.name
     %nav.l-header__navigation.p-navigation
       %ul.p-navigation__list
-        %li.p-navigation__item
-          %a.js-anchor{href: "#section-1"} 園長メッセージ
+        - if @place.captain_message.present?
+          %li.p-navigation__item
+            %a.js-anchor{href: "#section-1"} 園長メッセージ
         %li.p-navigation__item
           %a.js-anchor{href: "#section-2"} 保育理念
         -#%li.p-navigation__item
