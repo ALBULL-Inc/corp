@@ -2,7 +2,7 @@
 %meta{charset: "UTF-8"}/
 
 = display_meta_tags site: t('site.name'), description: t('site.description'), title: @breadcrumbs.try(:last).try(:name),
-  og: {title: t('site.name'), url: root_url, type: 'article'}, reverse: true,
+  og: {url: @breadcrumbs.try(:last).try(:path) || root_url, type: 'article'}, reverse: true,
   twitter: {card: 'website', site: '@yourcorp'},
   canonical: @breadcrumbs.try(:last).try(:path) || root_url
 %meta{property: 'fb:app_id', content: Settings[:facebook][:app_id]}
