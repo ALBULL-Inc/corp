@@ -1,0 +1,31 @@
+= form_for [:cms,@child] do |f|
+  - if @child.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@child.errors.count, "error")} prohibited this cms_child from being saved:"
+      %ul
+        - @child.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :family_id
+    = f.collection_select :family_id, Family.select(:id, :title), :id, :title, include_blank: 'この中に無い場合は下記に記入してください', class: "form-control"
+  = f.fields_for :family do |f_f|
+    .form-group
+      = f_f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :place_id
+    = f.collection_select :place_id, Place.select(:id, :name), :id, :name, include_blank: '選択してください', class: "form-control"
+  .form-group
+    = f.label :first_name
+    = f.text_field :first_name, class: "form-control"
+  .form-group
+    = f.label :first_name_kana
+    = f.text_field :first_name_kana, class: "form-control"
+  .form-group
+    = f.label :nickname
+    = f.text_field :nickname, class: "form-control"
+  .form-group
+    = f.label :birthday
+    = f.date_select :birthday, class: "form-control"
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"
