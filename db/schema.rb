@@ -123,6 +123,15 @@ ActiveRecord::Schema.define(version: 20171003083101) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "months_photos", force: :cascade do |t|
+    t.integer  "month_id"
+    t.integer  "photo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["month_id"], name: "index_months_photos_on_month_id"
+    t.index ["photo_id"], name: "index_months_photos_on_photo_id"
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.text     "address"
@@ -232,10 +241,12 @@ ActiveRecord::Schema.define(version: 20171003083101) do
   create_table "usage_records", force: :cascade do |t|
     t.integer  "month_id"
     t.integer  "child_id"
+    t.integer  "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["child_id"], name: "index_usage_records_on_child_id"
     t.index ["month_id"], name: "index_usage_records_on_month_id"
+    t.index ["place_id"], name: "index_usage_records_on_place_id"
   end
 
 end
