@@ -30,7 +30,7 @@
         .p-about__header
           %h2.c-heading{"data-heading" => "about"} #{@place.name}について
         .p-about__content
-          %p= bbr @place.message
+          %p= bbr @place.message.html_safe
     -#/保育園について
 
     -# 園長メッセージ
