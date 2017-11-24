@@ -12,6 +12,9 @@
           - @inquiry.errors.full_messages.each do |msg|
             %li= msg
     .form-group
+      = f.label :concern
+      = f.select :concern, @concerns, {}, class: "form-control"
+    .form-group
       = f.label :email, class: "require"
       = f.email_field :email, class: "form-control", placeholder: "your@domain.com"
     .form-group

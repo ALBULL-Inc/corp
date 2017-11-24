@@ -4,6 +4,7 @@ ja:
       inquiry: お問合せ
     attributes:
       inquiry:
+        concern: カテゴリ
         email: メールアドレス
         name: お名前
         body: お問い合わせ内容
