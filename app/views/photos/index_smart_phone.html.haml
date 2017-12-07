@@ -7,7 +7,7 @@
         %span.l-header__title--top= @place.organization.name
         %span.l-header__title--bottom= @place.name
   %main
-    %div{style: "margin-top: 20px;"}
+    %div{style: "margin-top: 60px;"}
     -# 写真
     %section#section-3.p-staff
       .p-staff__container.p-container
@@ -24,7 +24,6 @@
                 閲覧できる写真がまだありません＞＜
                 写真が準備できるまでしばらくお待ちくださいm(_ _)m
             - @months.each do |month|
-              - next if month.photos.empty?
               %li
                 .c-staff
                   .c-staff__image
@@ -37,9 +36,9 @@
             = paginate @months
 
         - if @month
-          %ul.p-staff__list
+          %ul.p-staff__list.t-center
             - @photos.each do |photo|
-              %li
+              %li.d-if.ml5.mr5
                 .c-staff
                   .c-staff__image
                     = link_to photo.image.thumb('1125x2001').url, target: :_blank do
@@ -51,7 +50,7 @@
                       毎日子どもと一緒に成長しています。
           .t-center
             = paginate @photos
-          .t-left.ml50
+          .t-left
             = link_to "«利用月選択へ", place_photos_path(@place)
     -#/写真
 
@@ -78,55 +77,6 @@
                 %dt.c-vision__title 想いやり
                 %dd 様々な保育の活動を通じ、見て、触れて、感じて、子どもたちの想いつきや、ひらめき、想像力を育みます。
     -#/保育理念
-    -# 保育士紹介
-      %section#section-3.p-staff
-        .p-staff__container.p-container
-          .p-staff__header
-            %h2.c-heading{"data-heading" => "staff"} 保育士紹介
-          %ul.p-staff__list
-            %li
-              .c-staff
-                .c-staff__image
-                  %img{:alt => "川口花子", :src => "//placehold.it/180"}/
-                %dl.c-staff__description
-                  %dt
-                    %span.c-staff__name> 川口 花子
-                    （保育士歴3年）
-                  %dd
-                    毎日子どもと一緒に成長しています。
-                    %br/
-                    ここに保育に対する想いなど。
-                    %br/
-                    ここに保育に対する想いなど。
-            %li
-              .c-staff
-                .c-staff__image
-                  %img{:alt => "川口花子", :src => "//placehold.it/180"}/
-                %dl.c-staff__description
-                  %dt
-                    %span.c-staff__name> 川口 花子
-                    （保育士歴3年）
-                  %dd
-                    毎日子どもと一緒に成長しています。
-                    %br/
-                    ここに保育に対する想いなど。
-                    %br/
-                    ここに保育に対する想いなど。
-            %li
-              .c-staff
-                .c-staff__image
-                  %img{:alt => "川口花子", :src => "//placehold.it/180"}/
-                %dl.c-staff__description
-                  %dt
-                    %span.c-staff__name> 川口 花子
-                    （保育士歴3年）
-                  %dd
-                    毎日子どもと一緒に成長しています。
-                    %br/
-                    ここに保育に対する想いなど。
-                    %br/
-                    ここに保育に対する想いなど。
-    -#/保育士紹介
     -# アクセス
     %section#section-4.p-access
       .p-access__container.p-container

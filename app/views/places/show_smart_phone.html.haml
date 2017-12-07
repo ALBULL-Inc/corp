@@ -4,7 +4,7 @@
 .l-body
   %header.l-header
     %h1.l-header__heading
-      = link_to root_url do
+      = link_to place_url(@place) do
         %span.l-header__title--top= @place.organization.name
         %span.l-header__title--bottom= @place.name
     %nav.l-header__navigation.p-navigation
@@ -18,19 +18,37 @@
           %a.js-anchor{href: "#section-3"} 保育士紹介
         %li.p-navigation__item
           %a.js-anchor{href: "#section-4"} アクセス
-        -#%li
-          = link_to profile_path, class: "c-mypageButton", rel: :nofollow do
-            %span 保護者の方
+        - unless @parent_mode
+          %li
+            = link_to new_place_session_path(@place), class: "c-mypageButton", rel: :nofollow do
+              %span
+                保護者の方
+                %br
+                ログイン
   %main
     .p-mainvisual
       .p-mainvisual__inner.js-parallax{style: "background: url(/img/sp/object/project/mainvisual/#{@place.key}.jpg) 50% 50% no-repeat; background-size: cover;"}
     -# 保育園について
     %section.p-about
       .p-container
-        .p-about__header
-          %h2.c-heading{"data-heading" => "about"} #{@place.name}について
-        .p-about__content
-          %p= bbr @place.message.html_safe
+        - if @parent_mode
+          .p-about__header
+            %h2.c-heading{"data-heading" => "menu"} 保護者メニュー
+          .p-about__content
+            %p
+              #{@current_family.title}さま いつもお世話になっております。
+              %br
+              お変わりございませんか？なにかございましたらお気軽にお声がけください。
+            %section.p-message__section.t-center
+              .p-message__image.d-if
+                = link_to place_photos_path(@place) do
+                  = image_tag "icons/camera.png"
+              %h3.p-message__heading.mt-10 アルバム写真
+        - else
+          .p-about__header
+            %h2.c-heading{"data-heading" => "about"} #{@place.name}について
+          .p-about__content
+            %p= bbr @place.message.html_safe
     -#/保育園について
 
     -# 施設長メッセージ

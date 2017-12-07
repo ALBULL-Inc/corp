@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Family id:
+  = @child.family_id
+%p
+  %b Family title:
+  = @child.family.title
+%p
+  %b Family code:
+  = @child.family.decrypt_code
+%p
+  %b Places:
+  = @child.place.name
+%p
+  %b First name:
+  = @child.first_name
+%p
+  %b First name kana:
+  = @child.first_name_kana
+%p
+  %b Nickname:
+  = @child.nickname
+%p
+  %b Birthday:
+  =l @child.birthday
+
+= link_to 'Edit', edit_cms_child_path(@child)
+\|
+= link_to 'Back', cms_children_path

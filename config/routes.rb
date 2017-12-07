@@ -29,6 +29,11 @@ Rails.application.routes.draw do
   resource :inquiry, only: [:new, :create]
   resources :places, only: [:index, :show] do
     resources :photos, only: [:index]
+    resource :session, only: [], controller: 'places/sessions', path: "" do
+      get   :new,     path: 'login',  as: "new"
+      post  :create,  path: 'login'
+      match :destroy, path: 'logout', as: "destroy", via: :delete
+    end
   end
 
   # cms routings
@@ -38,7 +43,7 @@ Rails.application.routes.draw do
     resources :recruits
     resources :organizations
     resources :places
-
+    resources :children
     resources :accounts, only: [:index, :show, :edit, :update]
   end
 end
