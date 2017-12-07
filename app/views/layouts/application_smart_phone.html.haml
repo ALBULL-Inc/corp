@@ -1,6 +1,7 @@
 !!! 5
 %html(lang="ja")
   %head(prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#")
+    %meta{content: "width=device-width,initial-scale=1.0,maximum-scale=1", name: "viewport"}/
     = render partial: 'layouts/meta_tags'
     = csrf_meta_tags
     = stylesheet_link_tag "sp/application", :media => "all", "data-turbolinks-track" => true

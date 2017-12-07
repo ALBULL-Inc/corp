@@ -8,6 +8,7 @@ class Place < ApplicationRecord
 
   has_many :places_photos
   has_many :photos, through: :places_photos
+  has_many :photos_months, through: :photos, source: :month
   has_many :usage_records
 
   default_scope ->{ order(:position) }

@@ -24,6 +24,7 @@
                 閲覧できる写真がまだありません＞＜
                 写真が準備できるまでしばらくお待ちくださいm(_ _)m
             - @months.each do |month|
+              - next if month.photos.empty?
               %li
                 .c-staff
                   .c-staff__image
