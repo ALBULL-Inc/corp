@@ -1,30 +1,31 @@
 %h1 Listing children
 
+= link_to 'New Child', new_cms_child_path, class: "btn btn-primary"
+
 %table.table
   %thead
     %tr
-      %th Family id
-      %th Family title
-      %th Family code
       %th Places
+      %th Family id
+      %th Family code
+      %th Family title
       %th First name
       %th Birthday
-      %th
-      %th
       %th
 
   %tbody
     - @children.each do |child|
       %tr
-        %td= child.family_id
-        %td= child.family.title
-        %td= child.family.decrypt_code
         %td= child.place.name
+        %td= child.family_id
+        %td= child.family.decrypt_code
+        %td= child.family.title
         %td= child.first_name
         %td= child.birthday
-        %td= link_to 'Show', [:cms, child]
-        %td= link_to 'Edit', edit_cms_child_path(child)
+        %td
+          = link_to 'Show', [:cms, child], class: "btn btn-info"
+          = link_to 'Edit', edit_cms_child_path(child), class: "btn btn-warning"
 
 %br
 
-= link_to 'New Child', new_cms_child_path
+= link_to 'New Child', new_cms_child_path, class: "btn btn-primary"

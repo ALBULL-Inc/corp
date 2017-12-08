@@ -4,7 +4,9 @@ class Cms::ChildrenController < Cms::ApplicationController
   # GET /cms/children
   # GET /cms/children.json
   def index
-    @children = Child.all
+    target = params[:place_id] ? Place.where(key: params[:place_id]).first&.children : nil
+    target ||= Child
+    @children = target.includes(:family).order(:place_id,:family_id).page(params[:page]).per(50)
   end
 
   # GET /cms/children/1

@@ -6,6 +6,7 @@ class Place < ApplicationRecord
 
   belongs_to :organization
 
+  has_many :children
   has_many :places_photos
   has_many :photos, through: :places_photos
   has_many :photos_months, through: :photos, source: :month

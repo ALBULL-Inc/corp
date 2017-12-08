@@ -17,6 +17,7 @@ class Places::SessionsController < ApplicationController
 
   def destroy
     cookies.delete(:family_remember_token)
+    @current_family
     redirect_to @place
   end
 
@@ -26,9 +27,13 @@ class Places::SessionsController < ApplicationController
   end
 
   def place_sign_in(family)
-    remember_token = SecureRandom.urlsafe_base64
+    # 複数ログイン対応
+    # remember_token = SecureRandom.urlsafe_base64
+    remember_token = family.remember_token || SecureRandom.urlsafe_base64
     cookies.permanent[:family_remember_token] = remember_token
-    enc_token = Digest::SHA256.hexdigest(remember_token.to_s)
+    # 複数ログイン対応
+    # enc_token = Digest::SHA256.hexdigest(remember_token.to_s)
+    enc_token = remember_token.to_s
     family.update!(remember_token: enc_token)
     @current_family = family
   end

@@ -30,7 +30,9 @@ class ApplicationController < ActionController::Base
 
     def current_family
       cookies[:family_remember_token] || return
-      remember_token = Digest::SHA256.hexdigest(cookies[:family_remember_token])
+      # 複数ログイン対応
+      # remember_token = Digest::SHA256.hexdigest(cookies[:family_remember_token])
+      remember_token = cookies[:family_remember_token]
       @current_family ||= Family.find_by(remember_token: remember_token)
     end
 end
