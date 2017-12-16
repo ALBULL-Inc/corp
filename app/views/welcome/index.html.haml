@@ -7,6 +7,16 @@
       %li.active(data-target="#carousel-topic" data-slide-to="#{i}")
 
   .carousel-inner(role="listbox")
+    .item.active
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T1.jpg"
+    .item
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T2.jpg"
+    .item
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T3.jpg"
+    .item
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T4.jpg"
+    .item
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T5.jpg"
     - @carousels.each do |carousel|
       .item.active
         = image_tag(carousel.carousel_img, alt: carousel.title)
