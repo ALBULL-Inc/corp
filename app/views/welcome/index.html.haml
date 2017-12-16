@@ -17,7 +17,7 @@
       = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T4.jpg"
     .item
       = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T5.jpg"
-    - @carousels.each do |carousel|
+    -# @carousels.each do |carousel|
       .item.active
         = image_tag(carousel.carousel_img, alt: carousel.title)
         .carousel-caption
