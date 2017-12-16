@@ -13,7 +13,7 @@ class PhotosController < ApplicationController
     redirect_to @place and return unless @place.allow?(@current_family)
     if params[:ym].present?
       @month = Month.find_by(ym: params[:ym])
-      @photos = @month.photos.page(params[:page]).per(15)
+      @photos = @place.photos.joins(:month).where(months: {ym: @month.ym}).page(params[:page]).per(15)
     else
       @months = Month.where(id: @place.photos_month_ids.uniq).page(params[:page]).per(9)
     end

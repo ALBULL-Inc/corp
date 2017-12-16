@@ -1,12 +1,27 @@
 - set_meta_tags site: '株式会社ユア Your Corp | あなたの想いを、全て形に',
   og: {type: 'website'}, canonical: root_url
 
-- if topic = @carousels.shuffle.first
-  %section.wide-list
-    = link_to topic do
-      = image_tag topic.carousel_img
-      .title
-        = topic.title
+#carousel-topic.carousel.slide(data-ride="carousel")
+  %ol.carousel-indicators
+    %li.active(data-target="#carousel-topic" data-slide-to="0")
+    %li(data-target="#carousel-topic" data-slide-to="1")
+    %li(data-target="#carousel-topic" data-slide-to="2")
+    %li(data-target="#carousel-topic" data-slide-to="3")
+    %li(data-target="#carousel-topic" data-slide-to="4")
+    -# @carousels.each.with_index do |carousel, i|
+      %li.active(data-target="#carousel-topic" data-slide-to="#{i}")
+
+  .carousel-inner(role="listbox")
+    .item.active
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T1.jpg"
+    .item
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T2.jpg"
+    .item
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T3.jpg"
+    .item
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T4.jpg"
+    .item
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T5.jpg"
 
 .col-md-12
   %h3.border-under

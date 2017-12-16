@@ -1,9 +1,14 @@
 - set_meta_tags site: '株式会社ユア Your Corp | あなたの想いを、全て形に',
   og: {type: 'website'}, canonical: root_url
 
-#carousel-topic.carousel.slide(data-ride="carousel" height="400px")
+#carousel-topic.carousel.slide(data-ride="carousel" height="512px")
   %ol.carousel-indicators
-    - @carousels.each.with_index do |carousel, i|
+    %li.active(data-target="#carousel-topic" data-slide-to="0")
+    %li(data-target="#carousel-topic" data-slide-to="1")
+    %li(data-target="#carousel-topic" data-slide-to="2")
+    %li(data-target="#carousel-topic" data-slide-to="3")
+    %li(data-target="#carousel-topic" data-slide-to="4")
+    -# @carousels.each.with_index do |carousel, i|
       %li.active(data-target="#carousel-topic" data-slide-to="#{i}")
 
   .carousel-inner(role="listbox")
