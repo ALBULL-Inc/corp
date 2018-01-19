@@ -29,7 +29,7 @@
                 .c-staff
                   .c-staff__image
                     = link_to place_photos_path(@place, ym: month.ym) do
-                      = image_tag(month.photos.last.image.thumb('180x180#').url)
+                      = image_tag(month.photos.joins(:places).where(places: {id: @place.id}).last.image.thumb('180x180#').url)
                   %dl.c-staff__description
                     %dt
                       %span.c-staff__name= month.title
