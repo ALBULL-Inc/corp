@@ -13,7 +13,7 @@
           %li.p-navigation__item
             %a.js-anchor{href: "#section-1"} 園長メッセージ
         %li.p-navigation__item
-          %a.js-anchor{href: "#section-2"} 保育理念
+          %a.js-anchor{href: "#section-2"} 保育目標
         -#%li.p-navigation__item
           %a.js-anchor{href: "#section-3"} 保育士紹介
         %li.p-navigation__item
@@ -67,15 +67,14 @@
               %h3.p-message__heading= @place.captain_message_title
               %p= bbr @place.captain_message
     -#/施設長メッセージ
-    -# 保育理念
+    -# 保育目標
     %section#section-2.p-vision
       .p-vision__container.p-container
         .p-vision__header
-          %h2.c-heading{"data-heading" => "vision"} 保育理念
-          %p.p-vision__lead
-            #{@place.name}は、
-            %br/
-            3つの「想い」を大切にしています
+          %h2.c-heading{"data-heading" => "vision"} 保育目標
+          %p.p-vision__lead "その子らしさ"を尊重し、想いが溢れる子ども達を育てます
+        .p-vision__header
+          %p.p-vision__lead 目標に向かって、3つの「想い」を大切にした保育を行います
         %ul.p-vision__list
           %li
             .c-vision
@@ -92,7 +91,7 @@
               %dl.c-vision__description
                 %dt.c-vision__title 想いやり
                 %dd 人と人との繋がりを大切にし、自分を大切にしながらも他人を優先できる人になれるよう、優しさ、親切心、想いやりの心を育みます。
-    -#/保育理念
+    -#/保育目標
     -# 保育士紹介
       %section#section-3.p-staff
         .p-staff__container.p-container

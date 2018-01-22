@@ -55,12 +55,14 @@
             = link_to "«利用月選択へ", place_photos_path(@place)
     -#/写真
 
-    -# 保育理念
+    -# 保育目標
     %section#section-2.p-vision.mt50
       .p-vision__container.p-container
         .p-vision__header
-          %h2.c-heading{"data-heading" => "vision"} 保育理念
-          %p.p-vision__lead 川口ひまわり保育園は、3つの「想い」を大切にしています
+          %h2.c-heading{"data-heading" => "vision"} 保育目標
+          %p.p-vision__lead "その子らしさ"を尊重し、想いが溢れる子ども達を育てます
+        .p-vision__header
+          %p.p-vision__lead 目標に向かって、3つの「想い」を大切にした保育を行います
         %ul.p-vision__list
           %li
             .c-vision
@@ -77,7 +79,7 @@
               %dl.c-vision__description
                 %dt.c-vision__title 想いやり
                 %dd 様々な保育の活動を通じ、見て、触れて、感じて、子どもたちの想いつきや、ひらめき、想像力を育みます。
-    -#/保育理念
+    -#/保育目標
     -# 保育士紹介
       %section#section-3.p-staff
         .p-staff__container.p-container
@@ -136,9 +138,9 @@
           %dl.p-access__description
             %dt= @place.name
             %dd= @place.address
-        #js-map.p-access__map
+        #js-map.p-access__map{let: @place.let, lng: @place.lng}
         %p.p-access__link
-          %a{href: "https://goo.gl/maps/avsMMksa3LJ2", target: "_blank"} 大きな地図で見る
+          %a{href: @place.gmap_url, target: "_blank"} 大きな地図で見る
     -#/アクセス
   -#/main
 
