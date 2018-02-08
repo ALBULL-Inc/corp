@@ -6,8 +6,18 @@ ja:
       recruit:
         enable: 有効?
         title: 件名
+        employment_type: 雇用形態
         job_content: 職務内容
         qualification: 応募資格
         compensation: 待遇処遇
         working_place: 勤務地
         position: 表示順
+
+  recruit:
+    proper: 正社員
+    parttime: パート
+    contract: 契約社員
+    temporary: 派遣社員
+    referral: 紹介
+    other: その他
+

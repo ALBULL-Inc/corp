@@ -7,6 +7,9 @@
   %b Title:
   = @recruit.title
 %p
+  %b Employment type:
+  = t("recruit.#{Employment::TYPE.key(@recruit.employment_type)}")
+%p
   %b Job content:
   = @recruit.job_content
 %p
@@ -18,6 +21,9 @@
 %p
   %b Working place:
   = @recruit.working_place
+%p
+  %b Portrait:
+  = image_tag @recruit.portrait.thumb('180x180#').url
 
 %h2= Entry.model_name.human
 - @recruit.entries.each do |entry|

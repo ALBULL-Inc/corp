@@ -4,6 +4,7 @@
  *= require_self
  *= require common
  *= require header
+ *= require recruit
  *= require error_explanation
  */
 

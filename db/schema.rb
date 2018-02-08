@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003083101) do
+ActiveRecord::Schema.define(version: 20180207121403) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -221,8 +221,10 @@ ActiveRecord::Schema.define(version: 20171003083101) do
     t.text     "compensation"
     t.string   "working_place"
     t.integer  "position"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "portrait_uid"
+    t.integer  "employment_type"
     t.index ["enable", "position"], name: "index_recruits_on_enable_and_position"
   end
 

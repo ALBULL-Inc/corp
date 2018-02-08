@@ -23,6 +23,35 @@ Things you may want to cover:
 
 * ...
 
+#= 構想
+Your TOP
+　└ 個別LP　(委託募集etc...)
+　└ 会社概要
+　　└ 経営理念
+　　└ 保育理念
+　└ 求人(スピンオフで別媒体へ)
+　　└ 求人派遣
+　　└ 人材派遣
+　　└ 人材紹介
+　└ 施設一覧
+　　└ 各施設ページ
+　　　└ ログイン
+　　　└ 写真ページ
+　　　└ お知らせ
+　　　└ 子ども管理
+　　　　└ 保育料計算(管理)
+　　　　└ 体温・心拍閲覧(IoT)・睡眠時間
+　　　　└ 様子管理(成長記録的な)
+　└ 従業員ページ
+　　└ 届出情報CRUD
+　　└ 給与明細確認
+　　└ アンケート
+　　└ お知らせ(兼メルマガ)
+　　└ 就業規則閲覧
+　　└ 各種清製
+
+
+
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.

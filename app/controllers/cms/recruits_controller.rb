@@ -69,6 +69,6 @@ class Cms::RecruitsController < Cms::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recruit_params
-      params.require(:recruit).permit(:enable, :title, :job_content, :qualification, :compensation, :working_place, :position)
+      params.require(:recruit).permit(:enable, :title, :employment_type, :job_content, :qualification, :compensation, :working_place, :portrait_uid, :position)
     end
 end

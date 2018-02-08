@@ -1,22 +1,46 @@
 - set_meta_tags title: '採用情報', description: '株式会社ユアの採用情報のページです。派遣社員の登録スタッフや弊社運営の保育施設の求人を載せております。'
 
-.col-md-2
+.eye-catch.mb20
+  .text-center.pt80
+    %h1.mt0.mb50.f50 Your WORK
+    %p.lead
+      私たちは、「あなたの想いを、全て形に」を企業理念とし、
+      %br
+      「３つの想いを大切に」保育事業を行っています。
+      %br
+      あなたの想いをどんどん実現していきませんか？
+      %br
+      是非ご応募お待ちしております！
 
-.col-md-8
-  - if @recruits.present?
-    私たちは、「あなたの想いを、全て形に」を企業理念とし、「３つの想いを大切に」保育事業を行っています。
-    %br
-    あなたの想いをどんどん実現していきませんか？是非ご応募お待ちしております！
+.row
+  .col-md-2
+    %ul.list-menu
+      -#%li= link_to "#{fa_icon 'home'} HOME".html_safe, root_path
 
-    %h3.f22.pa10.pb0
-      採用中一覧
-    %div.mb10(style="border-bottom: 2px solid #ddd")
-    %table.table
-      - @recruits.each do |recruit|
-        %tr
-          %td.pa15.pl20= link_to recruit.title, recruit
-          %td.pa15.pl20.col-md-4
-            = recruit.working_place
-  - else
-    .mt25
-      現在募集しておりません。募集開始しましたら掲載いたします。
+  .col-md-7
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title #{fa_icon 'exclamation'} 新着#{Recruit.model_name.human}
+      .panel-body
+        %table.table.recruit
+          - @recruits.each do |recruit|
+            %tr
+              %td.img
+                = link_to image_tag(recruit.portrait&.thumb('x100#')&.url || ""), recruit_path(recruit)
+              %td
+                %span.f10= t("recruit.#{Employment::TYPE.key(recruit.employment_type)}")
+                %br
+                = link_to recruit.title, recruit_path(recruit)
+              %td.place= recruit.working_place
+
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title #{fa_icon 'search'} 雇用形態から探す
+      .panel-body
+        %table.table
+          %tr
+            %td= link_to "正社員", recruits_path(e_type: Employment::TYPE[:proper])
+          %tr
+            %td= link_to "パート", recruits_path(e_type: Employment::TYPE[:parttime])
+
