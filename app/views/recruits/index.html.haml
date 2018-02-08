@@ -25,8 +25,9 @@
         %table.table.recruit
           - @recruits.each do |recruit|
             %tr
-              %td.img
-                = link_to image_tag(recruit.portrait&.thumb('x100#')&.url || ""), recruit_path(recruit)
+              -#
+                %td.img
+                  = link_to image_tag(recruit.portrait&.thumb('x100#')&.url || ""), recruit_path(recruit)
               %td
                 %span.f10= t("recruit.#{Employment::TYPE.key(recruit.employment_type)}")
                 %br
