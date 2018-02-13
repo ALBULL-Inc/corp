@@ -13,11 +13,18 @@
       是非ご応募お待ちしております！
 
 .row
-  .col-md-2
-    %ul.list-menu
-      -#%li= link_to "#{fa_icon 'home'} HOME".html_safe, root_path
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title #{fa_icon 'search'} 雇用形態から探す
+      .panel-body
+        %table.table
+          %tr
+            %td= link_to "正社員", recruits_path(e_type: Employment::TYPE[:proper])
+          %tr
+            %td= link_to "パート", recruits_path(e_type: Employment::TYPE[:parttime])
 
-  .col-md-7
+  .col-md-6
     .panel.panel-default
       .panel-heading
         %h2.panel-title #{fa_icon 'exclamation'} 新着#{Recruit.model_name.human}
@@ -35,13 +42,6 @@
               %td.place= recruit.working_place
 
   .col-md-3
-    .panel.panel-default
-      .panel-heading
-        %h3.panel-title #{fa_icon 'search'} 雇用形態から探す
-      .panel-body
-        %table.table
-          %tr
-            %td= link_to "正社員", recruits_path(e_type: Employment::TYPE[:proper])
-          %tr
-            %td= link_to "パート", recruits_path(e_type: Employment::TYPE[:parttime])
+    %ul.list-menu
+      -#%li= link_to "#{fa_icon 'home'} HOME".html_safe, root_path
 
