@@ -1,0 +1,36 @@
+- set_meta_tags title: 'Your Blog - 株式会社ユアのブログ', description: '株式会社ユアのスタッフが想いを綴ります。私達の想いを形にするために。'
+
+.eye-catch.mb20
+  .text-center.pt80
+    %h1.mt0.mb50.f50 Your Blog
+    %p.lead
+      私たちは、「あなたの想いを、全て形に」を企業理念に掲げています。
+      %br
+      その想いをユアのスタッフが綴ります。
+
+.row
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title #{fa_icon 'search'} 雇用形態から探す
+      .panel-body
+
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
+      .panel-body
+        %table.table.recruit
+          - @blogs.each do |blog|
+            %tr
+              -#
+                %td.img
+                  = link_to image_tag(recruit.portrait&.thumb('x100#')&.url || ""), recruit_path(recruit)
+              %td
+                %span.f10=l blog.publish_at
+                %br
+                = link_to blog.title, blog_path(blog)
+
+  .col-md-3
+    %ul.list-menu
+      -#%li= link_to "#{fa_icon 'home'} HOME".html_safe, root_path

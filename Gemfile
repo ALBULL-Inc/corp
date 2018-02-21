@@ -28,6 +28,8 @@ gem 'breadcrumbs_on_rails'
 gem 'jpmobile'
 gem 'sitemap_generator'
 
+gem 'redcarpet'
+
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'

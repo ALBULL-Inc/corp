@@ -23,4 +23,9 @@ SitemapGenerator::Sitemap.create do
   Place.find_each do |place|
     add place_path(place),      priority: 0.5, changefreq: 'daily', lastmod: place.updated_at
   end
+
+  add blogs_path,               priority: 0.7, changefreq: 'daily'
+  Blog.enables.find_each do |blog|
+    add blog_path(blog),        priority: 0.5, changefreq: 'daily', lastmod: blog.publish_at
+  end
 end

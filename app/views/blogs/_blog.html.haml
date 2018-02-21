@@ -1,0 +1,8 @@
+%h1.f40= @blog.title
+.t-right
+  %p
+    投稿日
+    = l @blog.publish_at
+
+%p
+  = @blog.body_md.html_safe

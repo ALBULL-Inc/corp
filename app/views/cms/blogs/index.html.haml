@@ -1,0 +1,26 @@
+%h1 Listing blogs
+
+%table.table
+  %thead
+    %tr
+      %th= Blog.human_attribute_name :enable
+      %th= Blog.human_attribute_name :title
+      %th= Blog.human_attribute_name :body
+      %th= Blog.human_attribute_name :publish_at
+      %th{colspan: 3}
+
+  %tbody
+    - @blogs.each do |blog|
+      %tr
+        %td= blog.enable
+        %td= blog.title
+        %td= blog.body.truncate(20)
+        %td= blog.publish_at
+        %td
+          = link_to 'Show', [:cms,blog], class: 'btn btn-info'
+          = link_to 'Edit', edit_cms_blog_path(blog), class: 'btn btn-warning'
+          = link_to 'Destroy', [:cms,blog], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+
+%br
+
+= link_to 'New Blog', new_cms_blog_path

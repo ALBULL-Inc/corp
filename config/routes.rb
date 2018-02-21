@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :blogs
   root to: "welcome#index"
 
   get '/about_us', to: 'welcome#about_us'
@@ -45,5 +46,6 @@ Rails.application.routes.draw do
     resources :places
     resources :children
     resources :accounts, only: [:index, :show, :edit, :update]
+    resources :blogs
   end
 end

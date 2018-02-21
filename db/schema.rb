@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207121403) do
+ActiveRecord::Schema.define(version: 20180221123821) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 20180207121403) do
     t.index ["joined_on"], name: "index_backgrounds_on_joined_on"
     t.index ["profile_id", "background_type", "joined_on"], name: "idx_backgrounds_compo_001"
     t.index ["profile_id"], name: "index_backgrounds_on_profile_id"
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.boolean  "enable",     default: true, null: false
+    t.string   "title"
+    t.text     "body"
+    t.datetime "publish_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "children", force: :cascade do |t|

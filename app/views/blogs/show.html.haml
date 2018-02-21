@@ -1,0 +1,12 @@
+- set_meta_tags title: "#{@blog.title} - Your Blog", description: "ユアのスタッフが想いを綴ります。「#{@blog.title}」"
+
+.col-md-2
+
+.col-md-8
+
+  = render @blog
+
+  .links.mt50
+    = link_to '« 一覧へ戻る', blogs_path
+
+.col-md-2

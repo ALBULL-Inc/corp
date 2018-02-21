@@ -1,0 +1,26 @@
+= form_for [:cms,@blog] do |f|
+  - if @blog.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@blog.errors.count, "error")} prohibited this blog from being saved:"
+      %ul
+        - @blog.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :enable
+    = f.check_box :enable
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :publish_at
+    = f.datetime_select :publish_at, class: "form-control"
+  .form-group
+    .fl-right
+      = link_to 'MARKDOWN方式書き方',
+        'https://qiita.com/kamorits/items/6f342da395ad57468ae3',
+        target: '_blank'
+    = f.label :body
+    = f.text_area :body, class: "form-control", style: 'height: 400px'
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"

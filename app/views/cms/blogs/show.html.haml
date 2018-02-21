@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Enable:
+  = @blog.enable
+%p
+  %b Title:
+  = @blog.title
+%p
+  %b Body:
+  = @blog.body
+%p
+  %b Publish at:
+  = @blog.publish_at
+
+= link_to 'Edit', edit_cms_blog_path(@blog)
+\|
+= link_to 'Back', cms_blogs_path
