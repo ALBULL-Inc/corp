@@ -9,13 +9,14 @@
       その想いをユアのスタッフが綴ります。
 
 .row
-  .col-md-3
-    .panel.panel-default
-      .panel-heading
-        %h3.panel-title #{fa_icon 'search'} 雇用形態から探す
-      .panel-body
+  .col-md-2
+    -#
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title #{fa_icon 'search'} 雇用形態から探す
+        .panel-body
 
-  .col-md-6
+  .col-md-8
     .panel.panel-default
       .panel-heading
         %h2.panel-title #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
@@ -31,6 +32,6 @@
                 %br
                 = link_to blog.title, blog_path(blog)
 
-  .col-md-3
+  .col-md-2
     %ul.list-menu
       -#%li= link_to "#{fa_icon 'home'} HOME".html_safe, root_path
