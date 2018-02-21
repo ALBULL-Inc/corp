@@ -5,6 +5,7 @@
  *= require common
  *= require header
  *= require recruit
+ *= require blog
  *= require error_explanation
  */
 
