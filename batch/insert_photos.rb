@@ -1,3 +1,4 @@
+# googleドキュメントの「施設の写真リリース手順」を参照
 # rails runner batch/insert_photos.rb :施設名: :YEARMONTH: :フォルダ:
 
 
