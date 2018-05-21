@@ -5,11 +5,12 @@ class PhotosController < ApplicationController
 
   def index
     redirect_to @place and return unless @place.allow?(@current_family)
+    target = @current_family.usage_months.where(usage_records: {place: @place})
     if params[:ym].present?
-      @month = @current_family.usage_months.includes(:photos).find_by(ym: params[:ym])
+      @month = target.includes(:photos).find_by(ym: params[:ym])
       @photos = @month.photos.page(params[:page]).per(15)
     else
-      @months = @current_family.usage_months.page(params[:page]).per(9)
+      @months = target.joins(:photos).page(params[:page]).per(9)
     end
   end
 
