@@ -14,6 +14,10 @@ class Child < ApplicationRecord
     UsageRecord.create!(place: place, month: month, child: self)
   end
 
+  def full_name
+    @full_name ||= "#{self.family&.title} #{self.first_name}"
+  end
+
   private
   def family_id_or_family_title
     family_id.present? or family&.title

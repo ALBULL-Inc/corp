@@ -3,6 +3,7 @@ class Month < ApplicationRecord
 
   has_many :months_photos
   has_many :photos, through: :months_photos
+  has_many :usage_records
 
   def title
     return @title if @title

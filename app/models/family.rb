@@ -3,8 +3,8 @@ class Family < ApplicationRecord
 
   has_many :children
   has_many :places, through: :children
-#  has_many :usage_records, through: :children
-#  has_many :months, through: :usage_records
+  has_many :usage_records, through: :children
+  has_many :usage_months, through: :usage_records, source: :month
 
   def self.find_code(code)
     input_code = Digest::MD5.hexdigest(code)

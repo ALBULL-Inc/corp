@@ -47,5 +47,6 @@ Rails.application.routes.draw do
     resources :children
     resources :accounts, only: [:index, :show, :edit, :update]
     resources :blogs
+    resources :usage_records
   end
 end

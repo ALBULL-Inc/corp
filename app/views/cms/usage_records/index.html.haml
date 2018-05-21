@@ -1,0 +1,28 @@
+%h1 Listing usage_records
+
+= link_to 'New Usage record', new_cms_usage_record_path, class: "btn btn-info"
+
+%table.table
+  %thead
+    %tr
+      %th Month
+      %th Child
+      %th Place
+      %th
+      %th
+      %th
+
+  %tbody
+    - @usage_records.each do |usage_record|
+      %tr
+        %td= usage_record.month.ym
+        %td= usage_record.child.full_name
+        %td= usage_record.place.name
+        %td
+          = link_to 'Show', [:cms,usage_record], class: "btn btn-info"
+          = link_to 'Edit', edit_cms_usage_record_path(usage_record), class: "btn btn-warning"
+          = link_to 'Destroy', [:cms,usage_record], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
+
+%br
+
+= link_to 'New Usage record', new_cms_usage_record_path, class: "btn btn-info"

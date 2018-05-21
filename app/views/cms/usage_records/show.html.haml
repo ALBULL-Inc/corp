@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Month:
+  = @usage_record.month
+%p
+  %b Child:
+  = @usage_record.child
+%p
+  %b Place:
+  = @usage_record.place
+
+= link_to 'Edit', edit_cms_usage_record_path(@usage_record)
+\|
+= link_to 'Back', cms_usage_records_path
