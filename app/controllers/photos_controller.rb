@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
       @month = @current_family.usage_months.includes(:photos).find_by(ym: params[:ym])
       @photos = @month.photos.page(params[:page]).per(15)
     else
-      @months = @current_family.usage_months.joins(:photos).page(params[:page]).per(9)
+      @months = @current_family.usage_months.page(params[:page]).per(9)
     end
   end
 
