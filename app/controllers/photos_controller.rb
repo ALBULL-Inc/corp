@@ -5,13 +5,30 @@ class PhotosController < ApplicationController
 
   def index
     redirect_to @place and return unless @place.allow?(@current_family)
-    target = @current_family.usage_months.where(usage_records: {place: @place}).includes(:photos)
+    m_t  = Month.arel_table
+    c_t  = Child.arel_table
+    p_t  = Photo.arel_table
+    mp_t = MonthsPhoto.arel_table
+    pp_t = PlacesPhoto.arel_table
+    ur_t = UsageRecord.arel_table
+    photos = Photo.joins(:months_photo).where(m_t[:id].eq(mp_t[:month_id]))
+    usages = UsageRecord.joins(:child). \
+      where(m_t[:id].eq(ur_t[:month_id])). \
+      where(c_t[:family_id].eq(@current_family.id))
+    month = Month.where(photos.exists).where(usages.exists)
     if params[:ym].present?
-      @month = Month.find_by(ym: params[:ym])
-      redirect_to @place and return unless @current_family.usage_records.by_place(@place).by_month(@month).exists?
-      @photos = @place.photos.joins(:month).where(months: {ym: @month.ym}).page(params[:page]).per(15)
+      @month = month.find_by(ym: params[:ym])
+      redirect_to @place and return unless @month
+      ppt_cond = PlacesPhoto.where(
+        p_t[:id].eq(pp_t[:photo_id]).and(pp_t[:place_id].eq(@place.id))
+      )
+      mpt_cond = MonthsPhoto.where(
+        p_t[:id].eq(mp_t[:photo_id]).and(mp_t[:month_id].eq(@month.id))
+      )
+      @photos = Photo.where(ppt_cond.exists).where(mpt_cond.exists). |
+        page(params[:page]).per(15)
     else
-      @months = Month.where(id: @current_family.usage_records.by_place(@place).pluck(:month_id)).page(params[:page]).per(9)
+      @months = month.page(params[:page]).per(9)
     end
   end
 

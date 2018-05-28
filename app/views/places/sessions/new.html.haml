@@ -5,6 +5,8 @@
 .col-md-8
   %h1= t"Log in"
   .mt30.mb20
+    - if Rails.env.development?
+      = Family.first.decrypt_code
   = form_tag(place_session_path(@place), method: :post) do
     .form-group
       = label_tag "code"
