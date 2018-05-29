@@ -5,6 +5,7 @@ class Family < ApplicationRecord
   has_many :places, through: :children
   has_many :usage_records, through: :children
   has_many :usage_months, through: :usage_records, source: :month
+  has_many :usage_places, through: :usage_records, source: :place
 
   def self.find_code(code)
     input_code = Digest::MD5.hexdigest(code)
@@ -16,7 +17,7 @@ class Family < ApplicationRecord
   end
 
   def allow_place_ids
-    @allow_place_ids ||= self.children.pluck(:place_id)
+    @allow_place_ids ||= self.usage_place_ids.uniq
   end
 
   private
