@@ -18,6 +18,7 @@ class PhotosController < ApplicationController
 
     usage = UsageRecord.joins(:child).\
       where(has_photos_places.exists).\
+      where(m_t[:id].eq(ur_t[:month_id])).\
       where(c_t[:family_id].eq(@current_family.id).and(ur_t[:place_id].eq(@place.id)))
 
     month = Month.where(has_photos_months.exists).where(usage.exists)
