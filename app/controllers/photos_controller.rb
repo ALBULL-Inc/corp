@@ -5,17 +5,23 @@ class PhotosController < ApplicationController
 
   def index
     redirect_to @place and return unless @place.allow?(@current_family)
-    m_t  = Month.arel_table
     c_t  = Child.arel_table
+    m_t  = Month.arel_table
     p_t  = Photo.arel_table
+    pl_t = Place.arel_table
+    ur_t = UsageRecord.arel_table
     mp_t = MonthsPhoto.arel_table
     pp_t = PlacesPhoto.arel_table
-    ur_t = UsageRecord.arel_table
-    photos = Photo.joins(:months_photo).where(m_t[:id].eq(mp_t[:month_id]))
-    usages = UsageRecord.joins(:child). \
-      where(m_t[:id].eq(ur_t[:month_id])). \
-      where(c_t[:family_id].eq(@current_family.id))
-    month = Month.where(photos.exists).where(usages.exists)
+
+    has_photos_months = MonthsPhoto.where(mp_t[:month_id].eq(m_t[:id]))
+    has_photos_places = Place.joins(:places_photos).where(pl_t[:id].eq(@place.id)).reorder(nil)
+
+    usage = UsageRecord.joins(:child).\
+      where(has_photos_places.exists).\
+      where(c_t[:family_id].eq(@current_family.id).and(ur_t[:place_id].eq(@place.id)))
+
+    month = Month.where(has_photos_months.exists).where(usage.exists)
+
     if params[:ym].present?
       @month = month.find_by(ym: params[:ym])
       redirect_to @place and return unless @month
@@ -25,7 +31,7 @@ class PhotosController < ApplicationController
       mpt_cond = MonthsPhoto.where(
         p_t[:id].eq(mp_t[:photo_id]).and(mp_t[:month_id].eq(@month.id))
       )
-      @photos = Photo.where(ppt_cond.exists).where(mpt_cond.exists). |
+      @photos = Photo.where(ppt_cond.exists).where(mpt_cond.exists).\
         page(params[:page]).per(15)
     else
       @months = month.page(params[:page]).per(9)
