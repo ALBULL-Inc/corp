@@ -8,7 +8,7 @@ class Cms::UsageRecordsController < Cms::ApplicationController
       @month = Month.find_by(ym: params[:ym])
       @usage_records = @month&.usage_records || []
     else
-      @usage_records = UsageRecord.all
+      @usage_records = UsageRecord.order(month_id: :desc, place_id: :asc).all
     end
   end
 
