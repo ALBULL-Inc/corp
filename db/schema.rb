@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221123821) do
+ActiveRecord::Schema.define(version: 20180812061321) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180221123821) do
     t.date     "birthday"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "no"
     t.index ["family_id"], name: "index_children_on_family_id"
     t.index ["place_id"], name: "index_children_on_place_id"
   end

@@ -1,5 +1,15 @@
 %h1 Listing usage_records
 
+.section.search.mb20
+  %h2 絞り込み
+  = form_tag cms_usage_records_path, method: :get do
+    = label_tag :ym, "利用年月(yyyymm)"
+    = text_field_tag :ym
+
+    .action
+      = submit_tag "絞り込み", class: "btn btn-success"
+
+
 = link_to 'New Usage record', new_cms_usage_record_path, class: "btn btn-info"
 
 %table.table

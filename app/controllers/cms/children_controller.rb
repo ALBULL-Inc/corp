@@ -6,7 +6,7 @@ class Cms::ChildrenController < Cms::ApplicationController
   def index
     target = params[:place_id] ? Place.where(key: params[:place_id]).first&.children : nil
     target ||= Child
-    @children = target.includes(:family).order(:place_id,:family_id).page(params[:page]).per(50)
+    @children = target.includes(:family).order(:place_id,:no,:family_id).page(params[:page]).per(25)
   end
 
   # GET /cms/children/1
@@ -33,7 +33,7 @@ class Cms::ChildrenController < Cms::ApplicationController
 
     respond_to do |format|
       if @child.save
-        format.html { redirect_to [:cms,@child], notice: 'Child was successfully created.' }
+        format.html { redirect_to [:cms,:children], notice: 'Child was successfully created.' }
       else
         format.html { render :new }
       end
@@ -44,7 +44,7 @@ class Cms::ChildrenController < Cms::ApplicationController
   def update
     respond_to do |format|
       if @child.update(cms_child_params)
-        format.html { redirect_to [:cms,@child], notice: 'Child was successfully updated.' }
+        format.html { redirect_to [:cms,:children], notice: 'Child was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -70,7 +70,7 @@ class Cms::ChildrenController < Cms::ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cms_child_params
       params.require(:child).permit(
-        :family_id, :place_id, :first_name, :first_name_kana, :nickname, :birthday,
+        :family_id, :place_id, :no, :first_name, :first_name_kana, :nickname, :birthday,
         family_attributes: [:title]
       )
     end

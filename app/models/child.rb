@@ -1,6 +1,7 @@
 class Child < ApplicationRecord
   validates :place_id, :first_name, presence: true
   validates :family_id_or_family_title, presence: true
+  validates :no, presence: true, uniqueness: {scope: :place_id}
 
   belongs_to :family
   belongs_to :place
