@@ -78,3 +78,7 @@ section#footer > #main-contents {
   margin: 5px auto;
   min-height: 48px;
 }
+
+thead th {
+  text-align: center;
+}

@@ -20,7 +20,7 @@ class Cms::UsageRecordsController < Cms::ApplicationController
   # GET /cms/usage_records/new
   def new
     @usage_record = UsageRecord.new
-    @children = Child.order(:place_id, :created_at)
+    @children = Child.order(:place_id, :no)
   end
 
   # GET /cms/usage_records/1/edit

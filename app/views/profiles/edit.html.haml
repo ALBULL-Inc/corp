@@ -4,6 +4,10 @@
 .col-md-8
   %h1= t("Editing profile")
 
+  - unless @profile.enough?
+    %p
+      プロフィール(姓,名,性別)を入力することで、求人情報のお仕事に応募出来るようになります
+
   = nested_form_for @profile, url: profile_path do |f|
     - if @profile.errors.any?
       #error_explanation
@@ -56,6 +60,32 @@
           %span.mr10
           = f.radio_button :blood, Blood::AB
           = f.label "blood_#{Blood::B}", blood2str(Blood::AB)
+
+    %h2 連絡先
+    .row
+      .col-md-2
+        %b= Contact.human_attribute_name('contact_type')
+      .col-md-6
+        %b= Contact.human_attribute_name('content')
+      .col-md-1
+        %b 削除
+
+    = f.fields_for :contacts do |cont_f|
+      .row.mb5
+        .form-group
+          .col-md-2
+            = cont_f.collection_select :contact_type, contact_types_options, :first, :last, class: "form-control"
+          .col-md-6
+            = cont_f.text_field :content, class: "form-control"
+
+          .col-md-1
+            - if not cont_f.object.new_record?
+              = cont_f.check_box :_destroy
+            - else
+              = cont_f.link_to_remove "削除", class: 'btn btn-danger'
+
+    .actions
+      = f.link_to_add "連絡先追加", :contacts, class: 'btn btn-info'
 
     %h2 経歴
     .row
@@ -122,33 +152,8 @@
       %p.f11 ※日付までわからない場合は1日で入力ください
       = f.link_to_add "保有資格・免許追加", :qualifications, class: 'btn btn-info'
 
-    %h2 連絡先
-    .row
-      .col-md-2
-        %b= Contact.human_attribute_name('contact_type')
-      .col-md-6
-        %b= Contact.human_attribute_name('content')
-      .col-md-1
-        %b 削除
-
-    = f.fields_for :contacts do |cont_f|
-      .row.mb5
-        .form-group
-          .col-md-2
-            = cont_f.collection_select :contact_type, contact_types_options, :first, :last, class: "form-control"
-          .col-md-6
-            = cont_f.text_field :content, class: "form-control"
-
-          .col-md-1
-            - if not cont_f.object.new_record?
-              = cont_f.check_box :_destroy
-            - else
-              = cont_f.link_to_remove "削除", class: 'btn btn-danger'
-
-    .actions
-      = f.link_to_add "連絡先追加", :contacts, class: 'btn btn-info'
-
     .actions.mt20
       = f.submit class: "btn btn-primary"
 
-  = link_to t('Back'), profile_path
+  %p.mt20
+    = link_to t('Back'), profile_path

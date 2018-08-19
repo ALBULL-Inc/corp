@@ -4,14 +4,25 @@
 .col-md-2
 
 .col-md-8
-  私たち株式会社ユアは、「「その子らしさ」を尊重し、想いが溢れる子ども達を育てます」を保育目標に、３つの想いを大切した保育の運営を下記の施設で行っています。
-
-  %h3.f22.pa10.pb0
+  %h1.f28
     #{Place.model_name.human}一覧
-  %div.mb10(style="border-bottom: 2px solid #ddd")
+
+  .places_msg.mb30
+    私たち株式会社ユアは、「「その子らしさ」を尊重し、想いが溢れる子ども達を育てます」を保育目標に、３つの想いを大切した保育の運営を下記の施設で行っています。
+
   %table.table
-    - @places.each do |place|
+    %thead
       %tr
-        %td.pa15.pl20.col-md-4= link_to place.name, place
-        %td.pa15.pl20
-          = place.address
+        %th 施設名
+        %th 開園日
+        %th 定員
+        %th 所在地
+    %tbody
+      - @places.each do |place|
+        %tr
+          %td= link_to place.name, place
+          %td= place.opened_on ? l(place.opened_on) : ""
+          %td.t-right
+            = place.capacity
+            %span.f10 人
+          %td= place.address

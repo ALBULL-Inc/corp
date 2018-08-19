@@ -28,6 +28,12 @@
     = f.label :fax
     = f.text_field :fax, class: "form-control"
   .form-group
+    = f.label :capacity
+    = f.number_field :capacity, class: "form-control"
+  .form-group
+    = f.label :opened_on
+    = f.date_field :opened_on, class: "form-control"
+  .form-group
     = f.label :message
     = f.text_area :message, class: "form-control"
 

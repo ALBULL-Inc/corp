@@ -17,6 +17,7 @@
       %label
         = f.check_box :child_id, {multiple: true, include_hidden: false}, child.id
         = child.place.name
+        = child.no
         = child.full_name
   .actions
     = f.submit 'Save', class: "btn btn-primary"

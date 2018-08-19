@@ -13,6 +13,10 @@ class Profile < ApplicationRecord
     super defaults.merge(args)
   end
 
+  def enough?
+    [self.firstname,self.lastname,self.gender].all?{|v| v.present?}
+  end
+
   def fullname(position=:lf)
     case position
     when :lf

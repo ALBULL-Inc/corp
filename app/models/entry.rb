@@ -2,7 +2,7 @@ class Entry < ApplicationRecord
   belongs_to :account
   belongs_to :recruit
 
-  after_create :to_slack
+  after_create :to_slack, if: ->{ Rails.env.production? }
 
   def to_slack
     notifier = Slack::Notifier.new Settings.slack.webhook_url.entry, username: "pippi"

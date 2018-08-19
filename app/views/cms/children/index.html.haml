@@ -1,13 +1,13 @@
-%h1 Listing children
+%h1= t('Listing', title: Child.model_name.human)
 
 %table.table
   %thead
     %tr
-      %th Places
-      %th No
-      %th Family code
-      %th Full name
-      %th Birthday
+      %th= Child.human_attribute_name(:place)
+      %th= Child.human_attribute_name(:no)
+      %th= Child.human_attribute_name(:family_code)
+      %th= Child.human_attribute_name(:full_name)
+      %th= Child.human_attribute_name(:birthday)
       %th
 
   %tbody

@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
   before_action :authenticate_account!
+  before_action :fill_in_profile!
   before_action :set_recruit
 
   def new
@@ -23,6 +24,12 @@ class EntriesController < ApplicationController
   end
 
   private
+    def fill_in_profile!
+      unless current_account.profile.enough?
+        redirect_to edit_profile_url, notice: "応募するにはプロフィールを充足させてください"  and return
+      end
+    end
+
     def set_recruit
       @recruit = Recruit.find(params[:recruit_id])
     end

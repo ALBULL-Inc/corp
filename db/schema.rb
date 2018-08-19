@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180812061321) do
+ActiveRecord::Schema.define(version: 20180812070636) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -177,6 +177,8 @@ ActiveRecord::Schema.define(version: 20180812061321) do
     t.string   "let"
     t.string   "lng"
     t.string   "gmap_url"
+    t.date     "opened_on"
+    t.integer  "capacity"
     t.index ["key"], name: "index_places_on_key"
     t.index ["organization_id"], name: "index_places_on_organization_id"
   end

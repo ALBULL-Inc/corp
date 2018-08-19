@@ -5,5 +5,6 @@ ja:
     mission: 'あなたの想いを、全て形に'
     email: 'contact[at]your-corp.jp'
 
+  Listing: "%{title}リスト"
   Send: "送信"
   Back: "戻る"

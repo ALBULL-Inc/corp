@@ -150,6 +150,16 @@
           %dl.p-access__description
             %dt= @place.name
             %dd= @place.address
+            - if @parent_mode
+              %dd
+                - unless @place.tel.blank?
+                  %span.mr20
+                    tel
+                    = @place.tel
+                - unless @place.fax.blank?
+                  %span
+                    fax
+                    = @place.fax
         #js-map.p-access__map{let: @place.let, lng: @place.lng}
         %p.p-access__link
           %a{href: @place.gmap_url, target: "_blank"} 大きな地図で見る
