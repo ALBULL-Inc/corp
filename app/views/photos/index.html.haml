@@ -43,7 +43,7 @@
                 .c-staff
                   .c-staff__image
                     = link_to photo.image.thumb('1125x2001').url, target: :_blank do
-                      = image_tag(photo.image.thumb('180x180#').url)
+                      = image_tag(photo.image.thumb('180x180#').url, data: {pid: photo.id})
                   -# %dl.c-staff__description
                     -# %dt
                       %span.c-staff__name 川口 花子
