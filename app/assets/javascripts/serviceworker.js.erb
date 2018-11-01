@@ -1,0 +1,30 @@
+if ('serviceWorker' in navigator) {
+  if(Notification.permission !== 'granted') {
+    $('.want-push').show();
+    $('.want-push').bind('click', function() {
+      navigator.serviceWorker.register('<%= asset_path('pushapi.js') %>', {scope: '/assets/'})
+      .then(subscribe)
+      .catch(function(error) {
+        //
+      });
+    });
+  }
+}
+
+function subscribe(sw) {
+  Notification.requestPermission(function(permission) {
+    if(permission == 'granted') {
+      sw.pushManager.subscribe({userVisibleOnly: true}).then(function(s) {
+        $('.want-push').hide();
+        $.ajax({
+          url: "/web_push_subscribers.json",
+          type:'POST',
+          dataType: 'json',
+          data : { subscriber: { registration_key: s.endpoint }},
+          timeout:10000,
+          success: function(data) { },
+        });
+      });
+    }
+  });
+}

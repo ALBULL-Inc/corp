@@ -1,0 +1,36 @@
+
+.row
+  .col-md-2
+  .col-md-8
+    %h1= @store.name
+    .row
+      .col-xs-5
+        %h2.f20 【店内仕様】
+        %p= bbr @store.spec
+
+      .col-xs-7
+        %p
+          = fa_icon 'map-marker-alt'
+          = @store.full_address
+
+        %p.t-center
+          %iframe(src="https://www.google.com/maps/embed?#{@store.gmap_query}" width="425" height="400" frameborder="0" style="border:0" allowfullscreen)
+
+    %p.mt25
+      = fa_icon 'phone-square'
+      %span.f20= @store.tel
+      \/
+      = fa_icon 'print'
+      %span.f16= @store.fax
+
+    %p
+      ご予約承ります!!上記までお電話ください！
+
+    .row
+      .col-xs-12
+        %h3 メニュー
+    .row
+      - @menus.each do |m|
+        .col-xs-4= m.name
+        .col-xs-2= m.price
+

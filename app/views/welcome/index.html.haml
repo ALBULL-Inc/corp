@@ -1,61 +1,63 @@
-- set_meta_tags site: '株式会社ユア Your Corp | あなたの想いを、全て形に',
-  og: {type: 'website'}, canonical: root_url
+- set_meta_tags site: "ダーツするならレイリーで | Welcome to #{t("site.name")}", canonical: root_url
 
-#carousel-topic.carousel.slide(data-ride="carousel" height="512px")
-  %ol.carousel-indicators
-    %li.active(data-target="#carousel-topic" data-slide-to="0")
-    %li(data-target="#carousel-topic" data-slide-to="1")
-    %li(data-target="#carousel-topic" data-slide-to="2")
-    %li(data-target="#carousel-topic" data-slide-to="3")
-    %li(data-target="#carousel-topic" data-slide-to="4")
-    -# @carousels.each.with_index do |carousel, i|
-      %li.active(data-target="#carousel-topic" data-slide-to="#{i}")
+.eye-catch.mb20
+  .text-center.pt80.c-white
+    %h1.mt0.mb20.f50 ダーツするならレイリーで
+    %p.lead
+      Welcome to #{t('site.name')}
 
-  .carousel-inner(role="listbox")
-    .item.active
-      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T1.jpg"
-    .item
-      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T2.jpg"
-    .item
-      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T3.jpg"
-    .item
-      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T4.jpg"
-    .item
-      = image_tag "https://s3-ap-northeast-1.amazonaws.com/your-corp/img/T5.jpg"
-    -# @carousels.each do |carousel|
-      .item.active
-        = image_tag(carousel.carousel_img, alt: carousel.title)
-        .carousel-caption
-          %h3= carousel.title
+%p.text-center
+  <!-- 横長1-1 -->
+  = render partial: 'common/adsense', locals: {slot_id: 4877223498, w: 728, h: 90}
 
-  %a.left.carousel-control(href="#carousel-topic" role="button" data-slide="prev")
-    %span(style="position: absolute; top: 50%;")= fa_icon 'chevron-left', style: "font-size: 30px;"
-    %span.sr-only
-      Previous
-  %a.right.carousel-control(href="#carousel-topic" role="button" data-slide="next")
-    %span(style="position: absolute; top: 50%;")= fa_icon 'chevron-right', style: "font-size: 30px;"
-    %span.sr-only
-      Next
-
+.row.mb50
+  .col-md-2
+    %ul.list-menu
+      %li= link_to "#{fa_icon 'home'} Darts Bar Railly".html_safe, root_path
+  .col-md-7
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title.f18 トピックス
+      .panel-body
+        %table.table
+          - @topics.each do |topic|
+            %tr
+              %td.col-md-2=l topic.publish_at.to_date, format: :topic
+              %td= link_to topic.title, topic
+      .panel-footer.text-right
+        = link_to 'more »', root_path
+  .col-md-3
+    - unless Rails.env.production?
+      .panel.panel-default
+        .panel-body{style: "height: 260.5px"}
+          260.5x260.5
 
 .row
-  .col-md-8
-    %h2.f22.pa10.pb0
-      トピックス
-    %div.mb10(style="border-bottom: 2px solid #ddd")
-    %table.table
-      - @topics.each do |topic|
-        %tr
-          %td.pa15.pl20.col-md-2=l topic.publish_at.to_date, format: :topic
-          %td.pa15.pl20= link_to topic.title, topic
+  .col-md-2
+    %ul.list-menu
+      %li= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path
 
   .col-md-4
-    %h3.f22.pa10.pb0
-      私たちの理念
-    %div.mb10(style="border-bottom: 2px solid #ddd")
-    %table.table
-      %tr
-        %td.pa15.pl20= link_to "» 企業理念", mission_path
-      %tr
-        %td.pa15.pl20= link_to "» 保育目標", policy_childcare_path
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title.f18= "Railly 赤坂店"
+      .panel-body
+        %div.f14{style: 'padding: 10px;'}
+          #{fa_icon 'map-marker'} 東京都港区赤坂2-14-8 赤坂SKビル3F-A
+          %br
+          #{fa_icon 'earphone'} 03-6807-4025
+          %br
+          #{fa_icon 'time'} 18:00 - 05:00
+      .panel-footer.text-right
+        = link_to 'more »', root_path
+
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= "Railly 2号店"
+      .panel-body
+        %div.f14{style: 'padding: 10px;'}
+          Comming soon...
+      .panel-footer.text-right
+        = link_to 'more »', root_path
 

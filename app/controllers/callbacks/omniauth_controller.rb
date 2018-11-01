@@ -14,7 +14,8 @@ class Callbacks::OmniauthController < ApplicationController
   end
 
   def failure
-    redirect_to new_account_session_path
+    #redirect_to new_account_session_path
+    redirect_to root_path
   end
 
   private

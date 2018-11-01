@@ -1,27 +1,5 @@
 @import "twitter/bootstrap/bootstrap";
 
-// Glyphicons are not required by default, uncomment the following lines to enable them.
-@glyphiconsEotPath: font-url("glyphicons-halflings-regular.eot");
-@glyphiconsEotPath_iefix: font-url("glyphicons-halflings-regular.eot?#iefix");
-@glyphiconsWoffPath: font-url("glyphicons-halflings-regular.woff");
-@glyphiconsTtfPath: font-url("glyphicons-halflings-regular.ttf");
-@glyphiconsSvgPath: font-url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular");
-
-// Glyphicons
-@import "twitter/bootstrap/glyphicons.less";
-@import "bootstrap-social.less";
-
-// Your custom LESS stylesheets goes here
-//
-// Since bootstrap was imported above you have access to its mixins which
-// you may use and inherit here
-//
-// If you'd like to override bootstrap's own variables, you can do so here as well
-// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
-//
-// Example:
-// @link-color: #ff0000;
-
 table.table > tbody > tr > td {
   border: 0;
   border-bottom: 1px solid #ddd;
@@ -34,8 +12,43 @@ label.require:after {
   content: "必須";
   font-size: 10px;
 }
+label.private:after {
+  &:extend(.label);
+  &:extend(.label-default);
+  margin-left: 8px;
+  content: "非公開";
+  font-size: 10px;
+}
+label.pause:after {
+  &:extend(.label);
+  &:extend(.label-default);
+  margin-left: 0px;
+  content: "停止中";
+  font-size: 10px;
+}
 
 #error_explanation {
   &:extend(.alert);
   &:extend(.alert-danger);
+}
+
+.nav > li > a {
+  padding-right: 5px;
+}
+
+@link-color: #0c8da8;
+
+@brand-primary: #0c8da8;
+
+/* Force Link Color
+-------------------------------------*/
+.link-color {
+  color: @link-color !important;
+}
+.nonlink-color {
+  color: #000 !important;
+}
+
+.panel-footer {
+  background-color: #fff;
 }

@@ -3,7 +3,7 @@
   .wrapper
     %h1
       %a.brand(href=root_path)
-        = image_tag('layout/header/logo.png', alt: '株式会社ユア')
+        = image_tag('layout/header/logo.png', alt: 'DartsBarRailly')
         %span.f10= "- #{t('site.mission')} -"
     - if account_signed_in?
       - if params[:controller] == "profiles"

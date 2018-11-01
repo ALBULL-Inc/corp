@@ -1,23 +1,17 @@
 /*
- *= require font-awesome
  *= require bootstrap_and_overrides
  *= require_self
  *= require common
- *= require header
- *= require recruit
- *= require blog
- *= require error_explanation
+ *= require welcome
+ *= require form
+ *= require footer
  */
 
 body {
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: Montserrat, Hiragino Maru Gothic Pro, meiryo, verdana, arial, helvetica, sans-serif;
   font-size: 14px;
   font-weghit: 700;
 }
-
-h1 { font-size: 28px }
-h2 { font-size: 26px }
-h3 { font-size: 24px }
 
 .alert {
   margin-top: 20px;
@@ -29,6 +23,10 @@ h3 { font-size: 24px }
   font-weight: 700;
   margin-right: 10px;
 }
+.navbar-brand img {
+  height: 70px;
+  margin-top: -25px;
+}
 
 .main {
   min-height: 480px;
@@ -38,7 +36,6 @@ h3 { font-size: 24px }
   background-color: #f5f5f5;
   border-bottom: 1px solid #e7e7e7;
 }
-
 .breadcrumb {
   padding: 8px 0;
   background-color: inherit;
@@ -53,32 +50,4 @@ select {
 
 .border-under {
   border-bottom: 1px solid #ccc;
-}
-
-.carousel {
-  height: 600px;
-  overflow: hidden;
-}
-.carousel img{
-  width: 100%;
-}
-
-section#main_contents {
-  margin: 0 auto;
-  width: 1200px;
-  min-height: 480px;
-}
-
-section#footer {
-  clear: both;
-  margin-top: 20px;
-}
-section#footer > #main-contents {
-  width: 1200px;
-  margin: 5px auto;
-  min-height: 48px;
-}
-
-thead th {
-  text-align: center;
 }

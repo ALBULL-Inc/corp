@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  amount: 1
+  start_at: 2018-10-07 12:24:20
+  end_at: 2018-10-07 12:24:20
+  position: 1
+
+two:
+  title: MyString
+  amount: 1
+  start_at: 2018-10-07 12:24:20
+  end_at: 2018-10-07 12:24:20
+  position: 1

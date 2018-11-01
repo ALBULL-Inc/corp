@@ -1,7 +1,7 @@
 class InquiriesController < ApplicationController
 
   def new
-    add_breadcrumb "お問合せ", new_inquiry_url
+    add_breadcrumb "お問い合わせ", new_inquiry_url
     @inquiry = Inquiry.new
     @concerns = Inquiry.concerns.map{|k,v| [v,k]}
   end
@@ -21,3 +21,4 @@ class InquiriesController < ApplicationController
       params.require(:inquiry).permit(:concern, :email, :name, :title, :body)
     end
 end
+

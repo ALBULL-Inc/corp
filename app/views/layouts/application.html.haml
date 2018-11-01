@@ -1,34 +1,29 @@
 !!! 5
 %html(lang="ja")
   %head(prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#")
-    - viewport_content = "width=device-width,initial-scale=1.0"
-    - viewport_content << ",maximum-scale=1,user-scalable=no" if request.smart_phone?
-    %meta{name: "viewport", content: viewport_content}
     = render partial: 'layouts/meta_tags'
     = csrf_meta_tags
     = stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true
-    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Comfortaa:700|Bevan'
+    = stylesheet_link_tag "https://use.fontawesome.com/releases/v5.3.1/css/all.css", :media => "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Montserrat'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Cabin'
     = favicon_link_tag '/favicon.ico', rel: 'shortcut icon'
-    %script{src: "https://platform.twitter.com/widgets.js", async: true}
-    %link(rel="manifest" href="/manifest.json")
-
-  %body
-    = render partial: 'layouts/snippet'
-    = render partial: 'layouts/header'
-    %section#main_contents
-      .mb15
-        = render_breadcrumbs builder: ::CustomBreadcrumbsBuilder
-
-      - if notice || alert || flash.success
-        - if flash.success
-          %p.alert.alert-success= flash.success
-        - if notice
-          %p.alert.alert-warning= notice
-        - if alert
-          %p.alert.alert-danger= alert
-
-      = yield
-
-    = render 'layouts/footer'
 
     = javascript_include_tag "application", "data-turbolinks-track" => true
+    %script{src: "https://platform.twitter.com/widgets.js", async: true}
+    %script{src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", async: true}
+    %link(rel="manifest" href="/manifest.json")
+
+  %body{data: {"signed-in": account_signed_in? ? "t" : "f"}}
+    = render partial: 'layouts/header'
+    = render partial: 'common/breadcrumbs', locals: {elements: @breadcrumbs} if @breadcrumbs.present?
+
+    .main
+      .container
+        = bootstrap_flash
+
+        = yield
+
+    .footer
+      .container
+        = render 'layouts/footer'

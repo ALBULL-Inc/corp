@@ -1,14 +1,10 @@
-- if elements.present?
-  %ul.breadcrumb(itemscope itemtype="http://schema.org/BreadcrumbList")
-    - elements[0..-2].each.with_index(1) do |element,index|
-      %li(itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem")
-        - if element.path.present?
-          %a(href="#{element.path}" itemscope itemtype="http://schema.org/Thing" itemprop="item" href="#{element.path}")
-            %span(itemprop="name")= element.name.html_safe
-        - else
-          %span(itemprop="name")= element.name.html_safe
-        %meta(itemprop="position" content="#{index}")
 
-      %span.divider &gt;
+.breadcrmb-wrap.mt-20
+  .container
+    %ul.breadcrumb
+      - elements[0..-2].each do |element|
+        %li{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
+          = link_to content_tag(:span, element.name.html_safe, itemprop: 'title'), element.path, itemprop: 'url'
 
-    = elements.last.name.html_safe
+      %li.active{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
+        = content_tag(:span, elements.last.name.html_safe, itemprop: 'title')

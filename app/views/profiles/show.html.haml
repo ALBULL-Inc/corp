@@ -5,32 +5,24 @@
 
 .col-md-8
   %h1.f28 #{@profile.nickname || @profile.lastname}さんのマイページ
-  .text-right
-    = link_to "編集", edit_profile_path, class: 'btn btn-primary'
 
-  - if false
-    .row
-      .col-xs-2.f10
-        ふりがな
-      .col-xs-2
-        やまだ
-      .col-xs-2
-        たろう
-
-  .row
-    .col-xs-2
+  .row.mt20
+    .col-xs-1
+      ID
+    .col-xs-1
+      = @profile.account_id
+    .col-xs-1
       氏名
-    .col-xs-2.f24
+    .col-xs-4.f24
       = @profile.lastname
-    .col-xs-2.f24
       = @profile.firstname
     .col-xs-1.f10
       ニック
       %br
       ネーム
-    .col-xs-3.f24
+    .col-xs-4.f24
       = @profile.nickname
-  .row
+  .row.mt10
     .col-xs-2
       生年月日
     .col-xs-4.f16
@@ -41,40 +33,50 @@
     .col-xs-3.f16
       = gender2str @profile.gender
 
-  - @contacts.each do |contact|
-    .row.mt10
-      .col-xs-2
-        = t("contact.#{Contact::TYPE.key(contact.contact_type)}")
-      .col-xs-4.f16
-        = contact.content
-
-
-  %h2.mt35.f18 経歴
-  - @backgrounds.each do |background|
-    .row.mt10
-      .col-xs-2.t-center
-        = background2str(background.background_type)
-      .col-xs-1
-        =l background.joined_on, format: :ym
-      .col-xs-1.t-right
-        〜
-      .col-xs-1
-        - if background.left_on
-          =l background.left_on, format: :ym
-      .col-xs-1
-      .col-xs-4
-        = background.site
-
-  %h2.mt35.f18 保有資格・免許
-  - @qualifications.each do |qualification|
-    .row.mt10
-      .col-xs-2.t-center
-        =l qualification.issued_on, format: :ym
-      .col-xs-4
-        = qualification.title
-      .col-xs-4
-        = qualification.outline
-
-  - if current_account.line_oauth.nil?
-    .mt35
+  .mt15
+    = link_to "編集", edit_profile_path, class: 'btn btn-primary'
+    - if current_account.line_oauth.nil?
       = link_to "LINEと紐付ける", account_line_omniauth_authorize_path, class: 'btn btn-primary', title: 'LINEと紐付けるとLINEログインが可能になります'
+
+
+
+
+
+  %h2.f22.mt50 加入月額プラン
+
+  .row
+    - if @subscription.blank?
+      %p.ml15 プラン未加入(無料会員)
+      .mt15
+        = link_to '月額プランに加入', plans_path, class: 'btn btn-primary'
+
+    - else
+      .col-md-1
+      .col-md-10
+        - plan = @subscription.plan
+        .panel.panel-default
+          .panel-heading
+            %p.panel-title.f18
+              = plan.title
+              - unless @subscription.active?
+                %label.pause
+          .panel-body
+            .row
+              .col-xs-12
+                = plan.detail
+            .row.mt15
+              .col-xs-2
+                - if @subscription.active?
+                  次回請求日
+                - else
+                  有効期限
+              .col-xs-4
+                =l @subscription.period_end.to_date, format: :middle
+
+        .mt15
+          - if @profile.account.myself?
+            = link_to 'プランを変更', plans_path, class: 'btn btn-primary'
+            - if @subscription.active?
+              = link_to 'プランを中断', pause_subscription_path(@subscription), class: 'btn btn-danger', method: :put, data: {confirm: '本当に中断しますか?'}
+            - else
+              = link_to 'プランを再開', resume_subscription_path(@subscription), class: 'btn btn-success', method: :put

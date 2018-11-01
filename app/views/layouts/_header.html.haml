@@ -1,34 +1,26 @@
-%section#header.navbar.navbar-default(role="navigation")
-  .container(itemscope itemtype="http://schema.org/Organization")
-    %link(itemprop="url" href="https://your-corp.jp")
-    .navbar-header
-      %a#logo.navbar-brand(href=root_url title='株式会社ユア' itemprop="url")= image_tag(asset_url('layout/header/logo.png'), alt: '株式会社ユア', itemprop: "logo")
-    .collapse.navbar-collapse#navbar-collapse
-      %ul.nav.navbar-nav.navbar-right.ml30.mt20
-        %span
-          = link_to fa_icon('facebook-square 2x'), 'https://www.facebook.com/1596482943975074/', class: "", rel: :nofollow, title: 'Facebook', target: :_blank, itemprop: "sameAs"
-        %span
-          = link_to fa_icon('twitter-square 2x'), 'https://twitter.com/yourcorp', class: "", rel: :nofollow, title: 'Twitter', target: :_blank, itemprop: "sameAs"
-        %span
-          = link_to fa_icon('instagram 2x'), 'https://www.instagram.com/yourcorp/', class: "", rel: :nofollow, title: 'instagram', target: :_blank, itemprop: "sameAs"
-        %span.ml15
-          - if account_signed_in?
-            - if params[:controller] == "profiles"
-              = link_to destroy_account_session_path, method: :delete, class: "", title: 'ログアウト', rel: :nofollow do
-                = fa_icon 'sign-out 2x'
-            - else
-              = link_to profile_path, class: "", title: 'マイページ', rel: :nofollow do
-                = fa_icon 'home 2x'
-          - else
-            = link_to new_account_session_path, class: "", title: 'ログイン', rel: :nofollow do
-              = fa_icon 'sign-in 2x'
 
+= render partial: 'common/fb_root'
+= render partial: 'common/gtm'
+.navbar.navbar-default(role="navigation")
+  .container
+    .navbar-header
+      %button.navbar-toggle(type="button" data-toggle="collapse" data-target="#navbar-collapse")
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand(href=root_path)= image_tag(asset_url('layout/header/logo.png'), alt: t('site.name'), itemprop: "logo")
+    .collapse.navbar-collapse#navbar-collapse
+      %ul.nav.navbar-nav
+        %li= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path
+        //%li= link_to "#{fa_icon 'file-alt'} メニュー".html_safe, menu_path
+        %li= link_to "#{fa_icon 'cocktail'} パーティー".html_safe, parties_path
+        %li= link_to "#{fa_icon 'credit-card'} 月額プラン".html_safe, plans_path
+        //%li= link_to "#{fa_icon 'newspaper'} 求人情報".html_safe, recruits_path
+        %li= link_to "#{fa_icon 'book-open'} ブログ".html_safe, blogs_path
       %ul.nav.navbar-nav.navbar-right
-        %li.mr50
-          = link_to '会社概要', about_us_path
-        %li.mr50
-          = link_to '運営施設', places_path
-        %li.mr50
-          = link_to '求人情報', recruits_path
-        %li.mr50
-          = link_to 'お問合せ', new_inquiry_path
+        - if account_signed_in?
+          %li= link_to "#{image_tag(current_account.gravatar_url, size: "20x20", class: "circle-thumb")} ".html_safe + current_account.disp_nickname.mb_chars.limit(23).to_s, profile_path, class: "pr5"
+          %li= link_to fa_icon('cog'), edit_profile_path, class: "pl5 link-color"
+          %li= link_to "#{fa_icon 'sign-out-alt'}".html_safe, destroy_account_session_path, method: :delete
+        - else
+          %li= link_to "#{fa_icon 'sign-in-alt'} Log in".html_safe, new_account_session_path

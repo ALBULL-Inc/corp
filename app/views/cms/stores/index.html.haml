@@ -1,0 +1,29 @@
+%h1 Listing stores
+
+%table.table
+  %thead
+    %tr
+      %th Enable
+      %th Name
+      %th Opened on
+      %th Closed on
+      %th Spec
+      %th
+      %th
+      %th
+
+  %tbody
+    - @stores.each do |store|
+      %tr
+        %td= store.enable
+        %td= store.name
+        %td= store.opened_on
+        %td= store.closed_on
+        %td= store.spec
+        %td= link_to 'Show', [:cms,store]
+        %td= link_to 'Edit', edit_cms_store_path(store)
+        %td= link_to 'Destroy', [:cms,store], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Store', new_cms_store_path

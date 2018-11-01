@@ -1,0 +1,29 @@
+
+.row
+  .col-md-2
+
+  .col-md-8
+    %h1.f28= @plan.title
+    %p.t-center= image_tag @plan.image_src
+    %p.f18= @plan.detail
+
+    .row
+      .col-xs-1
+        金額
+      .col-xs-3
+        %span.f24 #{@plan.amount}円
+        %span.f18 / #{t @plan.interval}
+      .col-xs-4
+        - if account_signed_in?
+          - if current_account.subscription.nil?
+            = form_for([@plan,@subscription]) do |f|
+              %script.payjp-button{src: 'https://checkout.pay.jp', data: {key: Settings.payjp.public_key}}
+          - elsif current_account.subscription.active?
+            加入中
+          - else
+            再開
+        - else
+          = link_to "このプランに加入", new_account_session_path, class: 'btn btn-primary'
+
+    .mt15
+      = link_to t('Back'), plans_path

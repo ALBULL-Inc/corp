@@ -39,31 +39,6 @@
   %b 更新日:
   =l @account.updated_at
 
-%h2.mt35.f18= Background.model_name.human
-- @account.profile.backgrounds.each do |background|
-  .row.mt10
-    .col-xs-2.t-center
-      = background2str(background.background_type)
-    .col-xs-1
-      =l background.joined_on, format: :ym
-    .col-xs-1.t-right
-      〜
-    .col-xs-1
-      - if background.left_on
-        =l background.left_on, format: :ym
-    .col-xs-1
-    .col-xs-4
-      = background.site
-
-%h2.mt35.f18 保有資格・免許
-- @account.profile.qualifications.each do |qualification|
-  .row.mt10
-    .col-xs-2.t-center
-      =l qualification.issued_on, format: :ym
-    .col-xs-4
-      = qualification.title
-    .col-xs-4
-      = qualification.outline
 
 %h2.mt35.f18 エントリー履歴
 - @account.entries.each do |entry|

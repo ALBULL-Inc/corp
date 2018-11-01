@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   include Jpmobile::ViewSelector
 
   before_action :add_breadcrumb_of_root
+  before_action :request_set_to_thread
+  before_action :current_account_set_to_model
   after_action  :store_location
 
   protect_from_forgery with: :exception
@@ -28,11 +30,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def current_family
-      cookies[:family_remember_token] || return
-      # 複数ログイン対応
-      # remember_token = Digest::SHA256.hexdigest(cookies[:family_remember_token])
-      remember_token = cookies[:family_remember_token]
-      @current_family ||= Family.find_by(remember_token: remember_token)
+    def request_set_to_thread
+      Thread.current[:request] = request
+    end
+
+    def current_account_set_to_model
+      Account.current_account = current_account
     end
 end

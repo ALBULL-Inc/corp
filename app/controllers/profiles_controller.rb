@@ -4,9 +4,10 @@ class ProfilesController < ApplicationController
 
   def show
     add_breadcrumb "マイページ", profile_url
-    @contacts = @profile.contacts
-    @backgrounds = @profile.backgrounds.order(:background_type, :joined_on)
-    @qualifications = @profile.qualifications
+    if @profile.fullname.blank? && @profile.nickname.blank?
+      redirect_to edit_profile_path and return
+    end
+    @subscription = current_account.subscription
   end
 
   def edit

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Enable:
+  = @store.enable
+%p
+  %b Name:
+  = @store.name
+%p
+  %b Opened on:
+  = @store.opened_on
+%p
+  %b Closed on:
+  = @store.closed_on
+%p
+  %b Spec:
+  = @store.spec
+
+= link_to 'Edit', edit_cms_store_path(@store)
+\|
+= link_to 'Back', cms_stores_path

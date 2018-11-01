@@ -1,0 +1,55 @@
+= form_for [:cms,@store] do |f|
+  - if @store.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@store.errors.count, "error")} prohibited this store from being saved:"
+      %ul
+        - @store.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :enable
+    = f.check_box :enable
+  .field
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .field
+    = f.label :postcode
+    = f.text_field :postcode, class: "form-control"
+  .field
+    = f.label :city
+    = f.text_field :city, class: "form-control"
+  .field
+    = f.label :address
+    = f.text_field :address, class: "form-control"
+  .field
+    = f.label :gmap_query
+    = f.text_field :gmap_query, class: "form-control"
+  .field
+    = f.label :tel
+    = f.text_field :tel, class: "form-control"
+  .field
+    = f.label :fax
+    = f.text_field :fax, class: "form-control"
+  .field
+    = f.label :opening_time
+    = f.text_field :opening_time, class: "form-control"
+  .field
+    = f.label :closing_time
+    = f.text_field :closing_time, class: "form-control"
+  .field
+    = f.label :regular_holiday
+    = f.text_field :regular_holiday, class: "form-control"
+  .field
+    = f.label :opened_on
+    = f.date_select :opened_on, class: "form-control"
+  .field
+    = f.label :closed_on
+    = f.date_select :closed_on, class: "form-control"
+  .field
+    = f.label :spec
+    = f.text_area :spec, class: "form-control"
+  .field
+    = f.label :position
+    = f.number_field :position, class: "form-control"
+  .actions
+    = f.submit 'Save'

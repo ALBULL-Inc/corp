@@ -1,9 +1,0 @@
-ja:
-  activerecord:
-    models:
-      qualification: 保有資格・免許
-    attributes:
-      qualification:
-        issued_on: 取得日
-        title: 名称
-        outline: 概要

@@ -1,0 +1,31 @@
+
+.row
+  .col-md-2
+  .col-md-4
+    %h1.f22.mb30 店舗一覧
+
+.row
+  .col-md-2
+
+  - @stores.each do |store|
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          %h2.panel-title.f18= store.name
+        .panel-body
+          %div.f14{style: 'padding: 10px;'}
+            #{fa_icon 'map-marker'}
+            = store.full_address
+            %br
+            #{fa_icon 'phone-square'}
+            = store.tel
+            %br
+            #{fa_icon 'clock'}
+            = store.opening_time
+            \-
+            = store.closing_time
+            %br
+            %br
+            = bbr store.spec
+        .panel-footer.text-right
+          = link_to 'more »', store

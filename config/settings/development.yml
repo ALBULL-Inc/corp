@@ -1,18 +1,32 @@
-facebook:
-  page_id: 1596482943975074
-  app_id: 945375885564194
-  app_secret: d3a446a80b458c57a880ece488983c27
+aws:
+  access_key: ''
+  secret_access_key: ''
 
-google:
-  page_id: 
-  app_id: 525719430643-he803ihaeam5fqo96kot8gs3avc8rr2g.apps.googleusercontent.com
-  app_secret: e0tLCZnnTC7zbFEep6lB2Huu
-  map_key: AIzaSyAFp2gRY_qeiEd3gQeIlj1Zs0GMlDLanUQ
+auth:
+  facebook:
+    id: ''
+    secret: ''
+  google:
+    id: ''
+    secret: ''
+  twitter:
+    id: ''
+    secret: ''
 
-line:
-  page_id: 
-  app_id: 1504344530
-  app_secret: 26caac8819928cc10be4bae9ef13fcc0
+adsense:
+  client: 'development-localhost'
+
+elasticsearch:
+  host: 'localhost:9200'
+
+slack:
+  feedback:
+    webhook_url: "https://test.me/webhook_url"
+  error:
+    webhook_url: "https://test.me/webhook_url"
+
+gtm:
+  id: ""
 
 crypt:
-  secret: 'e84794a20e7d063e1126c41169ebc682a44279ffc91358fb8a0abc21fa8b5cc3cae87eac11d699c27a51609b3e4cf2273524594792cc7561108cc2ce739872c3'
+  secret: "hogeoghohohgeohgoehgoehgoehgoehgo"

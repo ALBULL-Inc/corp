@@ -1,0 +1,28 @@
+%p#notice= notice
+
+%p
+  %b Image:
+  = image_tag @plan.image_src
+%p
+  %b Title:
+  = @plan.title
+%p
+  %b Detail:
+  = @plan.detail
+%p
+  %b Amount:
+  = @plan.amount
+  = @plan.currency
+%p
+  %b Start at:
+  = @plan.start_at
+%p
+  %b End at:
+  = @plan.end_at
+%p
+  %b Position:
+  = @plan.position
+
+= link_to 'Edit', edit_cms_plan_path(@plan)
+\|
+= link_to 'Back', cms_plans_path

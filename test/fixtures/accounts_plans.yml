@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: one
+  plan: one
+  start_at: 2018-10-07 12:18:10
+  end_at: 2018-10-07 12:18:10
+
+two:
+  account: two
+  plan: two
+  start_at: 2018-10-07 12:18:10
+  end_at: 2018-10-07 12:18:10

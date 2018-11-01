@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180812070636) do
+ActiveRecord::Schema.define(version: 20181101035947) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180812070636) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "cus_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["confirmation_token"], name: "index_accounts_on_confirmation_token", unique: true
@@ -51,20 +52,15 @@ ActiveRecord::Schema.define(version: 20180812070636) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
-  create_table "backgrounds", force: :cascade do |t|
-    t.integer  "profile_id"
-    t.integer  "background_type"
-    t.date     "joined_on"
-    t.date     "left_on"
-    t.string   "site"
-    t.string   "department"
-    t.text     "outline"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["background_type"], name: "index_backgrounds_on_background_type"
-    t.index ["joined_on"], name: "index_backgrounds_on_joined_on"
-    t.index ["profile_id", "background_type", "joined_on"], name: "idx_backgrounds_compo_001"
-    t.index ["profile_id"], name: "index_backgrounds_on_profile_id"
+  create_table "accounts_plans", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "plan_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_accounts_plans_on_account_id"
+    t.index ["plan_id"], name: "index_accounts_plans_on_plan_id"
   end
 
   create_table "blogs", force: :cascade do |t|
@@ -74,31 +70,6 @@ ActiveRecord::Schema.define(version: 20180812070636) do
     t.datetime "publish_at"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-  end
-
-  create_table "children", force: :cascade do |t|
-    t.integer  "family_id"
-    t.integer  "place_id"
-    t.string   "first_name"
-    t.string   "first_name_kana"
-    t.string   "nickname"
-    t.date     "birthday"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "no"
-    t.index ["family_id"], name: "index_children_on_family_id"
-    t.index ["place_id"], name: "index_children_on_place_id"
-  end
-
-  create_table "contacts", force: :cascade do |t|
-    t.integer  "profile_id"
-    t.integer  "contact_type"
-    t.string   "content"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["contact_type"], name: "index_contacts_on_contact_type"
-    t.index ["profile_id", "contact_type"], name: "index_contacts_on_profile_id_and_contact_type"
-    t.index ["profile_id"], name: "index_contacts_on_profile_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -116,88 +87,47 @@ ActiveRecord::Schema.define(version: 20180812070636) do
     t.index ["status"], name: "index_entries_on_status"
   end
 
-  create_table "families", force: :cascade do |t|
-    t.string   "title"
-    t.string   "title_kana"
-    t.string   "encrypted_code"
-    t.string   "md5_code"
-    t.string   "remember_token"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  create_table "months", force: :cascade do |t|
-    t.string   "ym",                         null: false
-    t.boolean  "fixed",      default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  create_table "months_photos", force: :cascade do |t|
-    t.integer  "month_id"
-    t.integer  "photo_id"
+  create_table "feedbacks", force: :cascade do |t|
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["month_id"], name: "index_months_photos_on_month_id"
-    t.index ["photo_id"], name: "index_months_photos_on_photo_id"
   end
 
-  create_table "organizations", force: :cascade do |t|
+  create_table "menus", force: :cascade do |t|
+    t.boolean  "enable",           default: false, null: false
+    t.integer  "menu_category_id"
     t.string   "name"
-    t.text     "address"
-    t.string   "tel"
-    t.string   "fax"
+    t.integer  "amount",           default: 0,     null: false
+    t.text     "content"
     t.text     "memo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["menu_category_id"], name: "index_menus_on_menu_category_id"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.string   "image_uid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "places", force: :cascade do |t|
-    t.integer  "organization_id"
+  create_table "parties", force: :cascade do |t|
+    t.boolean  "enable"
     t.string   "name"
-    t.string   "key"
-    t.text     "address"
-    t.string   "tel"
-    t.string   "fax"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.string   "captain_name"
-    t.string   "captain_message_title"
-    t.text     "captain_message"
-    t.string   "captain_thumbnail_uid"
-    t.text     "message"
-    t.boolean  "enable",                default: false, null: false
-    t.integer  "position",              default: 99999, null: false
-    t.string   "let"
-    t.string   "lng"
-    t.string   "gmap_url"
-    t.date     "opened_on"
-    t.integer  "capacity"
-    t.index ["key"], name: "index_places_on_key"
-    t.index ["organization_id"], name: "index_places_on_organization_id"
-  end
-
-  create_table "places_photos", force: :cascade do |t|
-    t.integer  "place_id"
-    t.integer  "photo_id"
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["photo_id"], name: "index_places_photos_on_photo_id"
-    t.index ["place_id"], name: "index_places_photos_on_place_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "plans", force: :cascade do |t|
+    t.boolean  "subscription"
     t.string   "title"
-    t.text     "body"
-    t.string   "image_uid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "amount"
+    t.string   "currency"
+    t.string   "interval"
+    t.integer  "trial_days",   default: 0
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer  "position"
+    t.text     "detail"
+    t.string   "ser_id"
+    t.string   "image_src"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -213,18 +143,6 @@ ActiveRecord::Schema.define(version: 20180812070636) do
     t.index ["account_id"], name: "index_profiles_on_account_id"
   end
 
-  create_table "qualifications", force: :cascade do |t|
-    t.integer  "profile_id"
-    t.date     "issued_on"
-    t.string   "title"
-    t.text     "outline"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["issued_on"], name: "index_qualifications_on_issued_on"
-    t.index ["profile_id", "issued_on"], name: "index_qualifications_on_profile_id_and_issued_on"
-    t.index ["profile_id"], name: "index_qualifications_on_profile_id"
-  end
-
   create_table "recruits", force: :cascade do |t|
     t.boolean  "enable"
     t.string   "title"
@@ -233,11 +151,51 @@ ActiveRecord::Schema.define(version: 20180812070636) do
     t.text     "compensation"
     t.string   "working_place"
     t.integer  "position"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["enable", "position"], name: "index_recruits_on_enable_and_position"
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.boolean  "enable",          default: false, null: false
+    t.string   "name"
+    t.string   "postcode"
+    t.string   "city"
+    t.string   "address"
+    t.string   "gmap_query"
+    t.string   "tel"
+    t.string   "fax"
+    t.string   "opening_time"
+    t.string   "closing_time"
+    t.string   "regular_holiday"
+    t.date     "opened_on"
+    t.date     "closed_on"
+    t.text     "spec"
+    t.integer  "position",        default: 0,     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "subscription_logs", force: :cascade do |t|
+    t.integer  "subscription_id"
+    t.text     "response"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "portrait_uid"
-    t.integer  "employment_type"
-    t.index ["enable", "position"], name: "index_recruits_on_enable_and_position"
+    t.index ["subscription_id"], name: "index_subscription_logs_on_subscription_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "plan_id"
+    t.string   "sub_id"
+    t.string   "token"
+    t.integer  "status"
+    t.datetime "period_start"
+    t.datetime "period_end"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["account_id"], name: "index_subscriptions_on_account_id"
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -250,17 +208,6 @@ ActiveRecord::Schema.define(version: 20180812070636) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["enable", "publish_at", "carousel"], name: "index_topics_on_enable_and_publish_at_and_carousel"
-  end
-
-  create_table "usage_records", force: :cascade do |t|
-    t.integer  "month_id"
-    t.integer  "child_id"
-    t.integer  "place_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["child_id"], name: "index_usage_records_on_child_id"
-    t.index ["month_id"], name: "index_usage_records_on_month_id"
-    t.index ["place_id"], name: "index_usage_records_on_place_id"
   end
 
 end

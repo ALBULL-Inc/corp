@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enable: false
+  name: MyString
+  opened_on: 2018-10-15
+  closed_on: 2018-10-15
+  spec: MyText
+
+two:
+  enable: false
+  name: MyString
+  opened_on: 2018-10-15
+  closed_on: 2018-10-15
+  spec: MyText

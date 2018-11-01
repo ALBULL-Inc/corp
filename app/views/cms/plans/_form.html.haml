@@ -1,0 +1,44 @@
+= form_for [:cms, @plan] do |f|
+  - if @plan.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@plan.errors.count, "error")} prohibited this plan from being saved:"
+      %ul
+        - @plan.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.check_box :subscription
+    = f.label :subscription
+  .field
+    = f.label :image_src
+    = f.text_field :image_src, class: "form-control"
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :detail
+    = f.text_area :detail, class: "form-control"
+  .form-group
+    = f.label :currency
+    = f.text_field :currency, class: "form-control"
+  .form-group
+    = f.label :amount
+    = f.number_field :amount, class: "form-control"
+  .form-group
+    = f.label :interval
+    [month or year]
+    = f.text_field :interval, class: "form-control"
+  .form-group
+    = f.label :trial_days
+    = f.number_field :trial_days, class: "form-control"
+  .form-group
+    = f.label :start_at
+    = f.datetime_select :start_at, class: "form-control"
+  .form-group
+    = f.label :end_at
+    = f.datetime_select :end_at, class: "form-control"
+  .form-group
+    = f.label :position
+    = f.number_field :position, class: "form-control"
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"

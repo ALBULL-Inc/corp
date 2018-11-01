@@ -1,0 +1,25 @@
+%h1 Listing parties
+
+%table.table
+  %thead
+    %tr
+      %th Enable
+      %th Name
+      %th Content
+      %th
+      %th
+      %th
+
+  %tbody
+    - @parties.each do |party|
+      %tr
+        %td= party.enable
+        %td= party.name
+        %td= party.content
+        %td= link_to 'Show', [:cms,party]
+        %td= link_to 'Edit', edit_cms_party_path(party)
+        %td= link_to 'Destroy', [:cms,party], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Party', new_cms_party_path

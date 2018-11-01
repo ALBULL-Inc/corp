@@ -9,5 +9,6 @@ ja:
         lastname: 姓
         gender: 性別
         birthday: 生年月日
+        blood: 血液型
 
   "Editing profile": "プロフィール編集"

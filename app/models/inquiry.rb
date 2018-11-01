@@ -3,13 +3,13 @@ class Inquiry
 
   attr_accessor :email, :name, :title, :body, :concern
 
-  validates :email,:name,:body, presence: true
+  validates :name,:email,:body, presence: true
 
   def send!(current_account = nil)
     if current_account
-      self.body << "\n\nYourCorpID: #{current_account.id}"
+      self.body << "\n\nRaillyID: #{current_account.id}"
     end
-    notifier = Slack::Notifier.new Settings.slack.webhook_url.inquiry, username: "pippi"
+    notifier = Slack::Notifier.new Settings.slack.webhook_url.inquiry, username: "COO"
     inquery_payload = {
       title: "#{self.name}(#{self.email})さんから#{self.concern_str}のお問い合わせです",
       title_link: "mailto:#{self.email}",
@@ -25,7 +25,7 @@ class Inquiry
   def self.concerns
     h = []
     defaults = [["1", "採用について"], ["2", "取材について"]]
-    places = Place.enables.pluck(:id,:name).map{|id,name| ["p#{id}", "#{name}について"]}
+    places = Store.enables.pluck(:id,:name).map{|id,name| ["p#{id}", "#{name}について"]}
     h += defaults
     h += places
     h << ["99", "その他"]

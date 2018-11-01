@@ -78,3 +78,4 @@ class BlogsController < ApplicationController
       add_breadcrumb "ブログ", blogs_url
     end
 end
+

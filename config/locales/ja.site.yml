@@ -1,10 +1,15 @@
 ja:
   site:
-    name: '株式会社ユア'
-    description: '株式会社ユア【Your Corp】の公式ホームページです。株式会社ユアの事業や企業情報などをご紹介しています。株式会社ユアでは、保育士を中心とした人材派遣と人材紹介の事業と、病院内保育施設の運営委託と企業内保育園の運営委託の事業を行っております。'
-    mission: 'あなたの想いを、全て形に'
-    email: 'contact[at]your-corp.jp'
+    name: 'Darts Bar Railly'
+    short_name: 'railly'
+    description: ''
+    mission: '想い出は一生の財産'
+    email: 'railly[at]albull.co.jp'
 
-  Listing: "%{title}リスト"
   Send: "送信"
-  Back: "戻る"
+  Back: "« 戻る"
+  "cancel": "キャンセル"
+  "What is Playlist?": プレイリストとは?
+  "What is Artist?": アーティストとは?
+  "Timesaver": ワンポイントアドバイス
+  "month": "月"

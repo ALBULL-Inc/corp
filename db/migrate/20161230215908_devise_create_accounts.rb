@@ -25,6 +25,8 @@ class DeviseCreateAccounts < ActiveRecord::Migration[5.0]
       t.datetime :confirmation_sent_at
       t.string   :unconfirmed_email # Only if using reconfirmable
 
+      t.string   :cus_id
+
       t.timestamps null: false
     end
 

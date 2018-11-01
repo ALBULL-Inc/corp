@@ -1,0 +1,29 @@
+%h1 Listing plans
+
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Amount
+      %th Start at
+      %th End at
+      %th Position
+      %th
+      %th
+      %th
+
+  %tbody
+    - @plans.each do |plan|
+      %tr
+        %td= plan.title
+        %td= plan.amount
+        %td= plan.start_at
+        %td= plan.end_at
+        %td= plan.position
+        %td= link_to 'Show', [:cms, plan]
+        %td= link_to 'Edit', edit_cms_plan_path(plan)
+        %td= link_to 'Destroy', [:cms, plan], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Plan', new_cms_plan_path
