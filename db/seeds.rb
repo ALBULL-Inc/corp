@@ -23,6 +23,36 @@ unless Plan.exists?
       image_src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYF4jQMh8DwiH7roePesGGh3Nl3vhzPt8sEqAibkEj3useVUZWwA"
     }
   )
+  Plan.create(
+    {
+      id: 2,
+      subscription: true,
+      title: "月額5000円プラン",
+      amount: 5000,
+      currency: "jpy",
+      interval: "month",
+      start_at: Time.new(2018,10,1,0,0,0),
+      end_at: Time.new(2099,12,31,23,59,59),
+      position: 20,
+      detail: "このプランでは、月火土の投げ放題が半額になります！さらにそれ以外の日はワンドリンクを半額にてご提供させていただきます！",
+      image_src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYF4jQMh8DwiH7roePesGGh3Nl3vhzPt8sEqAibkEj3useVUZWwA"
+    }
+  )
+  Plan.create(
+    {
+      id: 3,
+      subscription: true,
+      title: "月額10000円プラン",
+      amount: 10000,
+      currency: "jpy",
+      interval: "month",
+      start_at: Time.new(2018,10,1,0,0,0),
+      end_at: Time.new(2099,12,31,23,59,59),
+      position: 30,
+      detail: "このプランでは、月火土の投げ放題が無料！さらに毎日ワンドリンクを無料にてご提供させていただきます！",
+      image_src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYF4jQMh8DwiH7roePesGGh3Nl3vhzPt8sEqAibkEj3useVUZWwA"
+    }
+  )
 end
 
 unless Store.exists?

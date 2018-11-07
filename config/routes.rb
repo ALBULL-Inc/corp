@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resource :entry, only: [:new, :create]
   end
   resource :inquiry, only: [:new, :create]
-  resource :menu, only: [:show]
+  resources :menus, only: [:show]
 
 
   # cms routings
