@@ -1,0 +1,28 @@
+%h1 Listing menus
+
+%table.table
+  %thead
+    %tr
+      %th Enable
+      %th Category
+      %th Name
+      %th Amount
+      %th Content
+      %th
+
+  %tbody
+    - @menus.each do |menu|
+      %tr
+        %td= menu.enable
+        %td= menu.menu_category_id
+        %td= menu.name
+        %td= menu.amount
+        %td= menu.content&.truncate(20)
+        %td
+          = link_to 'Show', [:cms,menu], class: 'btn btn-success'
+          = link_to 'Edit', edit_cms_menu_path(menu), class: 'btn btn-warning'
+          = link_to 'Destroy', [:cms,menu], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+
+%br
+
+= link_to 'New Menu', new_cms_menu_path

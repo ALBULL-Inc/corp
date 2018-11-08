@@ -14,18 +14,22 @@
           %h2.panel-title.f18= store.name
         .panel-body
           %div.f14{style: 'padding: 10px;'}
-            #{fa_icon 'map-marker'}
-            = store.full_address
-            %br
-            #{fa_icon 'phone-square'}
-            = store.tel
-            %br
-            #{fa_icon 'clock'}
-            = store.opening_time
-            \-
-            = store.closing_time
-            %br
-            %br
-            = bbr store.spec
-        .panel-footer.text-right
-          = link_to 'more »', store
+            - if store.comming_soon?
+              Comming soon...
+            - else
+              #{fa_icon 'map-marker'}
+              = store.full_address
+              %br
+              #{fa_icon 'phone-square'}
+              = store.tel
+              %br
+              #{fa_icon 'clock'}
+              = store.opening_time
+              \-
+              = store.closing_time
+              %br
+              %br
+              = bbr store.spec
+        - unless store.comming_soon?
+          .panel-footer.text-right
+            = link_to 'more »', store

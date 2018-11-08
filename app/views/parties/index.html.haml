@@ -1,1 +1,19 @@
-parties#index
+
+.row
+  .col-md-2
+  .col-md-4
+    %h1.f22.mb30 パーティープラン一覧
+
+.row
+  .col-md-2
+
+  - @parties.each do |party|
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          %h2.panel-title.f18= party.name
+        .panel-body
+          %div.f14{style: 'padding: 10px;'}
+            = bbr party.content
+        .panel-footer.text-right
+          = link_to 'more »', party

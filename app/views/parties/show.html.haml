@@ -1,2 +1,14 @@
-parties#show
-= @party
+
+.row
+  .col-md-2
+  .col-md-8
+    %h1= @party.name
+    .row
+      .col-xs-12
+        %h2.f20 プラン内容
+        %p= bbr @party.content
+
+    - if account_signed_in?
+      = link_to "予約する", new_account_session_path, class: 'btn btn-primary'
+    - else
+      = link_to "予約する", new_account_session_path, class: 'btn btn-primary'

@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Enable:
+  = @menu.enable
+%p
+  %b MenuCategory:
+  = @menu.menu_category_id
+%p
+  %b Name:
+  = @menu.name
+%p
+  %b Amount:
+  = @menu.amount
+%p
+  %b Content:
+  = @menu.content_md.html_safe
+%p
+  %b Memo:
+  = @menu.memo
+
+= link_to 'Edit', edit_cms_menu_path(@menu)
+\|
+= link_to 'Back', cms_menus_path

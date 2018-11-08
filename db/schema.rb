@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20181101035947) do
 
   create_table "stores", force: :cascade do |t|
     t.boolean  "enable",          default: false, null: false
+    t.boolean  "comming_soon",    default: false, null: false
     t.string   "name"
     t.string   "postcode"
     t.string   "city"

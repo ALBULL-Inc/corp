@@ -2,6 +2,7 @@ class CreateStores < ActiveRecord::Migration[5.0]
   def change
     create_table :stores do |t|
       t.boolean :enable, default: false, null: false
+      t.boolean :comming_soon, default: false, null: false
       t.string :name
       t.string :postcode
       t.string :city

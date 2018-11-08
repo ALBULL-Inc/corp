@@ -1,0 +1,28 @@
+= form_for [:cms,@menu] do |f|
+  - if @menu.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@menu.errors.count, "error")} prohibited this menu from being saved:"
+      %ul
+        - @menu.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.check_box :enable
+    = f.label :enable
+  .field
+    = f.label :menu_category_id
+    = f.select :menu_category_id, [['ドリンク', MenuCategory::DRINK],['フード', MenuCategory::FOOD]], class: "form-control"
+  .field
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .field
+    = f.label :amount
+    = f.number_field :amount, class: "form-control"
+  .field
+    = f.label :content
+    = f.text_area :content, class: "form-control", rows: 15
+  .field
+    = f.label :memo
+    = f.text_area :memo, class: "form-control", rows: 2
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"

@@ -2,11 +2,19 @@ aws:
   access_key: ''
   secret_access_key: ''
 
+payjp:
+  secret_key: ''
+  public_key: ''
+
+
 auth:
   facebook:
     id: ''
     secret: ''
   google:
+    id: ''
+    secret: ''
+  line:
     id: ''
     secret: ''
   twitter:
@@ -20,6 +28,8 @@ elasticsearch:
   host: 'localhost:9200'
 
 slack:
+  inquiry:
+    webhook_url: "https://test.me/webhook_url"
   feedback:
     webhook_url: "https://test.me/webhook_url"
   error:
@@ -29,4 +39,4 @@ gtm:
   id: ""
 
 crypt:
-  secret: "hogeoghohohgeohgoehgoehgoehgoehgo"
+  secret: ""

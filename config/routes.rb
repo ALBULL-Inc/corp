@@ -49,5 +49,6 @@ Rails.application.routes.draw do
     resources :parties
     resources :topics
     resources :blogs
+    resources :menus
   end
 end

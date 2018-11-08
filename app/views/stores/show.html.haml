@@ -31,6 +31,6 @@
         %h3 メニュー
     .row
       - @menus.each do |m|
-        .col-xs-4= link_to m.name, m
+        .col-xs-4= link_to_if m.content.present?, m.name, m
         .col-xs-2= m.price
 

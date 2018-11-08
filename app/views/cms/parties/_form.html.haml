@@ -7,13 +7,13 @@
           %li= msg
 
   .field
-    = f.label :enable
     = f.check_box :enable
+    = f.label :enable
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: "form-control"
   .field
     = f.label :content
-    = f.text_area :content
+    = f.text_area :content, class: "form-control", rows: 20
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: "btn btn-primary"
