@@ -2,14 +2,14 @@
 require 'aws-sdk'
 
 set :rails_env, 'production'
-set :deploy_to, "/var/www/corp/#{fetch :rails_env}"
+set :deploy_to, "/var/www/railly/#{fetch :rails_env}"
 set :branch, 'master'
 set :pty, false
 
 slack_yml = YAML.load_file("config/settings/slack.yml")
 
 servers = %w{
-  yours@ec2-52-196-109-227.ap-northeast-1.compute.amazonaws.com
+  albull-corp
 }
 role :app, servers
 role :web, servers
