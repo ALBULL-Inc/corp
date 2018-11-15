@@ -1,2 +1,0 @@
-class Charge < Payment
-end
