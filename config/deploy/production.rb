@@ -5,12 +5,11 @@ set :rails_env, 'production'
 set :deploy_to, "/var/www/railly/#{fetch :rails_env}"
 set :branch, 'master'
 set :pty, false
-set :unicorn_rack_env, 'production'
 
 slack_yml = YAML.load_file("config/settings/slack.yml")
 
 servers = %w{
-  albull-corp
+  bull@ec2-13-115-51-52.ap-northeast-1.compute.amazonaws.com
 }
 role :app, servers
 role :web, servers
