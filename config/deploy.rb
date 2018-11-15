@@ -2,12 +2,12 @@ lock '3.7.2'
 
 set :log_level, :info
 
-set :application, 'corp'
-set :repo_url, 'git@github.com:your-corp/corp.git'
+set :application, 'railly'
+set :repo_url, 'git@github.com:ALBULL-Inc/railly.git'
 
 set :rbenv_ruby, File.read('.ruby-version').strip
 
-set :linked_files, %W{config/database.yml config/settings/slack.yml config/settings/#{fetch :stage}.yml public/sitemap.xml.gz .env}
+set :linked_files, %W{config/database.yml config/settings/#{fetch :stage}.yml public/sitemap.xml.gz .env}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle}
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
