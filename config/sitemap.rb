@@ -34,4 +34,9 @@ SitemapGenerator::Sitemap.create do
   Blog.enables.find_each do |blog|
     add blog_path(blog),        priority: 0.5, changefreq: 'daily', lastmod: blog.publish_at
   end
+
+  #add menus_path,               priority: 0.7, changefreq: 'daily'
+  Menu.find_each do |menu|
+    add menu_path(menu),        priority: 0.5, changefreq: 'daily', lastmod: menu.updated_at
+  end
 end
