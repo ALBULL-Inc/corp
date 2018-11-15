@@ -106,11 +106,13 @@ ActiveRecord::Schema.define(version: 20181101035947) do
   end
 
   create_table "parties", force: :cascade do |t|
-    t.boolean  "enable"
+    t.boolean  "enable",     default: false, null: false
     t.string   "name"
+    t.integer  "position"
+    t.text     "lead"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "plans", force: :cascade do |t|

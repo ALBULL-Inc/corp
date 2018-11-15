@@ -1,14 +1,13 @@
-.text-center.mb10.n-ml10
-  .fb-page(data-href="https://www.facebook.com/your.corp.025" data-show-faces="true" data-width="320")
-
-.want-push.text-center.mb5.f12{style: "display: none;"}
+.want-push.text-center.mb20.f12{style: "display: none;"}
   = link_to "このサイトの最新情報を受け取る", "#", onclick: "return false;"
+
+.text-center.mb10.n-ml10
+  .fb-page(data-href="https://www.facebook.com/railly.AKASAKA" data-show-faces="true" data-width="320")
 
 %footer
   %ul.footer-link.f12.mb5.pt5
-    %li= link_to '会社概要', about_us_path
-    %li= link_to '施設一覧', places_path
-    %li= link_to '求人情報', recruits_path
+    %li= link_to '利用規約', terms_path
+    %li{style: "width: 46%"}= link_to 'プライバシーポリシー', policy_privacy_path
     %li= link_to 'お問合せ', new_inquiry_path
   .pb5.t-center
-    &copy;Your Corp.
+    = link_to "&copy;ALBULL Inc.".html_safe, '//albull.co.jp', style: "color: #333;", target: :_blank

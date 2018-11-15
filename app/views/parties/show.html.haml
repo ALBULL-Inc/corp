@@ -1,3 +1,5 @@
+- set_meta_tags title: @party.name, canonical: parties_url(@party),
+  description: "株式会社オルブルが運営するDartsBarRailly(ダーツバーレイリー)のパーティープラン、「#{@party.name}」について掲載しています。#{@party.lead}さらに会員登録することでお得にパーティーをご利用いただけます。"
 
 .row
   .col-md-2
@@ -5,10 +7,8 @@
     %h1= @party.name
     .row
       .col-xs-12
+        %p= bbr @party.lead
         %h2.f20 プラン内容
         %p= bbr @party.content
 
-    - if account_signed_in?
-      = link_to "予約する", new_account_session_path, class: 'btn btn-primary'
-    - else
-      = link_to "予約する", new_account_session_path, class: 'btn btn-primary'
+    = link_to "予約する", new_inquiry_path(concern: 4), class: 'btn btn-primary'

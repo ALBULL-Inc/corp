@@ -1,0 +1,25 @@
+- set_meta_tags title: 'Railly Blog - DartsBarRaillyのブログ', canonical: blogs_url,
+  description: 'DartsBarRaillyのスタッフが想い出を綴ります。私達の想い出を財産にするために。'
+
+.blog-eye-catch.mb20
+  .text-center.pt60
+    %h1.mt0.mb50 トピックス一覧
+
+.row
+  .col-md-2
+
+  .col-md-8
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title #{fa_icon 'exclamation'} 新着#{Topic.model_name.human}
+      .panel-body
+        %table.table.recruit
+          - @topics.each do |topic|
+            %tr
+              %td
+                %span.f10=l topic.publish_at
+                %br
+                = link_to topic.title, topic_path(topic)
+
+    .text-center
+      .pagination= paginate @topics

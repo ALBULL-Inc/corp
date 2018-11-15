@@ -1,14 +1,16 @@
+- set_meta_tags title: "パーティープラン一覧", canonical: parties_url,
+  description: "株式会社オルブルが運営するDartsBarRailly(ダーツバーレイリー)のパーティープランを掲載しています。さらに会員登録することでお得にパーティーをご利用いただけます。"
 
 .row
   .col-md-2
   .col-md-4
     %h1.f22.mb30 パーティープラン一覧
 
-.row
-  .col-md-2
 
-  - @parties.each do |party|
-    .col-md-4
+- @parties.each do |party|
+  .row
+    .col-md-2
+    .col-md-8
       .panel.panel-default
         .panel-heading
           %h2.panel-title.f18= party.name

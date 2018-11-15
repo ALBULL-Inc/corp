@@ -10,12 +10,13 @@
     %p.f18= @plan.detail
 
     .row
-      .col-xs-1
+      .col-xs-2
         金額
-      .col-xs-3
+      .col-md-12
         %span.f24 #{@plan.amount}円
         %span.f18 / #{t @plan.interval}
-      .col-xs-4
+
+      .col-md-12.text-center.mt10
         - if account_signed_in?
           - if current_account.subscription.nil?
             = form_for([@plan,@subscription]) do |f|

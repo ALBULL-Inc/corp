@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
   # GET /welcome
   def index
     @topics = Topic.all
+    @stores = Store.all
   end
 
   #= プライバシーポリシー

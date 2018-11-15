@@ -1,61 +1,53 @@
 /*
- *= require ../bootstrap_and_overrides
+ *= require bootstrap_and_overrides
  *= require_self
- *= require ../common.css.less
- *= require ./headers.less
- *= require ./welcome.less
- *= require ./footers.less
+ *= require common
+ *= require welcome
+ *= require form
+ *= require sp/footers
  */
 
 body {
-  font-family: verdana, arial, helvetica, sans-serif;
-  background: #e6e6df;
-}
-
-.wrapper {
-  padding: 0 10px;
-}
-
-.page-wrapper {
-  background: #fff;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-}
-
-.page-wrapper section#main_contents {
-  min-height: 360px;
-  padding: 5px;
-}
-
-.section-title {
-  margin: 0 auto;
-  height: 28px;
-  padding: 0 10px;
+  font-family: Montserrat, Hiragino Maru Gothic Pro, meiryo, verdana, arial, helvetica, sans-serif;
   font-size: 14px;
-  line-height: 28px;
-  border-bottom: 2px solid rgba(0,255,0,.6);
-  overflow: hidden;
-  width: 99%;
+  font-weghit: 700;
 }
 
-.pagination {
-  margin-top: -1px;
+.alert {
+  margin-top: 20px;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  font-family: Cabin;
+  font-weight: 700;
+  margin-right: 10px;
+}
+.navbar-brand img {
+  height: 60px;
+  margin-top: -20px;
+}
+
+.main {
+  min-height: 480px;
+}
+
+.breadcrmb-wrap {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e7e7e7;
+}
+.breadcrumb {
+  padding: 8px 0;
+  background-color: inherit;
   margin-bottom: 0;
+  border-radius: 0;
 }
 
-.content {
-  overflow: auto;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+select {
+  height: 28px;
+  border: 1px solid #ccc;
 }
 
-
-h1 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-h2,h3,h4 {
-  font-size: 16px;
+.border-under {
+  border-bottom: 1px solid #ccc;
 }

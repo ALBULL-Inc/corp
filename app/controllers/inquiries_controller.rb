@@ -2,7 +2,7 @@ class InquiriesController < ApplicationController
 
   def new
     add_breadcrumb "お問い合わせ", new_inquiry_url
-    @inquiry = Inquiry.new
+    @inquiry = Inquiry.new(concern: params[:concern])
     @concerns = Inquiry.concerns.map{|k,v| [v,k]}
   end
 
