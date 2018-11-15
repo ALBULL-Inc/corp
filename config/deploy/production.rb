@@ -5,6 +5,7 @@ set :rails_env, 'production'
 set :deploy_to, "/var/www/railly/#{fetch :rails_env}"
 set :branch, 'master'
 set :pty, false
+set :unicorn_rack_env, 'production'
 
 slack_yml = YAML.load_file("config/settings/slack.yml")
 
