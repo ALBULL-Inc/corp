@@ -22,7 +22,3 @@
 every 1.day, at: '4:30 am' do
   rake 'sitemap:refresh'
 end
-
-every '0 1 1 * *' do # 毎月1日1時
-  rake 'insert_months:current_month'
-end
