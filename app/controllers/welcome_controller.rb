@@ -18,4 +18,10 @@ class WelcomeController < ApplicationController
   def terms
     add_breadcrumb "利用規約", terms_url
   end
+
+  #= 特定商取引法に基づく表記
+  # GET /law
+  def law
+    add_breadcrumb "特定商取引法に基づく表記", law_url
+  end
 end

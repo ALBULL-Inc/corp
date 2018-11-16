@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/policy/privacy', to: 'welcome#policy_privacy'
   get '/terms', to: 'welcome#terms'
+  get '/law', to: 'welcome#law'
 
   # routings
   devise_for :accounts, path: '',
