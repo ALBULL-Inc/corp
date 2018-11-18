@@ -3,8 +3,8 @@ class WelcomeController < ApplicationController
   #= Topページ
   # GET /welcome
   def index
-    @topics = Topic.all
-    @stores = Store.all
+    @topics = Topic.enables
+    @stores = Store.enables
   end
 
   #= プライバシーポリシー
