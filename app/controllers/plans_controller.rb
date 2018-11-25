@@ -12,7 +12,8 @@ class PlansController < ApplicationController
   # GET /plans/1.json
   def show
     add_breadcrumb @plan.title, plan_url(@plan)
-    @subscription = @plan.subscriptions.new
+    @subscription = current_account.subscription if account_signed_in?
+    @subscription ||= @plan.subscriptions.new
   end
 
   private

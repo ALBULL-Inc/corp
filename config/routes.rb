@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resource :profile, only: [:show, :edit, :update]
   resources :stores, only: [:index, :show]
   resources :plans, only: [:index, :show] do
-    resources :subscriptions, only: [:create]
+    resources :subscriptions, only: [:create, :update]
   end
   resources :payments, only: [] do
     post :charge, on: :collection

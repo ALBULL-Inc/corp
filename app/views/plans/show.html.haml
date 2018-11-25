@@ -10,20 +10,26 @@
     %p.f18= @plan.detail
 
     .row
-      .col-xs-1
+      .col-xs-2
         金額
-      .col-xs-3
+      .col-xs-4
         %span.f24 #{@plan.amount}円
         %span.f18 / #{t @plan.interval}
-      .col-xs-4
+    .row.mt10
+      .col-md-12
         - if account_signed_in?
-          - if current_account.subscription.nil?
+          - if @subscription.new_record?
             = form_for([@plan,@subscription]) do |f|
               %script.payjp-button{src: 'https://checkout.pay.jp', data: {key: Settings.payjp.public_key}}
+          - elsif current_account.subscription.plan_id != @plan.id
+            = form_for([@plan,@subscription]) do |f|
+              = f.submit "このプランに変更する", class: 'btn btn-success', method: :put, data: {confirm: 'プラン変更を行ってもよろしいですか？'}
+              %br
+              ※プラン変更の時点で変更するプランの課金が行われます。
           - elsif current_account.subscription.active?
-            加入中
+            このプランに加入中です
           - else
-            再開
+            = link_to 'プランを再開', resume_subscription_path(@subscription), class: 'btn btn-success', method: :put
         - else
           = link_to "ログインしてこのプランに加入", new_account_session_path, class: 'btn btn-primary'
 

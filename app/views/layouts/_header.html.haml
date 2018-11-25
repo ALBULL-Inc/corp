@@ -19,7 +19,7 @@
         %li= link_to "#{fa_icon 'book-open'} ブログ".html_safe, blogs_path
       %ul.nav.navbar-nav.navbar-right
         - if account_signed_in?
-          %li= link_to "#{image_tag(current_account.gravatar_url, size: "20x20", class: "circle-thumb")} ".html_safe + current_account.disp_nickname.mb_chars.limit(23).to_s, profile_path, class: "pr5"
+          %li{style: 'float: left'}= link_to "#{image_tag(current_account.gravatar_url, size: "20x20", class: "circle-thumb")} ".html_safe + current_account.disp_nickname.mb_chars.limit(23).to_s, profile_path, class: "pr5"
           %li= link_to fa_icon('cog'), edit_profile_path, class: "pl5 link-color"
           %li= link_to "#{fa_icon 'sign-out-alt'}".html_safe, destroy_account_session_path, method: :delete
         - else

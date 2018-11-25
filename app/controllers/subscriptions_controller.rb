@@ -37,6 +37,28 @@ class SubscriptionsController < ApplicationController
     redirect_to profile_path
   end
 
+  def update
+    plan = Plan.find(params[:plan_id])
+
+    # すでにレコードが存在する場合は再開になる
+    redirect_to profile_path and return \
+      if Subscription.where(account: current_account, plan: plan).exists?
+
+
+    s = current_account.subscription
+    s.plan = plan
+
+    payjp_subscription = Payjp::Subscription.retrieve(s.sub_id)
+    payjp_subscription.plan = plan.ser_id
+    r = payjp_subscription.save
+
+    log = s.subscription_logs.build
+    log.response = r.to_json
+    s.save
+
+    redirect_to profile_path
+  end
+
   def pause
     s = Subscription.where(account: current_account).find(params[:id])
     subscription = Payjp::Subscription.retrieve(s.sub_id)

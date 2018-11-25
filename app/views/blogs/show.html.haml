@@ -1,13 +1,13 @@
 - set_meta_tags title: "#{@blog.title} - Railly Blog", canonical: blogs_url(@blog),
   description: "Raillyのスタッフが想いを綴ります。「#{@blog.title}」"
 
-.col-md-2
+.col-md-1
 
-.col-md-8
+.col-md-10
 
   = render @blog
 
   .links.mt50
     = link_to '« 一覧へ戻る', blogs_path
 
-.col-md-2
+.col-md-1
