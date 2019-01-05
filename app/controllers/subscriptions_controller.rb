@@ -28,7 +28,6 @@ class SubscriptionsController < ApplicationController
       customer: cus_id
     )
     log.response   = payjp_subscription.to_json
-    log.save
     s.sub_id       = payjp_subscription.id
     s.period_start = Time.at(payjp_subscription.current_period_start)
     s.period_end   = Time.at(payjp_subscription.current_period_end)
@@ -63,7 +62,7 @@ class SubscriptionsController < ApplicationController
     s = Subscription.where(account: current_account).find(params[:id])
     subscription = Payjp::Subscription.retrieve(s.sub_id)
     res = subscription.pause
-    s.subscription_logs.build(response: res).save
+    s.subscription_logs.build(response: res)
     s.status = res.status == "active" ? 10 : 0
     s.save
     redirect_to profile_path
@@ -73,7 +72,7 @@ class SubscriptionsController < ApplicationController
     s = Subscription.where(account: current_account).find(params[:id])
     subscription = Payjp::Subscription.retrieve(s.sub_id)
     res = subscription.resume
-    s.subscription_logs.build(response: res).save
+    s.subscription_logs.build(response: res)
     s.status = res.status == "active" ? 10 : 0
     s.save
     redirect_to profile_path

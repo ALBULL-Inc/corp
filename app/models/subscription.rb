@@ -3,6 +3,8 @@ class Subscription < ApplicationRecord
   belongs_to :plan
   has_many :subscription_logs
 
+  scope :active, ->{ where(status: 10) }
+
   delegate :amount, :currency, to: :plan
 
   before_destroy :payjp_subscription_delete

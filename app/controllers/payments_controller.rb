@@ -36,8 +36,7 @@ class PaymentsController < ApplicationController
     sub = current_account.subscriptions.find(params[:id])
     subscription = Payjp::Subscription.retrieve(sub.pay_id)
     subsc = subscription.pause
-    pp subsc
-    sub.status       = subsc.status == "active" ? 10 : 0
+    sub.status = subsc.status == "active" ? 10 : 0
     sub.save
     redirect_to profile_path
   end
