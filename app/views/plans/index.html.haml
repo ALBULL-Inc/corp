@@ -17,7 +17,7 @@
           %h2.panel-title.f18= plan.title
         .panel-body
           %div.f14{style: 'padding: 10px;'}
-            #{plan.amount}円 /月
+            #{number_with_delimiter(plan.amount)}円 /月
           %p
             = plan.detail
 

@@ -13,7 +13,7 @@
       .col-xs-2
         金額
       .col-xs-4
-        %span.f24 #{@plan.amount}円
+        %span.f24 #{number_with_delimiter(@plan.amount)}円
         %span.f18 / #{t @plan.interval}
     .row.mt10
       .col-md-12
