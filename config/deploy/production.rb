@@ -21,14 +21,14 @@ namespace :slack do
     task :starting do
       run_locally do
         notifier = Slack::Notifier.new slack_yml["slack"]["webhook_url"]["system"], username: "deploy", channel: "#system"
-        notifier.ping "<!channel> :rocket: #{ENV['USER'] || ENV['USERNAME']} が #{fetch :rails_env, 'production'} 環境に railly をdeployします:exclamation:"
+        notifier.ping ":rocket: #{ENV['USER'] || ENV['USERNAME']} が #{fetch :rails_env, 'production'} 環境に railly をdeployします:exclamation:"
       end
     end
 
     task :finished do
       run_locally do
         notifier = Slack::Notifier.new slack_yml["slack"]["webhook_url"]["system"], username: "deploy", channel: "#system"
-        notifier.ping "<!channel> :+1: railly のdeployが終了しました:bangbang:"
+        notifier.ping ":+1: railly のdeployが終了しました:bangbang:"
       end
     end
 

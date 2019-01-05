@@ -69,6 +69,6 @@ class Cms::PlansController < Cms::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:title, :currency, :amount, :subscription, :interval, :trial_days, :start_at, :end_at, :position, :detail)
+      params.require(:plan).permit(:image_src, :title, :currency, :amount, :subscription, :interval, :trial_days, :start_at, :end_at, :position, :detail)
     end
 end
