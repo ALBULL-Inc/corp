@@ -21,6 +21,7 @@ gem 'config'
 gem 'nested_form'
 gem 'kaminari'
 gem 'payjp'
+gem 'mechanize'
 
 gem 'meta-tags', require: 'meta_tags'
 gem 'breadcrumbs_on_rails'
