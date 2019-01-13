@@ -3,6 +3,7 @@ namespace :payjp do
   task sync_payment: :environment do
     notifier = Slack::Notifier.new Settings.slack.batch.webhook_url
     notifier.ping "`Batch START >> payjp:sync_payment <<`"
+    success, failer = 0, 0
     begin
       # デイリーなので、昨日までに有効期限切れのものを全件更新する
       s_t = Subscription.arel_table
@@ -15,13 +16,13 @@ namespace :payjp do
           s.status       = payjp_s.status == "active" ? 10 : 0
           log = s.subscription_logs.build
           log.response = payjp_s.to_json
-          s.save
+          s.save ? success += 1 : failer += 1
         end
       end
     rescue => e
       Rails.logger.fatal e
       notifier.ping "<!channel> :scream: lib/tasks/sync_payjp_payment.rake でエラーが発生しました。"
     end
-    notifier.ping "`Batch E N D >> payjp:sync_payment <<`"
+    notifier.ping "`Batch E N D >> payjp:sync_payment [s:#{success},f:#{failer}] <<`"
   end
 end
