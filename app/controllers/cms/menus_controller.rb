@@ -69,6 +69,6 @@ class Cms::MenusController < Cms::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:enable, :name, :content)
+      params.require(:menu).permit(:enable, :name, :content, :amount, :memo)
     end
 end
