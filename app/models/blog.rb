@@ -1,4 +1,6 @@
 class Blog < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   after_save :post_pubsubhubbub
 
   default_scope ->{ order(publish_at: :desc) }
@@ -14,7 +16,6 @@ class Blog < ApplicationRecord
   private
     def post_pubsubhubbub
       return unless self.enable?
-      include Rails.application.routes.url_helpers
       Nagareboshi::Sender.publish(blog_url(self))
     end
 end
