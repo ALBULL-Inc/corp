@@ -6,5 +6,5 @@
 = display_meta_tags site: t('site.name'), description: t('site.description'),
   og: {title: t('site.name'), url: root_url}, reverse: true,
   twitter: {card: 'website', site: '@dartsbarrailly'},
-  canonical: @breadcrumbs.try(:last).try(:[],:url) || root_url
+  canonical: @breadcrumbs.try(:last).try(:path) || root_url
 %meta{property: 'fb:app_id', content: "#{Settings.auth.facebook.id}"}

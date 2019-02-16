@@ -24,7 +24,7 @@ class Inquiry
 
   def self.concerns
     h = []
-    defaults = [["1", "採用について"], ["2", "取材について"], ["3", "月額プランについて"], ["4", "パーティーについて"]]
+    defaults = [["5", "ご予約について"],["1", "採用について"], ["2", "取材について"], ["3", "月額プランについて"], ["4", "パーティーについて"]]
     places = Store.enables.pluck(:id,:name).map{|id,name| ["p#{id}", "#{name}について"]}
     h += defaults
     h += places
