@@ -5,6 +5,13 @@ class DartsliveCard < ApplicationRecord
 
   before_save :sync, if: :password?
 
+  def self.all_sync
+    all.each_batch do |c|
+      c.sync
+      sleep 2
+    end
+  end
+
   def dartslive
     return nil if self.password.blank?
     @dartslive ||= Dartslive.new

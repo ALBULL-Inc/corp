@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
     if @profile.fullname.blank? && @profile.nickname.blank?
       redirect_to edit_profile_path and return
     end
+    @dartslive_cards = @profile.account.dartslive_cards
     @subscription = current_account.subscription
   end
 
@@ -34,7 +35,7 @@ class ProfilesController < ApplicationController
 
     def profile_params
       params.require(:profile).permit(
-        :nickname, :firstname, :lastname, :gender, :birthday,
+        :nickname, :firstname, :lastname, :gender, :birthday, :blood,
         backgrounds_attributes: [:id, :background_type, :joined_on, :left_on, :site, :_destroy],
         qualifications_attributes: [:id, :issued_on, :title, :outline],
         contacts_attributes: [:id, :contact_type, :content]
