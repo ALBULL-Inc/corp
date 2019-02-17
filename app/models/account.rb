@@ -14,6 +14,7 @@ class Account < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_one :subscription
   has_one :line_oauth, -> { where(provider: 'line') }, class_name: 'AccountOAuth'
+  has_many :dartslive_cards
 
   # Scope
   default_scope -> { eager_load(:profile) }

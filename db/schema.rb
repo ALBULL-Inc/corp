@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181101035947) do
+ActiveRecord::Schema.define(version: 20190106065201) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -70,6 +70,18 @@ ActiveRecord::Schema.define(version: 20181101035947) do
     t.datetime "publish_at"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "dartslive_cards", force: :cascade do |t|
+    t.integer  "account_id"
+    t.string   "no",         null: false
+    t.string   "name"
+    t.string   "password"
+    t.text     "stats"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_dartslive_cards_on_account_id"
+    t.index ["no"], name: "index_dartslive_cards_on_no"
   end
 
   create_table "entries", force: :cascade do |t|

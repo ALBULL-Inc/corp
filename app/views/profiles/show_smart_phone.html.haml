@@ -47,6 +47,46 @@
       = link_to "LINEと紐付ける", account_line_omniauth_authorize_path, class: 'btn btn-primary', title: 'LINEと紐付けるとLINEログインが可能になります'
 
 
+  %h2.f28 DARTSLIVE CARD
+  - current_account.dartslive_cards.each do |card|
+    .row.mt10
+      .col-xs-4
+        カードNo
+      .col-xs-8
+        = card.no
+    .row.mt10
+      .col-xs-4
+        カード名:
+      .col-xs-8
+        = card.name
+    .row.mt10
+      .col-xs-3
+        RATING
+      .col-xs-3
+        = card.ratings["value"]
+        = "(#{card.ratings["detail"]})"
+    .row.mt10
+      .col-xs-4
+        01 GAMES
+      .col-xs-4
+        CRICKET
+      .col-xs-4
+        COUNTUP
+    .row
+      .col-xs-4
+        = card.zeroones["p80"]
+        (#{card.zeroones["p100"]})
+      .col-xs-4
+        = card.crickets["p80"]
+        (#{card.crickets["p100"]})
+      .col-xs-4
+        = card.countups["best"].to_i
+        (#{card.countups["ave"]})
+    .row.mt10
+      .col-xs-12.t-center
+        = link_to "編集", edit_dartslive_card_path(card), class: 'btn btn-warning'
+  .mt15
+    = link_to "DARTSLIVE CARD新規登録", new_dartslive_card_path, class: 'btn btn-primary'
 
 
 

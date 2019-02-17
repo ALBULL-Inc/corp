@@ -34,11 +34,45 @@
       = gender2str @profile.gender
 
   .mt15
-    = link_to "編集", edit_profile_path, class: 'btn btn-primary'
+    = link_to "編集", edit_profile_path, class: 'btn btn-warning'
     - if current_account.line_oauth.nil?
       = link_to "LINEと紐付ける", account_line_omniauth_authorize_path, class: 'btn btn-primary', title: 'LINEと紐付けるとLINEログインが可能になります'
 
 
+  %h1.f28 #{@profile.nickname || @profile.lastname}さんのDARTSLIVE CARD
+  - current_account.dartslive_cards.each do |card|
+    .row.mt10
+      .col-xs-4
+        カードNo:
+        = card.no
+      .col-xs-3
+        RATING:
+        = card.ratings["value"]
+        = "(#{card.ratings["detail"]})"
+      .col-xs-4
+        カード名:
+        = card.name
+      .col-xs-1
+        = link_to "編集", edit_dartslive_card_path(card), class: 'btn btn-warning'
+    .row.mt10
+      .col-xs-3
+        01 GAMES
+      .col-xs-3
+        CRICKET
+      .col-xs-4
+        COUNTUP
+    .row
+      .col-xs-3
+        = card.zeroones["p80"]
+        (#{card.zeroones["p100"]})
+      .col-xs-3
+        = card.crickets["p80"]
+        (#{card.crickets["p100"]})
+      .col-xs-4
+        = card.countups["best"]
+        (平均: #{card.countups["ave"]})
+  .mt15
+    = link_to "新規登録", new_dartslive_card_path, class: 'btn btn-primary'
 
 
 

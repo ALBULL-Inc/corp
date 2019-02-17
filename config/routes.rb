@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     put :resume, on: :member
   end
   resources :parties, only: [:index, :show]
+  resources :dartslive_cards, only: [:new, :edit, :create, :update, :destroy]
 
   resources :feedbacks, only: [:create]
   resources :recruits do
