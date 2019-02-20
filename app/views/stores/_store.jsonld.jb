@@ -1,0 +1,25 @@
+{
+  '@id': store_url(@store),
+  name: "Darts Bar Railly #{@store.name}",
+  telephone: @store.tel,
+  image: "https://railly.tokyo/assets/layout/header/logo-c5a3ea0db2baf1273d3c87291f37e2c738c9fdb280958c3bc8be1a0a8fd70eef.png",
+  pricerange: "1000円-5000円",
+  servesCuisine: [
+    "DartsBar",
+    "Bar",
+  ],
+  acceptsReservations: new_inquiry_url(concern: 5, utm_source: "jsonld"),
+  address: {
+    '@type': "PostalAddress",
+    streetAddress: @store.address,
+    addressLocality: @store.locality,
+    addressRegion: @store.region,
+    postalCode: @store.postcode,
+    addressCountry: "JP"
+  },
+  geo: {
+    '@type': "GeoCoordinates",
+    latitude: @store.latitude,
+    longitude: @store.longitude
+  },
+}

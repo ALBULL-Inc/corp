@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190106065201) do
+ActiveRecord::Schema.define(version: 20190220064557) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -175,7 +175,6 @@ ActiveRecord::Schema.define(version: 20190106065201) do
     t.boolean  "comming_soon",    default: false, null: false
     t.string   "name"
     t.string   "postcode"
-    t.string   "city"
     t.string   "address"
     t.string   "gmap_query"
     t.string   "tel"
@@ -189,6 +188,11 @@ ActiveRecord::Schema.define(version: 20190106065201) do
     t.integer  "position",        default: 0,     null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "latitude"
+    t.string   "longitude"
+    t.text     "near_station"
+    t.string   "region"
+    t.string   "locality"
   end
 
   create_table "subscription_logs", force: :cascade do |t|

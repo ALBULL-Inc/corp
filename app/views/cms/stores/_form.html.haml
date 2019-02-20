@@ -16,11 +16,20 @@
     = f.label :postcode
     = f.text_field :postcode, class: "form-control"
   .field
-    = f.label :city
-    = f.text_field :city, class: "form-control"
+    = f.label :region
+    = f.text_field :region, class: "form-control"
+  .field
+    = f.label :locality
+    = f.text_field :locality, class: "form-control"
   .field
     = f.label :address
     = f.text_field :address, class: "form-control"
+  .field
+    = f.label :latitude
+    = f.text_field :latitude, class: "form-control"
+  .field
+    = f.label :longitude
+    = f.text_field :longitude, class: "form-control"
   .field
     = f.label :gmap_query
     = f.text_field :gmap_query, class: "form-control"
@@ -45,6 +54,9 @@
   .field
     = f.label :closed_on
     = f.date_select :closed_on, class: "form-control"
+  .field
+    = f.label :near_station
+    = f.text_area :near_station, class: "form-control"
   .field
     = f.label :spec
     = f.text_area :spec, class: "form-control"

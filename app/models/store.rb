@@ -3,6 +3,6 @@ class Store < ApplicationRecord
   scope :enables, ->{ where(arel_table[:enable].eq(true)) }
 
   def full_address
-    [self.city, self.address].join
+    @full_address ||= [self.region, self.locality, self.address].join
   end
 end

@@ -70,7 +70,8 @@ class Cms::StoresController < Cms::ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
       params.require(:store).permit(
-        :enable, :name, :postcode, :city, :address, :tel, :fax,
+        :enable, :name, :postcode, :region, :locality, :address, :tel, :fax, :near_station,
+        :gmap_query, :latitude, :longitude,
         :opening_time, :closing_time, :regular_holiday, :opened_on, :closed_on, :spec,
         :position
       )
