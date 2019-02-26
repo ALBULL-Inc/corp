@@ -4,7 +4,9 @@
 %meta{name:"viewport", content:viewport_content}
 
 = display_meta_tags site: t('site.name'), description: t('site.description'),
-  og: {title: t('site.name'), url: root_url}, reverse: true,
+  og: { title: t('site.name'), url: root_url, type: "website", site_name: t('site.name'),
+    image: asset_url('layout/header/logo.png') },
+  reverse: true,
   twitter: {card: 'website', site: '@dartsbarrailly'},
   canonical: @breadcrumbs.try(:last).try(:path) || root_url
 %meta{property: 'fb:app_id', content: "#{Settings.auth.facebook.id}"}
