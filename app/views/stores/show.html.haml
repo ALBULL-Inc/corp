@@ -1,5 +1,8 @@
-- set_meta_tags title: @store.name, canonical: store_url(@store),
-  description: "株式会社オルブルが運営するDartsBarRailly(ダーツバーレイリー)の#{@store.name}の情報やお得な情報を掲載しています。さらに会員登録することでお得に#{@store.name}をご利用いただけます。"
+- set_meta_tags title: "Darts Bar Railly #{@store.name}", canonical: store_url(@store),
+  description: "株式会社オルブルが運営するDarts Bar Railly(レイリー)の#{@store.name}の情報やお得な情報を掲載しています。さらに会員登録することでお得に#{@store.name}をご利用いただけます。#{@store.near_station}。#{@store.spec}"
+
+- content_for(:jsonld) do
+  = jsonld_script_tag
 
 .row
   .col-md-2
@@ -7,7 +10,10 @@
     %h1= "Darts Bar Railly #{@store.name}"
     .row
       .col-xs-5
-        %h2.f20 【店内仕様】
+        %h2.f20 【最寄り駅】
+        %p= bbr @store.near_station
+
+        %h3.f20 【店内仕様】
         %p= bbr @store.spec
 
       .col-xs-7

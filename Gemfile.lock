@@ -126,6 +126,8 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.1)
+    jb (0.6.0)
+      multi_json
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
@@ -354,6 +356,7 @@ DEPENDENCIES
   font-awesome-rails
   gravtastic
   haml-rails
+  jb
   jbuilder (~> 2.5)
   jpmobile
   jquery-rails
