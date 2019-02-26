@@ -1,6 +1,6 @@
 - set_meta_tags title: "#{@blog.title} - Railly Blog", canonical: blog_url(@blog),
   description: strip_tags(@blog.body_md),
-  og: { title: @blog.title, url: blog_url(@blog), type: "blog", description: strip_tags(@blog.body_md) }
+  og: { title: @blog.title, url: blog_url(@blog), type: "article", description: strip_tags(@blog.body_md) }
 
 .col-md-1
 
