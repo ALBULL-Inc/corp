@@ -1,5 +1,5 @@
 - set_meta_tags title: "#{@blog.title} - Railly Blog", canonical: blog_url(@blog),
-  description: "Raillyのスタッフが想いを綴ります。「#{@blog.title}」"
+  description: strip_tags(@blog.body_md)
 
 .col-md-1
 
