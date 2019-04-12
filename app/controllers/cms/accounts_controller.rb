@@ -4,7 +4,7 @@ class Cms::AccountsController < Cms::ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.order(id: :desc).page(params[:page]).per(20)
+    @accounts = Account.includes(:subscription).order(id: :desc).page(params[:page]).per(20)
   end
 
   # GET /accounts/1
