@@ -65,9 +65,8 @@
       .panel-footer.text-right
         = link_to 'more »', topics_path
   .col-md-3
-    - unless Rails.env.production?
-      .panel
-        = link_to image_tag("p_banner.png", size: '260x260'), parties_path
+    .panel
+      = link_to image_tag("p_banner.png", size: '260x260'), parties_path
 
 .row
   .col-md-2
