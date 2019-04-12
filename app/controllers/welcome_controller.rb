@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
   def index
     @topics = Topic.enables
     @stores = Store.enables
+    @blogs = Blog.enables.limit(3)
   end
 
   #= プライバシーポリシー

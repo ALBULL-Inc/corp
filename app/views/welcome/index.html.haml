@@ -5,9 +5,44 @@
 
 .eye-catch.mb20
   .text-center.pt80.c-white
-    %h1.mt0.mb20.f50 Darts Bar Railly
+    %h1.mt0.mb40
+      %ruby
+        %rb.f50 Darts
+        %rt.f14 ダーツ
+      %ruby
+        %rb.f50 Bar
+        %rt.f14 バー
+      %ruby
+        %rb.f50 Railly
+        %rt.f14 レイリー
     %p.lead
       ダーツするならレイリーで
+
+.row
+  .col-md-2
+    .panel.panel-default
+      .panel-body
+        = image_tag "thema.jpg", class: 'img-responsive img-rounded', alt: ''
+  .col-md-2
+    .panel.panel-default
+      .panel-body
+        = image_tag "drink.jpg", class: 'img-responsive img-rounded', alt: ''
+  .col-md-2
+    .panel.panel-default
+      .panel-body
+        = image_tag "whisky.jpg", class: 'img-responsive img-rounded', alt: ''
+  .col-md-2
+    .panel.panel-default
+      .panel-body
+        = image_tag "floor_a.jpg", class: 'img-responsive img-rounded', alt: ''
+  .col-md-2
+    .panel.panel-default
+      .panel-body
+        = image_tag "floor_b.jpg", class: 'img-responsive img-rounded', alt: ''
+  .col-md-2
+    .panel.panel-default
+      .panel-body
+        = image_tag "floor_c.jpg", class: 'img-responsive img-rounded', alt: ''
 
 %p.text-center
   <!-- 横長1-1 -->
@@ -31,9 +66,8 @@
         = link_to 'more »', topics_path
   .col-md-3
     - unless Rails.env.production?
-      .panel.panel-default
-        .panel-body{style: "height: 260.5px"}
-          260.5x260.5
+      .panel
+        = link_to image_tag("p_banner.png", size: '260x260'), parties_path
 
 .row
   .col-md-2
@@ -41,7 +75,7 @@
       %li= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path
 
   - @stores.each do |store|
-    .col-md-4
+    .col-md-7
       .panel.panel-default
         .panel-heading
           %h2.panel-title.f18= store.name
@@ -63,4 +97,25 @@
         - unless store.comming_soon?
           .panel-footer.text-right
             = link_to 'more »', store
+
+
+.row
+  .col-md-2
+    %ul.list-menu
+      %li= link_to "#{fa_icon 'book-open'} ブログ".html_safe, blogs_path
+
+  .col-md-7
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
+      .panel-body
+        %table.table.recruit
+          - @blogs.each do |blog|
+            %tr
+              %td
+                %span.f10=l blog.publish_at
+                %br
+                = link_to blog.title, blog_path(blog)
+      .panel-footer.text-right
+        = link_to 'more »', blogs_path
 
