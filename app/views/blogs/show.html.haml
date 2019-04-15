@@ -2,9 +2,6 @@
   description: strip_tags(@blog.body_md),
   og: { title: @blog.title, url: blog_url(@blog), type: "article", description: strip_tags(@blog.body_md) }
 
-- content_for(:jsonld) do
-  = jsonld_script_tag
-
 .col-md-1
 
 .col-md-10
@@ -15,3 +12,6 @@
     = link_to '« 一覧へ戻る', blogs_path
 
 .col-md-1
+
+- content_for(:jsonld) do
+  = jsonld_script_tag
