@@ -1,0 +1,25 @@
+{
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": blog_url(@blog)
+  },
+  "headline": @blog.title,
+  "image": [
+    asset_url('layout/header/logo.png')
+   ],
+  "datePublished": @blog.publish_at.iso8601,
+  "dateModified": @blog.updated_at.iso8601,
+  "author": {
+    "@type": "Organization",
+    "name": "Darts Bar Railly"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Darts Bar Railly",
+    "logo": {
+      "@type": "ImageObject",
+      "url": asset_url('layout/header/logo.png'),
+    }
+  },
+  "description": strip_tags(@blog.body_md)
+}

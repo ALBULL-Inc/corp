@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resource :inquiry, only: [:new, :create]
   resources :menus, only: [:show]
 
+  resources :web_push_subscribers, only: [:create]
 
   # cms routings
   namespace :cms do

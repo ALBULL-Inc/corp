@@ -3,6 +3,9 @@
   og: {description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)。営業時間18:00〜29:00,DARTSLIVE2EXが3台,TouchLive1台,バーメイト1台!赤坂、溜池山王でダーツならRailly(レイリー)!会員登録することでお得にご利用いただけます。"},
   keywords: "赤坂,ダーツバー,Railly,レイリー,溜池山王,貸切,パーティ,投げ放題,ウィスキー,二次会,三次会"
 
+- content_for(:jsonld) do
+  = jsonld_script_tag
+
 .eye-catch.mb20{style: "height: 240px"}
   .text-center.pt60.c-white
     %h1.mt0.mb20
@@ -10,34 +13,7 @@
     %p.lead
       ダーツするならレイリーで
 
-%p.text-center
-  <!-- 横長1-1 -->
-  = render partial: 'common/adsense', locals: {slot_id: 4877223498, w: 728, h: 90}
-
-.row.mb50
-  .col-md-12
-    .panel.panel-default
-      .panel-heading
-        %h2.panel-title.f18 トピックス
-      .panel-body
-        %table.table
-          - @topics.each do |topic|
-            %tr
-              %td.col-md-2=l topic.publish_at.to_date, format: :topic
-              %td= link_to topic.title, topic
-      .panel-footer.text-right
-        = link_to 'more »', topics_path
-  .col-md-12
-    - unless Rails.env.production?
-      .panel.panel-default
-        .panel-body{style: "height: 260.5px"}
-          260.5x260.5
-
 .row
-  .col-md-12
-    %ul.list-menu
-      %li= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path
-
   - @stores.each do |store|
     .col-md-12
       .panel.panel-default
@@ -62,3 +38,39 @@
           .panel-footer.text-right
             = link_to 'more »', store
 
+
+%p.text-center
+  <!-- 横長1-1 -->
+  = render partial: 'common/adsense', locals: {slot_id: 4877223498, w: 728, h: 90}
+
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title.f18 トピックス
+      .panel-body
+        %table.table
+          - @topics.each do |topic|
+            %tr
+              %td.col-md-2=l topic.publish_at.to_date, format: :topic
+              %td= link_to topic.title, topic
+      .panel-footer.text-right
+        = link_to 'more »', topics_path
+
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h2.panel-title.f18 #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
+      .panel-body
+        %table.table
+          - @blogs.each do |blog|
+            %tr
+              %td.col-md-2=l blog.publish_at.to_date, format: :topic
+              %td= link_to blog.title, blog
+      .panel-footer.text-right
+        = link_to 'more »', blogs_path
+
+.row
+  .col-md-12
+    = link_to image_tag("p_banner.png", style: 'width: 100%'), parties_path

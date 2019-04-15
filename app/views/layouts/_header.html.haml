@@ -8,7 +8,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand(href=root_path)= image_tag(asset_url('layout/header/logo.png'), alt: t('site.name'), itemprop: "logo")
+      %a.navbar-brand(href=root_path)= image_tag(asset_url('layout/header/logo.png'), alt: t('site.name'))
     .collapse.navbar-collapse#navbar-collapse
       %ul.nav.navbar-nav
         %li= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path

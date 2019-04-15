@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190220064557) do
+ActiveRecord::Schema.define(version: 20190415055542) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -193,6 +193,19 @@ ActiveRecord::Schema.define(version: 20190220064557) do
     t.text     "near_station"
     t.string   "region"
     t.string   "locality"
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.string   "type"
+    t.string   "registration_key"
+    t.integer  "account_id"
+    t.boolean  "active",           default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["account_id"], name: "index_subscribers_on_account_id"
+    t.index ["active", "type"], name: "index_subscribers_on_active_and_type"
+    t.index ["registration_key", "type"], name: "index_subscribers_on_registration_key_and_type", unique: true
+    t.index ["type"], name: "index_subscribers_on_type"
   end
 
   create_table "subscription_logs", force: :cascade do |t|
