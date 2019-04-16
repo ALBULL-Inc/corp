@@ -51,3 +51,7 @@ select {
 .border-under {
   border-bottom: 1px solid #ccc;
 }
+
+.navbar-nav > li > a {
+  color: #333333 !important;
+}
