@@ -22,6 +22,13 @@
     %script{src: "https://platform.twitter.com/widgets.js", async: true}
     %link(rel="manifest" href="/manifest.json")
     = yield :jsonld
+    %script{src: "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", async: true}
+    %script
+      :plain
+        (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-4269617895273485",
+          enable_page_level_ads: true
+        });
 
   %body{data: {"signed-in": account_signed_in? ? "t" : "f"}}
     = render partial: 'layouts/header'
