@@ -59,13 +59,13 @@
     .panel.panel-default
       .panel-heading
         %h2.panel-title.f18 トピックス
-      .panel-body
-        %table.table
+      .panel-body.pb0
+        %table.table.mb0
           - @topics.each do |topic|
             %tr
               %td.col-md-2=l topic.publish_at.to_date, format: :topic
               %td= link_to topic.title, topic
-      .panel-footer.text-right
+      .panel-footer.text-right.bt-none
         = link_to 'more »', topics_path
   .col-md-3
     .panel
@@ -81,8 +81,8 @@
       .panel.panel-default
         .panel-heading
           %h2.panel-title.f18= store.name
-        .panel-body
-          %div.f14{style: 'padding: 10px;'}
+        .panel-body.pb0
+          %div.f14{style: 'padding: 10px 10px 0;'}
             - if store.comming_soon?
               Comming soon...
             - else
@@ -97,7 +97,7 @@
               \-
               = store.closing_time
         - unless store.comming_soon?
-          .panel-footer.text-right
+          .panel-footer.text-right.bt-none
             = link_to 'more »', store
 
 
@@ -110,14 +110,14 @@
     .panel.panel-default
       .panel-heading
         %h2.panel-title #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
-      .panel-body
-        %table.table.recruit
+      .panel-body.pb0
+        %table.table.mb0
           - @blogs.each do |blog|
             %tr
               %td
                 %span.f10=l blog.publish_at
                 %br
                 = link_to blog.title, blog_path(blog)
-      .panel-footer.text-right
+      .panel-footer.text-right.bt-none
         = link_to 'more »', blogs_path
 
