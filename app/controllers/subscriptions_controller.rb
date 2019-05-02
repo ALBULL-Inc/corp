@@ -53,6 +53,8 @@ class SubscriptionsController < ApplicationController
 
     log = s.subscription_logs.build
     log.response = r.to_json
+    s.period_start = Time.at(payjp_subscription.current_period_start)
+    s.period_end   = Time.at(payjp_subscription.current_period_end)
     s.save
 
     redirect_to profile_path
@@ -63,7 +65,9 @@ class SubscriptionsController < ApplicationController
     subscription = Payjp::Subscription.retrieve(s.sub_id)
     res = subscription.pause
     s.subscription_logs.build(response: res)
-    s.status = res.status == "active" ? 10 : 0
+    s.period_start = Time.at(subscription.current_period_start)
+    s.period_end   = Time.at(subscription.current_period_end)
+    s.status       = res.status == "active" ? 10 : 0
     s.save
     redirect_to profile_path
   end
@@ -73,7 +77,9 @@ class SubscriptionsController < ApplicationController
     subscription = Payjp::Subscription.retrieve(s.sub_id)
     res = subscription.resume
     s.subscription_logs.build(response: res)
-    s.status = res.status == "active" ? 10 : 0
+    s.period_start = Time.at(subscription.current_period_start)
+    s.period_end   = Time.at(subscription.current_period_end)
+    s.status       = res.status == "active" ? 10 : 0
     s.save
     redirect_to profile_path
   end
