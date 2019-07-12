@@ -19,6 +19,7 @@
 /tmp
 .env*
 sitemap.xml*
+erd.pdf
 
 config/settings.local.yml
 config/settings/*.local.yml
