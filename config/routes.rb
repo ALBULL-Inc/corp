@@ -55,4 +55,7 @@ Rails.application.routes.draw do
     resources :blogs
     resources :menus
   end
+  namespace :intra do
+    root to: "dashboards#index"
+  end
 end
