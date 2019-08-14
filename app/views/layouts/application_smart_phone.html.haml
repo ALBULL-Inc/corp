@@ -20,6 +20,7 @@
 
     = render partial: 'common/gtm'
     %script{src: "https://platform.twitter.com/widgets.js", async: true}
+    = javascript_include_tag "application", "data-turbolinks-track" => true
     %link(rel="manifest" href="/manifest.json")
     = yield :jsonld
 
@@ -29,12 +30,13 @@
 
     .main
       .container
-        = bootstrap_flash
+        - flash.each do |key, msg|
+          - key = "success" if key == "notice"
+          - key = "warning"  if key == "alert"
+          = content_tag :div, msg.html_safe, class: "alert alert-#{key}"
 
         = yield
 
     .footer
       .container
         = render 'layouts/footer'
-
-    = javascript_include_tag "application", "data-turbolinks-track" => true

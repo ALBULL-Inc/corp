@@ -13,4 +13,8 @@ module ApplicationHelper
     # render_to_string のバグ回避 https://github.com/rails/rails/issues/14173
     lookup_context.rendered_format = nil
   end
+
+  def sec2time(sec)
+    Time.parse("1/1") + sec
+  end
 end

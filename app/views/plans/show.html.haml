@@ -2,21 +2,20 @@
   description: "株式会社オルブルが運営するDartsBarRailly(ダーツバーレイリー)のサブスクリプション(月額プラン)「#{@plan.title}」について掲載しています。#{@plan.detail}ぜひご入会ください。"
 
 .row
-  .col-md-2
-
-  .col-md-8
+  .col-2
+  .col-8
     %h1.f28= @plan.title
     %p.t-center= image_tag @plan.image_src
     %p.f18= @plan.detail
 
     .row
-      .col-xs-2
+      .col-1.text-right{style: "margin-top: 8px"}
         金額
-      .col-xs-4
+      .col-4
         %span.f24 #{number_with_delimiter(@plan.amount)}円
         %span.f18 / #{t @plan.interval}
     .row.mt10
-      .col-md-12
+      .col-12
         - if account_signed_in?
           - if @subscription.new_record?
             = form_for([@plan,@subscription]) do |f|

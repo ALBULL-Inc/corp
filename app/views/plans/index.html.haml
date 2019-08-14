@@ -2,24 +2,23 @@
   description: "株式会社オルブルが運営するDartsBarRailly(ダーツバーレイリー)のサブスクリプション(月額プラン)について掲載しています。加入いただくことでお得にパーティーをご利用いただけます。"
 
 .row.mb30
-  .col-md-2
-  .col-md-8
+  .col-2
+  .col-8
     %h1.f22 月額プラン
     月額プランにご入会いただくとお得な特典が盛りだくさん！
     ぜひご入会ください！
 
 - @plans.each do |plan|
-  .row
-    .col-md-2
-    .col-md-8
-      .panel.panel-default
-        .panel-heading
-          %h2.panel-title.f18= plan.title
-        .panel-body
-          %div.f14{style: 'padding: 10px;'}
-            #{number_with_delimiter(plan.amount)}円 /月
-          %p
-            = plan.detail
-
-        .panel-footer.text-right
-          = link_to 'more »', plan
+  .row.mb20
+    .col-2
+    .col-8
+      .card
+        .card-header
+          %h2.mb0.f18= plan.title
+        .card-body.pb0
+          %ul.list-group.list-group-flush
+            %li.list-group-item
+              #{number_with_delimiter(plan.amount)}円 /月
+              %p= plan.detail
+            %li.list-group-item.text-right
+              = link_to 'more »', plan

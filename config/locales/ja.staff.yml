@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      staff: スタッフ
+    attributes:
+      staff:
+        organization: 所属
+        code: コード
+        last_name: 姓
+        first_name: 名
+        last_kana: セイ
+        first_kana: メイ

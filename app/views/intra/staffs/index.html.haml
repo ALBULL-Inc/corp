@@ -1,0 +1,30 @@
+%h1 Listing staffs
+
+%table.table
+  %thead
+    %tr
+      %th= Staff.human_attribute_name :organization
+      %th= Staff.human_attribute_name :code
+      %th= Staff.human_attribute_name :last_name
+      %th= Staff.human_attribute_name :first_name
+      %th= Staff.human_attribute_name :last_kana
+      %th= Staff.human_attribute_name :first_kana
+      %th{colspan: 3}
+
+  %tbody
+    - @staffs.each do |staff|
+      %tr
+        %td= staff.organization&.name
+        %td= staff.code
+        %td= staff.last_name
+        %td= staff.first_name
+        %td= staff.last_kana
+        %td= staff.first_kana
+        %td
+          = link_to 'Show', [:intra,staff], class: 'btn btn-info'
+          = link_to 'Edit', edit_intra_staff_path(staff), class: 'btn btn-warning'
+          = link_to 'Destroy', [:intra,staff], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+
+%br
+
+= link_to 'New Staff', new_intra_staff_path

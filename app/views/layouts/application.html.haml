@@ -30,7 +30,10 @@
 
     .main
       .container
-        = bootstrap_flash
+        - flash.each do |key, msg|
+          - key = "success" if key == "notice"
+          - key = "warning"  if key == "alert"
+          = content_tag :div, msg.html_safe, class: "alert alert-#{key}"
 
         = yield
 

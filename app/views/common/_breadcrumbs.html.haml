@@ -1,10 +1,10 @@
 
-.breadcrmb-wrap.mt-20
+.breadcrmb-wrap.mt-20.mb20
   .container
     %ul.breadcrumb
       - elements[0..-2].each do |element|
-        %li{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
+        %li.breadcrumb-item{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
           = link_to content_tag(:span, element.name.html_safe, itemprop: 'title'), element.path, itemprop: 'url'
 
-      %li.active{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
+      %li.breadcrumb-item.active{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb", "aria-current": "page"}
         = content_tag(:span, elements.last.name.html_safe, itemprop: 'title')

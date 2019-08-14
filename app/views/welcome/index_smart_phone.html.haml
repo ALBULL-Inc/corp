@@ -8,68 +8,78 @@
 
 .eye-catch.mb20{style: "height: 240px"}
   .text-center.pt60.c-white
-    %h1.mt0.mb20
-      %span.f30 Darts Bar Railly
+    %h1.mt0.mb40
+      %ruby
+        %rb.f34 Darts
+        %rt.f12 ダーツ
+      %ruby
+        %rb.f34 Bar
+        %rt.f12 バー
+      %ruby
+        %rb.f34 Railly
+        %rt.f12 レイリー
     %p.lead
       ダーツするならレイリーで
 
 .row
   - @stores.each do |store|
-    .col-md-12
-      .panel.panel-default
-        .panel-heading
-          %h2.panel-title.f18= store.name
-        .panel-body.pb0
-          %div.f14{style: 'padding: 10px 10px 0;'}
-            - if store.comming_soon?
-              Comming soon...
-            - else
-              #{fa_icon 'map-marker'}
-              = store.full_address
-              %br
-              #{fa_icon 'phone-square'}
-              = store.tel
-              %br
-              #{fa_icon 'clock'}
-              = store.opening_time
-              \-
-              = store.closing_time
-        - unless store.comming_soon?
-          .panel-footer.text-right.bt-none
-            = link_to 'more »', store
-
-
-%p.text-center
-  <!-- 横長1-1 -->
-  = render partial: 'common/adsense', locals: {slot_id: 4877223498, w: 728, h: 90}
+    .col-12
+      .card.mb30
+        .card-header.f16= store.name
+        .card-body.pa0
+          %ul.list-group.list-group-flush
+            %li.list-group-item
+              - if store.comming_soon?
+                Comming soon...
+              - else
+                #{fa_icon 'map-marker'}
+                = store.full_address
+                %br
+                #{fa_icon 'phone-square'}
+                = store.tel
+                %br
+                #{fa_icon 'clock'}
+                = store.opening_time
+                \-
+                = store.closing_time
+            - unless store.comming_soon?
+              %li.list-group-item.text-right.bt-none
+                = link_to 'more »', store
 
 .row
-  .col-md-12
-    .panel.panel-default
-      .panel-heading
-        %h2.panel-title.f18 トピックス
-      .panel-body.pb0
-        %table.table.mb0
+  %p.text-center
+    <!-- 横長1-1 -->
+    = render partial: 'common/adsense', locals: {slot_id: 4877223498, w: 728, h: 90}
+
+.row
+  .col-12
+    .card.mb30
+      .card-header.f16 トピックス
+      .card-body.pb0
+        %ul.list-group.list-group-flush
           - @topics.each do |topic|
-            %tr
-              %td.col-md-2=l topic.publish_at.to_date, format: :topic
-              %td= link_to topic.title, topic
-      .panel-footer.text-right.bt-none
-        = link_to 'more »', topics_path
+            %li.list-group-item
+              %span.card-link
+                =l topic.publish_at.to_date, format: :topic
+              %span.card-link
+                = link_to topic.title, topic
+          %li.list-group-item.text-right
+            = link_to 'more »', topics_path
 
 .row
-  .col-md-12
-    .panel.panel-default
-      .panel-heading
-        %h2.panel-title.f18 #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
-      .panel-body.pb0
-        %table.table.mb0
+  .col-12
+    .card.mb30
+      .card-header.f16 #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
+      .card-body.pb0
+        %ul.list-group.list-group-flush
           - @blogs.each do |blog|
-            %tr
-              %td.col-md-2=l blog.publish_at.to_date, format: :topic
-              %td= link_to blog.title, blog
-      .panel-footer.text-right.bt-none
-        = link_to 'more »', blogs_path
+            %li.list-group-item
+              .f10
+                =l blog.publish_at
+              .card-link
+                = link_to blog.title, blog_path(blog)
+          %li.list-group-item.text-right
+            = link_to 'more »', blogs_path
 
 .row
   .col-md-12

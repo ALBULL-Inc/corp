@@ -1,0 +1,33 @@
+- set_meta_tags title: 'Railly Blog - DartsBarRaillyのブログ', canonical: blogs_url,
+  description: 'DartsBarRaillyのスタッフが想い出を綴ります。私達の想い出を財産にするために。',
+  og: { title: 'Railly Blog - DartsBarRaillyのブログ', url: blogs_url, type: "article", description: 'DartsBarRaillyのスタッフが想い出を綴ります。私達の想い出を財産にするために。' }
+
+.t-center.pt20
+  %h1.mt0.mb30.f60 Railly Blog
+  %p.lead.f14
+    私たちは、
+    %br
+    「想い出は一生の財産」
+    %br
+    を企業理念に掲げています。
+    %br
+    想い出を財産にするべく
+    %br
+    スタッフが綴ります。
+
+.row
+  .col-12
+    .card
+      .card-header
+        %h2.mb0.f18 #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
+      .card-body
+        %ul.list-group.list-group-flush
+          - @blogs.each do |blog|
+            %li.list-group-item
+              %p.card-text.mb0
+                %small.f10.text-muted=l blog.publish_at
+              %span.card-link
+                = link_to blog.title, blog_path(blog)
+
+    .mt20
+      .pagination= paginate @blogs

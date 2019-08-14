@@ -1,29 +1,30 @@
 - set_meta_tags title: 'お問い合わせ', description: 'DartsBarRaillyへのお問合せページです。お気軽にお問合せください。'
 
-.col-md-3
+.row
+  .col-3
 
-.col-md-6
+  .col-6
 
-  %h1.f28.mb30 お問い合わせ
-  = form_for @inquiry, url: inquiry_path do |f|
-    - if @inquiry.errors.any?
-      #error_explanation
-        %ul
-          - @inquiry.errors.full_messages.each do |msg|
-            %li= msg
-    .form-group
-      = f.label :concern
-      = f.select :concern, @concerns, {}, class: "form-control"
-    .form-group
-      = f.label :email, class: "require"
-      = f.email_field :email, class: "form-control", placeholder: "your@domain.com"
-    .form-group
-      = f.label :name, class: "require"
-      = f.text_field :name, class: "form-control", placeholder: "折振 怜悧"
-    .form-group
-      = f.label :body, class: "require"
-      = f.text_area :body, size: "10x10", class: "form-control"
-    .actions
-      = f.submit t('Send'), class: "btn btn-primary"
+    %h1.f28.mb30 お問い合わせ
+    = form_for @inquiry, url: inquiry_path do |f|
+      - if @inquiry.errors.any?
+        #error_explanation
+          %ul
+            - @inquiry.errors.full_messages.each do |msg|
+              %li= msg
+      .form-group
+        = f.label :concern
+        = f.select :concern, @concerns, {}, class: "form-control"
+      .form-group
+        = f.label :email, class: "require"
+        = f.email_field :email, class: "form-control", placeholder: "your@domain.com"
+      .form-group
+        = f.label :name, class: "require"
+        = f.text_field :name, class: "form-control", placeholder: "折振 怜悧"
+      .form-group
+        = f.label :body, class: "require"
+        = f.text_area :body, size: "10x10", class: "form-control"
+      .actions
+        = f.submit t('Send'), class: "btn btn-primary"
 
-.col-md-3
+  .col-3

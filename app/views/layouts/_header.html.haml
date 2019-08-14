@@ -1,27 +1,29 @@
 
 = render partial: 'common/fb_root'
-.navbar.navbar-default(role="navigation")
+%nav.navbar.navbar-expand-md.navbar-light.bg-light.pa0.mb20
   .container
-    .navbar-header
-      %button.navbar-toggle(type="button" data-toggle="collapse" data-target="#navbar-collapse")
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand(href=root_path)= image_tag(asset_url('layout/header/logo.png'), alt: t('site.name'))
-    .collapse.navbar-collapse#navbar-collapse
-      %ul.nav.navbar-nav
-        %li= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path
+    %a.navbar-brand(href=root_path)= image_tag(asset_url('layout/header/logo.png'), alt: t('site.name'))
+    %button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation")
+      %span.navbar-toggler-icon
+
+    .collapse.navbar-collapse.ml20#navbar-collapse
+      %ul.nav.navbar-nav.mr-auto
+        %li.nav-item= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path, class: "nav-link"
         //%li= link_to "#{fa_icon 'file-alt'} メニュー".html_safe, menu_path
-        %li= link_to "#{fa_icon 'cocktail'} パーティー".html_safe, parties_path
-        %li= link_to "#{fa_icon 'credit-card'} 月額プラン".html_safe, plans_path
+        %li.nav-item= link_to "#{fa_icon 'cocktail'} パーティー".html_safe, parties_path, class: "nav-link"
+        %li.nav-item= link_to "#{fa_icon 'credit-card'} 月額プラン".html_safe, plans_path, class: "nav-link"
         //%li= link_to "#{fa_icon 'newspaper'} 求人情報".html_safe, recruits_path
-        %li= link_to "#{fa_icon 'book-open'} ブログ".html_safe, blogs_path
-      %ul.nav.navbar-nav.navbar-right
-        %li= link_to "#{fa_icon 'door-open'} ご予約はこちら".html_safe, new_inquiry_path(concern: 5)
+        %li.nav-item= link_to "#{fa_icon 'book-open'} ブログ".html_safe, blogs_path, class: "nav-link"
+      %ul.navbar-nav
+        %li.nav-item= link_to "#{fa_icon 'door-open'} ご予約はこちら".html_safe, new_inquiry_path(concern: 5), class: "nav-link"
 
         - if account_signed_in?
-          %li{style: 'float: left'}= link_to "#{image_tag(current_account.gravatar_url, size: "20x20", class: "circle-thumb")} ".html_safe + current_account.disp_nickname.mb_chars.limit(23).to_s, profile_path, class: "pr5"
-          %li= link_to fa_icon('cog'), edit_profile_path, class: "pl5 link-color"
-          %li= link_to "#{fa_icon 'sign-out-alt'}".html_safe, destroy_account_session_path, method: :delete
+          %li.nav-item{style: 'float: left'}
+            = link_to "#{image_tag(current_account.gravatar_url, size: "20x20", class: "circle-thumb")} ".html_safe + current_account.disp_nickname.mb_chars.limit(23).to_s, profile_path, class: "vav-link"
+          %li.nav-item
+            = link_to fa_icon('cog'), edit_profile_path, class: "link-color nav-link"
+          %li.nav-item
+            = link_to "#{fa_icon 'sign-out-alt'}".html_safe, destroy_account_session_path, method: :delete, class: "nav-link"
         - else
-          %li= link_to "#{fa_icon 'sign-in-alt'} Log in".html_safe, new_account_session_path
+          %li.nav-item
+            = link_to "#{fa_icon 'sign-in-alt'} Log in".html_safe, new_account_session_path, class: "nav-link"

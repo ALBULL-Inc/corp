@@ -57,5 +57,8 @@ Rails.application.routes.draw do
   end
   namespace :intra do
     root to: "dashboards#index"
+    resources :staffs
+    resources :stamps
+    resource :stamper
   end
 end

@@ -1,0 +1,55 @@
+body {
+  font-family: Montserrat, Hiragino Maru Gothic Pro, meiryo, verdana, arial, helvetica, sans-serif;
+  font-size: 14px;
+  font-weghit: 700;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.navbar .container {
+  height: 50px;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  font-family: Cabin;
+  font-weight: 700;
+}
+.navbar-brand img {
+  height: 60px;
+}
+
+.main {
+  min-height: 480px;
+  margin-top: 20px;
+}
+
+.breadcrmb-wrap {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e7e7e7;
+}
+.breadcrumb {
+  padding: 8px 0;
+  background-color: inherit;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+select {
+  height: 28px;
+  border: 1px solid #ccc;
+}
+
+.border-under {
+  border-bottom: 1px solid #ccc;
+}
+
+.navbar-nav > li > a {
+  color: #333333 !important;
+}
+
+.pagination > nav {
+  margin: auto;
+}

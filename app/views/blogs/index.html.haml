@@ -11,20 +11,19 @@
       想い出を財産にするべくスタッフが綴ります。
 
 .row
-  .col-md-2
-
-  .col-md-8
-    .panel.panel-default
-      .panel-heading
-        %h2.panel-title #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
-      .panel-body
-        %table.table.recruit
+  .col-2
+  .col-8
+    .card
+      .card-header
+        %h2.mb0.f18 #{fa_icon 'exclamation'} 新着#{Blog.model_name.human}
+      .card-body
+        %ul.list-group.list-group-flush
           - @blogs.each do |blog|
-            %tr
-              %td
-                %span.f10=l blog.publish_at
-                %br
+            %li.list-group-item
+              %p.card-text.mb0
+                %small.f10.text-muted=l blog.publish_at
+              %span.card-link
                 = link_to blog.title, blog_path(blog)
 
-    .text-center
+    .mt20
       .pagination= paginate @blogs

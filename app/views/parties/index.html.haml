@@ -2,20 +2,20 @@
   description: "株式会社オルブルが運営するDartsBarRailly(ダーツバーレイリー)のパーティープランを掲載しています。さらに会員登録することでお得にパーティーをご利用いただけます。"
 
 .row
-  .col-md-2
-  .col-md-4
+  .col-2
+  .col-4
     %h1.f22.mb30 パーティープラン一覧
 
 
 - @parties.each do |party|
-  .row
-    .col-md-2
-    .col-md-8
-      .panel.panel-default
-        .panel-heading
-          %h2.panel-title.f18= party.name
-        .panel-body
+  .row.mb20
+    .col-2
+    .col-8
+      .card
+        .card-header
+          %h2.mb0.f16= party.name
+        .card-body
           %div.f14{style: 'padding: 10px;'}
             = bbr party.content
-        .panel-footer.text-right
-          = link_to 'more »', party
+          .text-right
+            = link_to 'more »', party, class: "btn btn-success btn-sm"

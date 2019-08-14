@@ -2,11 +2,11 @@
   description: "株式会社オルブルが運営するDartsBarRailly(ダーツバーレイリー)のパーティープラン、「#{@party.name}」について掲載しています。#{@party.lead}さらに会員登録することでお得にパーティーをご利用いただけます。"
 
 .row
-  .col-md-2
-  .col-md-8
+  .col-1
+  .col
     %h1= @party.name
     .row
-      .col-xs-12
+      .col
         %p= bbr @party.lead
         %h2.f20 プラン内容
         %p= bbr @party.content

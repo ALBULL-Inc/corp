@@ -1,10 +1,12 @@
 %h1= @blog.title
 
+%p.mb0
+  投稿日
+  = l @blog.publish_at
 .t-right
-  %p
-    投稿日
-    = l @blog.publish_at
-    .fb-like(style="margin-left: 10px;" data-href="#{request.url}" data-layout="button_count" data-action="recommend" data-show-faces="false")
+  .fb-like(style="margin-left: 10px;" data-href="#{request.url}" data-layout="button_count" data-action="recommend" data-show-faces="false")
 
-%p
+%article.mt10
   = @blog.body_md.html_safe
+
+.fb-like(data-href="#{request.url}" data-layout="button_count" data-action="recommend" data-show-faces="false")

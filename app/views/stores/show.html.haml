@@ -23,7 +23,7 @@
 
     %p.mt25
       = fa_icon 'phone-square'
-      %span.f20= @store.tel
+      %span.f20= link_to @store.tel, "tel:#{@store.tel}"
       \/
       = fa_icon 'print'
       %span.f16= @store.fax
@@ -36,8 +36,8 @@
         %h3 メニュー
     .row
       - @menus.each do |m|
-        .col-xs-4= link_to_if m.content.present?, m.name, m
-        .col-xs-2= m.price
+        .col-md-4= link_to_if m.content.present?, m.name, m
+        .col-md-2= m.price
 
 - content_for(:jsonld) do
   = jsonld_script_tag

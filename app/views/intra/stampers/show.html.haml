@@ -1,0 +1,35 @@
+.row
+  .col-md-2
+  .col-md-8
+    %h1.mb20
+      打刻ページ
+
+    %table.table
+      %thead
+        %tr
+          %th= Staff.human_attribute_name :code
+          %th= Staff.human_attribute_name :name
+          %th
+      %tbody
+        - @staffs.each do |staff|
+          %tr
+            %td{style: "vertical-align: middle;"}
+              = staff.code
+            %td{style: "vertical-align: middle;"}
+              %ruby
+                %rb
+                  #{staff.last_name}
+                %rt
+                  #{staff.last_kana}
+              %ruby
+                %rb
+                  #{staff.first_name}
+                %rt
+                  #{staff.first_kana}
+            %td{style: "text-align: right; width: 300px;"}
+              = form_for @stamp, url: intra_stamper_path do |f|
+                = f.hidden_field :store_id, value: @store.id
+                = f.hidden_field :staff_id, value: staff.id
+                = f.button "出勤", class: "btn btn-success pl30 pr30 stamping", data: {type: StampedType::WORKING_START}
+                = f.button "退勤", class: "btn btn-danger pl30 pr30 stamping", data: {type: StampedType::WORKING_END}
+

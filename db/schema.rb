@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190415055542) do
+ActiveRecord::Schema.define(version: 20190712040121) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -117,6 +117,12 @@ ActiveRecord::Schema.define(version: 20190415055542) do
     t.index ["menu_category_id"], name: "index_menus_on_menu_category_id"
   end
 
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "parties", force: :cascade do |t|
     t.boolean  "enable",     default: false, null: false
     t.string   "name"
@@ -170,6 +176,45 @@ ActiveRecord::Schema.define(version: 20190415055542) do
     t.index ["enable", "position"], name: "index_recruits_on_enable_and_position"
   end
 
+  create_table "staffs", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.string   "code"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "first_kana"
+    t.string   "last_kana"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_staffs_on_organization_id"
+  end
+
+  create_table "stamped_dailies", force: :cascade do |t|
+    t.integer  "staff_id"
+    t.integer  "status"
+    t.datetime "work_start_at"
+    t.datetime "work_end_at"
+    t.datetime "rest_start_at"
+    t.datetime "rest_end_at"
+    t.integer  "ymd"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["staff_id"], name: "index_stamped_dailies_on_staff_id"
+  end
+
+  create_table "stamped_eaches", force: :cascade do |t|
+    t.integer  "stamped_daily_id"
+    t.integer  "staff_id"
+    t.integer  "store_id"
+    t.integer  "stamped_type_id"
+    t.datetime "stamped_at"
+    t.integer  "ymd"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["staff_id"], name: "index_stamped_eaches_on_staff_id"
+    t.index ["stamped_daily_id"], name: "index_stamped_eaches_on_stamped_daily_id"
+    t.index ["store_id"], name: "index_stamped_eaches_on_store_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.boolean  "enable",          default: false, null: false
     t.boolean  "comming_soon",    default: false, null: false
@@ -193,6 +238,8 @@ ActiveRecord::Schema.define(version: 20190415055542) do
     t.text     "near_station"
     t.string   "region"
     t.string   "locality"
+    t.integer  "organization_id"
+    t.index ["organization_id"], name: "index_stores_on_organization_id"
   end
 
   create_table "subscribers", force: :cascade do |t|

@@ -1,7 +1,7 @@
 class Menu < ApplicationRecord
 
   def price
-    @price ||= "#{self.amount}円"
+    @price ||= "#{self.amount.to_s(:delimited)}円"
   end
 
   def content_md
