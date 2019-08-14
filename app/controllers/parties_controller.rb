@@ -21,6 +21,6 @@ class PartiesController < ApplicationController
     end
 
     def add_breadcrumb_of_index
-      add_breadcrumb "パーティー", parties_url
+      add_breadcrumb "パーティ", parties_url
     end
 end

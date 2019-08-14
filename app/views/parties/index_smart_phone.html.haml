@@ -1,21 +1,16 @@
 - set_meta_tags title: "パーティプラン一覧", canonical: parties_url,
   description: "株式会社オルブルが運営するDartsBarRailly(ダーツバーレイリー)のパーティプランを掲載しています。さらに会員登録することでお得にパーティをご利用いただけます。"
 
-.row
-  .col-2
-  .col-4
-    %h1.f22.mb30 パーティプラン一覧
-
+%h1.f22.mb30 パーティプラン一覧
 
 - @parties.each do |party|
   .row.mb20
-    .col-2
-    .col-8
+    .col-12
       .card
         .card-header
           %h2.mb0.f16= party.name
         .card-body
           %div.f14{style: 'padding: 10px;'}
             = bbr party.content
-          .text-right
+          .t-right
             = link_to 'more »', party, class: "btn btn-success btn-sm"

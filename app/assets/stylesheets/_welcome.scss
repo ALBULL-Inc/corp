@@ -17,3 +17,25 @@ ul.list-menu {
     text-decoration: none;
   }
 }
+
+label.require:after {
+  @extend .badge;
+  @extend .badge-danger;
+  margin-left: 8px;
+  content: "必須";
+  font-size: 10px;
+}
+label.private:after {
+  @extend .badge;
+  @extend .badge-danger;
+  margin-left: 8px;
+  content: "非公開";
+  font-size: 10px;
+}
+label.pause:after {
+  @extend .badge;
+  @extend .badge-danger;
+  margin-left: 0px;
+  content: "停止中";
+  font-size: 10px;
+}
