@@ -2,12 +2,12 @@
   .row
     .col-md-12
       .form-group
-        = f.label :no, class: "require"
+        = f.label :no, :id, class: "require"
         = f.text_field :no, class: "form-control"
       .form-group
         = f.label :password, class: "private"
-        = f.text_field :password, class: "form-control", style: "width: 10em;"
-        ※パスワードを入力することによって自身のDARTSLIVE CARDのSTATSが見ることが可能です。
+        = f.text_field :password, class: "form-control"
+        ※ID,パスワードを入力することによって自身のDARTSLIVE CARDのSTATSが見ることが可能です。
 
   .actions.mt20
     = f.submit class: "btn btn-primary"

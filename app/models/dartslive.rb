@@ -1,11 +1,12 @@
 class Dartslive
   attr_reader :logged_in
 
-  def top_url;     "https://card.dartslive.com/t/top.jsp";         end
-  def login_url;   "https://card.dartslive.com/t/doLogin.jsp";     end
-  def stats_url;   "https://card.dartslive.com/t/play/index.jsp";  end
+  def url_base;    "https://card.dartslive.com";          end
+  def top_url;     "#{url_base}/t/top.jsp";               end
+  def login_url;   "#{url_base}/entry/login/doLogin.jsp"; end
+  def stats_url;   "#{url_base}/t/play/index.jsp";        end
 
-  def imadoko_url; "http://www.dartslive.jp/t/group/allima2.jsp";  end
+  def imadoko_url; "#{url_base}/t/imadoko.jsp";           end
   def shop_url;    "http://www.dartslive.jp/kt/search/shop.jsp";   end
   def search_url;  "http://www.dartslive.jp/kt/search/search.jsp"; end
   def result_url;  "http://www.dartslive.jp/t/day/index.jsp";      end
@@ -16,8 +17,8 @@ class Dartslive
     @logged_in = false
   end
 
-  def login!(cardno, passwd)
-    @agent.post(login_url, {'i' => cardno, 'p' => passwd})
+  def login!(account_id, passwd)
+    @agent.post(login_url, {"id" => account_id, "ps" => passwd})
     if @agent.page.at('font[color=red]')
       raise AuthError, 'login error' if @agent.page.at('font[color=red]').inner_text.match('ERROR')
     end

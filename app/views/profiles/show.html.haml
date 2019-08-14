@@ -1,121 +1,119 @@
 - set_meta_tags title: "#{@profile.nickname}さんのページ"
 
-
-.col-md-2
-
-.col-md-8
-  %h1.f28 #{@profile.nickname || @profile.lastname}さんのマイページ
-  %section
-    .row.mt20
-      .col-xs-1
-        ID
-      .col-xs-1
-        = @profile.account_id
-      .col-xs-1
-        氏名
-      .col-xs-4.f24
-        = @profile.lastname
-        = @profile.firstname
-      .col-xs-1.f10
-        ニック
-        %br
-        ネーム
-      .col-xs-4.f24
-        = @profile.nickname
-    .row.mt10
-      .col-xs-2
-        生年月日
-      .col-xs-3.f16
-        - if @profile.birthday?
-          =l @profile.birthday, format: :middle
-      .col-xs-1
-        性別
-      .col-xs-1.f16
-        = gender2str @profile.gender
-      .col-xs-2.t-right
-        血液型
-      .col-xs-1.f16
-        = blood2str @profile.blood
-
-    .mt15
-      = link_to "編集", edit_profile_path, class: 'btn btn-warning'
-      - if current_account.line_oauth.nil?
-        = link_to "LINEと紐付ける", account_line_omniauth_authorize_path, class: 'btn btn-primary', title: 'LINEと紐付けるとLINEログインが可能になります'
-
-
-  %section.mt30
-    %h1.f24 #{@profile.nickname || @profile.lastname}さんのDARTSLIVE CARD
-    - @dartslive_cards.each do |card|
+.row
+  .col-2
+  .col-8
+    %h1.f28 #{@profile.nickname || @profile.lastname}さんのマイページ
+    %section
+      .row.mt20
+        .col-1
+          ID
+        .col-1
+          = @profile.account_id
+        .col-1
+          氏名
+        .col-4.f24
+          = @profile.lastname
+          = @profile.firstname
+        .col-1.f10
+          ニック
+          %br
+          ネーム
+        .col-4.f24
+          = @profile.nickname
       .row.mt10
-        .col-xs-4
-          カードNo:
-          = card.no
-        .col-xs-3
-          RATING:
-          = card.ratings["value"]
-          = "(#{card.ratings["detail"]})"
-        .col-xs-4
-          カード名:
-          = card.name
-        .col-xs-1
-          = link_to "編集", edit_dartslive_card_path(card), class: 'btn btn-warning'
-      .row.mt10
-        .col-xs-3
-          01 GAMES
-        .col-xs-3
-          CRICKET
-        .col-xs-4
-          COUNTUP
-      .row
-        .col-xs-3
-          = card.zeroones["p80"]
-          (#{card.zeroones["p100"]})
-        .col-xs-3
-          = card.crickets["p80"]
-          (#{card.crickets["p100"]})
-        .col-xs-4
-          = card.countups["best"]
-          (平均: #{card.countups["ave"]})
-    .mt15
-      = link_to "新規登録", new_dartslive_card_path, class: 'btn btn-primary'
+        .col-2
+          生年月日
+        .col-3.f16
+          - if @profile.birthday?
+            =l @profile.birthday, format: :middle
+        .col-1
+          性別
+        .col-1.f16
+          = gender2str @profile.gender
+        .col-2.t-right
+          血液型
+        .col-1.f16
+          = blood2str @profile.blood
 
-
-
-  %h2.f22.mt50 加入月額プラン
-
-  .row
-    - if @subscription.blank?
-      %p.ml15 プラン未加入(無料会員)
       .mt15
-        = link_to '月額プランに加入', plans_path, class: 'btn btn-primary'
+        = link_to "編集", edit_profile_path, class: 'btn btn-warning'
+        - if current_account.line_oauth.nil?
+          = link_to "LINEと紐付ける", account_line_omniauth_authorize_path, class: 'btn btn-primary', title: 'LINEと紐付けるとLINEログインが可能になります'
 
-    - else
-      .col-md-1
-      .col-md-10
-        - plan = @subscription.plan
-        .panel.panel-default
-          .panel-heading
-            %p.panel-title.f18
-              = plan.title
-              - unless @subscription.active?
-                %label.pause
-          .panel-body
-            .row
-              .col-xs-12
-                = plan.detail
-            .row.mt15
-              .col-xs-2
-                - if @subscription.active?
-                  次回請求日
-                - else
-                  有効期限
-              .col-xs-4
-                =l @subscription.period_end.to_date, format: :middle
 
-        .mt15
-          - if @profile.account.myself?
-            = link_to 'プランを変更', plans_path, class: 'btn btn-primary'
-            - if @subscription.active?
-              = link_to 'プランを中断', pause_subscription_path(@subscription), class: 'btn btn-danger', method: :put, data: {confirm: '本当に中断しますか?'}
-            - else
-              = link_to 'プランを再開', resume_subscription_path(@subscription), class: 'btn btn-success', method: :put
+    %section.mt30
+      %h1.f24 #{@profile.nickname || @profile.lastname}さんのDARTSLIVE CARD
+      - @dartslive_cards.each do |card|
+        .row.mt10
+          .col-4
+            アドレス:
+            = card.no
+          .col-3
+            RATING:
+            = card.ratings["value"]
+            = "(#{card.ratings["detail"]})"
+          .col-4
+            カード名:
+            = card.name
+          .col-1
+            = link_to "編集", edit_dartslive_card_path(card), class: 'btn btn-warning'
+        .row.mt10
+          .col-3
+            01 GAMES
+          .col-3
+            CRICKET
+          .col-4
+            COUNTUP
+        .row
+          .col-3
+            = card.zeroones["p80"]
+            (#{card.zeroones["p100"]})
+          .col-3
+            = card.crickets["p80"]
+            (#{card.crickets["p100"]})
+          .col-4
+            = card.countups["best"]
+            (平均: #{card.countups["ave"]})
+      .mt15
+        = link_to "新規登録", new_dartslive_card_path, class: 'btn btn-primary'
+
+
+
+    %h2.f22.mt50 加入月額プラン
+
+    .row
+      - if @subscription.blank?
+        .col
+          .ml15
+            プラン未加入(無料会員)
+            .mt15
+              = link_to '月額プランに加入', plans_path, class: 'btn btn-primary'
+      - else
+        .col-1
+        .col-10
+          - plan = @subscription.plan
+          .card
+            .card-header
+              %p.mb0.f18
+                = plan.title
+                - unless @subscription.active?
+                  %label.pause.mb0 &nbsp;
+            .card-body
+              %ul.list-group.list-group-flush
+                %li.list-group-item
+                  = plan.detail
+                %li.list-group-item.t-right
+                  - if @subscription.active?
+                    次回請求日
+                  - else
+                    有効期限
+                  =l @subscription.period_end.to_date, format: :middle
+
+          .mt15
+            - if @profile.account.myself?
+              = link_to 'プランを変更', plans_path, class: 'btn btn-primary'
+              - if @subscription.active?
+                = link_to 'プランを中断', pause_subscription_path(@subscription), class: 'btn btn-danger', method: :put, data: {confirm: '本当に中断しますか?'}
+              - else
+                = link_to 'プランを再開', resume_subscription_path(@subscription), class: 'btn btn-success', method: :put

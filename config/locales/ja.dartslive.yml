@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      dartslive_card: ライブカード
+    attributes:
+      dartslive_card:
+        id: ほげ
+        password: パスワード
