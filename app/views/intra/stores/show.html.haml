@@ -1,0 +1,14 @@
+%h1= @store.name
+
+%table.table
+  %thead
+    %tr
+      %th スタッフ
+      %th{colspan: 3}
+
+  %tbody
+    - @staffs.each do |staff|
+      %tr
+        %td= staff.name
+        %td= link_to '打刻実績', intra_staff_stamps_path(staff), class: "btn btn-success"
+

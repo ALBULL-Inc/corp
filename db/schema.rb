@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(version: 20190712040121) do
     t.index ["no"], name: "index_dartslive_cards_on_no"
   end
 
+  create_table "employment_contracts", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "staff_id"
+    t.date     "effective_on"
+    t.date     "expiration_on"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_employment_contracts_on_organization_id"
+    t.index ["staff_id"], name: "index_employment_contracts_on_staff_id"
+  end
+
   create_table "entries", force: :cascade do |t|
     t.integer  "account_id"
     t.integer  "recruit_id"
@@ -177,15 +188,13 @@ ActiveRecord::Schema.define(version: 20190712040121) do
   end
 
   create_table "staffs", force: :cascade do |t|
-    t.integer  "organization_id"
     t.string   "code"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "first_kana"
     t.string   "last_kana"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["organization_id"], name: "index_staffs_on_organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "stamped_dailies", force: :cascade do |t|
@@ -240,6 +249,17 @@ ActiveRecord::Schema.define(version: 20190712040121) do
     t.string   "locality"
     t.integer  "organization_id"
     t.index ["organization_id"], name: "index_stores_on_organization_id"
+  end
+
+  create_table "stores_staffs", force: :cascade do |t|
+    t.integer  "store_id"
+    t.integer  "staff_id"
+    t.date     "effective_on"
+    t.date     "expiration_on"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["staff_id"], name: "index_stores_staffs_on_staff_id"
+    t.index ["store_id"], name: "index_stores_staffs_on_store_id"
   end
 
   create_table "subscribers", force: :cascade do |t|

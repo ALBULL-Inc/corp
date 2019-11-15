@@ -8,7 +8,7 @@
 
   .form-group
     = f.label :organization
-    = f.collection_select :organization, @organizations, :id, :name, class: "form-control"
+    = f.collection_select :organization_id, @organizations, :id, :name, class: "form-control"
   .form-group
     = f.label :code
     = f.text_field :code, class: "form-control"

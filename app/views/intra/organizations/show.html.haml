@@ -1,0 +1,7 @@
+%p
+  %b #{Organization.human_attribute_name(:organization)}:
+  = @organization.name
+
+= link_to 'Edit', edit_intra_organization_path(@organization)
+\|
+= link_to 'Back', intra_organizations_path

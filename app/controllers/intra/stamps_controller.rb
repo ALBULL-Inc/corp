@@ -1,7 +1,8 @@
 class Intra::StampsController < Intra::ApplicationController
   def index
-    @store = Store.find(params[:store_id]) rescue nil
-    @store ||= Store.first #fixme 店舗ごとでできるようになったら消す
-    @staffs = Staff.includes(:stamped_dailies)
+    #@staff = Staff.find(params[:staff_id])
+    @staff = Staff.first
+    @year, @month = [params[:year]||Date.today.year,params[:month]||Date.today.month]
+    @monthly = StampedMonthly.new(@staff,@year,@month)
   end
 end
