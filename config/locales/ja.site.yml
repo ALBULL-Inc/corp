@@ -1,10 +1,12 @@
 ja:
   site:
+    title: "Darts Bar Railly | 赤坂・溜池山王でダーツするならダーツバーレイリー"
     name: 'Darts Bar Railly'
     short_name: 'railly'
     description: ''
     mission: '想い出は一生の財産'
     email: 'railly[at]albull.co.jp'
+    og_site_name: 'Darts Bar Railly(レイリー) 赤坂店'
 
   Send: "送信"
   Back: "« 戻る"
