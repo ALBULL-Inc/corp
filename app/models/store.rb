@@ -1,4 +1,9 @@
 class Store < ApplicationRecord
+  belongs_to :organization
+
+  has_many :stores_staffs
+  has_many :staffs, through: :stores_staffs
+
   default_scope ->{ order(:position) }
   scope :enables, ->{ where(arel_table[:enable].eq(true)) }
 

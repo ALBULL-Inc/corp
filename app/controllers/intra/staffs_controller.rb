@@ -1,10 +1,13 @@
 class Intra::StaffsController < Intra::ApplicationController
+  before_action :set_organization, except: [:index]
   before_action :set_staff, only: [:show, :edit, :update, :destroy]
 
   # GET /staffs
   # GET /staffs.json
   def index
-    @staffs = Staff.order(code: :asc).page(params[:page]).per(50)
+    @organization = Organization.find(params[:organization_id]) if params[:organization_id]
+    @store = Store.find(params[:store_id]) if params[:store_id]
+    @staffs = (@organization || @store).staffs.order(code: :asc).page(params[:page]).per(50)
   end
 
   # GET /staffs/1
@@ -14,12 +17,13 @@ class Intra::StaffsController < Intra::ApplicationController
 
   # GET /staffs/new
   def new
-    @organizations = Organization.all
+    @stores = @organization.stores
     @staff = Staff.new
   end
 
   # GET /staffs/1/edit
   def edit
+    @stores = @store.organization.stores
   end
 
   # POST /staffs
@@ -27,8 +31,8 @@ class Intra::StaffsController < Intra::ApplicationController
   def create
     @staff = Staff.new(staff_params)
     respond_to do |format|
-      if @staff.save
-        format.html { redirect_to [:intra,@staff], notice: 'Staff was successfully created.' }
+      if @organization.employees << @staff
+        format.html { redirect_to [:intra,@organization], notice: 'Staff was successfully created.' }
         format.json { render :show, status: :created, location: @staff }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class Intra::StaffsController < Intra::ApplicationController
   def update
     respond_to do |format|
       if @staff.update(staff_params)
-        format.html { redirect_to [:cms,@staff], notice: 'Staff was successfully updated.' }
+        format.html { redirect_to [:intra,@organization], notice: 'Staff was successfully updated.' }
         format.json { render :show, status: :ok, location: @staff }
       else
         format.html { render :edit }
@@ -63,12 +67,18 @@ class Intra::StaffsController < Intra::ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_organization
+      @organization = Organization.find(params[:organization_id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
     def set_staff
       @staff = Staff.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def staff_params
-      params.require(:staff).permit(:organization_id, :code, :last_name, :first_name, :last_kana, :first_kana)
+      params.require(:staff).permit(:code, :last_name, :first_name, :last_kana, :first_kana,
+                                   stores_staffs_attributes: [:id, :store_id, :_destroy])
     end
 end

@@ -39,3 +39,36 @@ label.pause:after {
   content: "停止中";
   font-size: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.carousel-1 {
+  background: center 0 / 100% no-repeat image-url("top_image.jpg");
+  height: 520px;
+}
+
+.carousel-2 {
+  background: center 0 / 100% no-repeat image-url("party.jpg");
+  height: 520px;
+}
+
+.carousel-3 {
+  background: center 0 / 60% repeat-x image-url("thema.jpg");
+  height: 520px;
+}
+
+.carousel-caption {
+  text-shadow: 1px 1px #000;
+}

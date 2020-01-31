@@ -1,20 +1,22 @@
-class Cms::StoresController < Cms::ApplicationController
+class Intra::StoresController < Intra::ApplicationController
+  before_action :set_organization
   before_action :set_store, only: [:show, :edit, :update, :destroy]
 
   # GET /stores
   # GET /stores.json
   def index
-    @stores = Store.all
+    @stores = @organization.stores
   end
 
   # GET /stores/1
   # GET /stores/1.json
   def show
+    @staffs = @store.staffs
   end
 
   # GET /stores/new
   def new
-    @store = @organization.stores.build
+    @store = Store.new
   end
 
   # GET /stores/1/edit
@@ -24,11 +26,11 @@ class Cms::StoresController < Cms::ApplicationController
   # POST /stores
   # POST /stores.json
   def create
-    @store = @organization.store.build(store_params)
+    @store = @organization.stores.build(store_params)
 
     respond_to do |format|
       if @store.save
-        format.html { redirect_to [:cms,@store], notice: 'Store was successfully created.' }
+        format.html { redirect_to [:intra,@organization,@store], notice: 'Store was successfully created.' }
         format.json { render :show, status: :created, location: @store }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class Cms::StoresController < Cms::ApplicationController
   def update
     respond_to do |format|
       if @store.update(store_params)
-        format.html { redirect_to [:cms,@store], notice: 'Store was successfully updated.' }
+        format.html { redirect_to [:intra,@organization,@store], notice: 'Store was successfully updated.' }
         format.json { render :show, status: :ok, location: @store }
       else
         format.html { render :edit }
@@ -56,12 +58,18 @@ class Cms::StoresController < Cms::ApplicationController
   def destroy
     @store.destroy
     respond_to do |format|
-      format.html { redirect_to cms_stores_url, notice: 'Store was successfully destroyed.' }
+      format.html { redirect_to intra_organization_stores_url, notice: 'Store was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
+
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_organization
+      @organization = Organization.find(params[:organization_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_store
       @store = Store.find(params[:id])
@@ -69,11 +77,6 @@ class Cms::StoresController < Cms::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
-      params.require(:store).permit(
-        :enable, :name, :postcode, :region, :locality, :address, :tel, :fax, :near_station,
-        :gmap_query, :latitude, :longitude,
-        :opening_time, :closing_time, :regular_holiday, :opened_on, :closed_on, :spec,
-        :position
-      )
+      params.require(:store).permit( :enable, :name )
     end
 end

@@ -1,0 +1,5 @@
+%tr
+  %td= store.name
+  %td= link_to '詳細', [:intra,store], class: "btn btn-success"
+  %td= link_to '打刻ページ', intra_store_stamper_path(store), class: "btn btn-success"
+  %td= link_to '店舗スタッフ一覧', intra_store_staffs_path(store), class: "btn btn-success"

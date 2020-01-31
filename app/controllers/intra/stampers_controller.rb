@@ -1,7 +1,9 @@
 class Intra::StampersController < Intra::ApplicationController
   def show
-    @store = Store.first # Store.find(params[:store_id])
-    @staffs = Staff.all
+    @store = Store.find(params[:store_id])
+    @staffs = @store.organization.employees
+    @dailies = {}
+    StampedDaily.where(ymd: @store.ymd).each{|sd| @dailies[sd.staff_id] = sd}
     @stamp = StampedEach.new
   end
 
@@ -12,7 +14,7 @@ class Intra::StampersController < Intra::ApplicationController
     daily = StampedDaily.where(ymd: @stamp.ymd, staff_id: @stamp.staff_id).first_or_create
     respond_to do |format|
       if daily.stamped_eaches << @stamp
-        format.html { redirect_to intra_stamper_path, notice: 'stamped.' }
+        format.html { redirect_to intra_store_stamper_path(@stamp.store_id), notice: @stamp.stamped_text }
         format.json { render :show, status: :created, location: intra_stamper_path }
       else
         format.html { render :show }

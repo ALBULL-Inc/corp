@@ -2,52 +2,51 @@
 .row
   .col-md-2
   .col-md-8
-    %h1 打刻一覧
+    %h1 打刻実績
 
 .row
-  .col-md-2
-  .col-md-8
-    - @staffs.each do |staff|
-      .row
-        .col-sm-12
-          %h2.f20
-            = staff.code
-            = staff.name
+  .col-md-1
+  .col-md-10
+    .row
+      .col-sm-12
+        %h2.f20
+          = @staff.code
+          = @staff.name
 
-      .row.pt5.pb5.text-center
-        .col-sm-2
-          合計
-        .col-sm-2
-        .col-sm-2
-        .col-sm-2
-        .col-sm-2
-        .col-sm-2.border
-          =l staff.stamped_dailies.map(&:worked_time).compact.sum, format: :hm
+        %h3.f18.t-center
+          = link_to "«", intra_staff_stamps_path(@staff, @monthly.prev_year, @monthly.prev_month)
+          %span.ml20.mr20
+            = l @monthly.date, format: :ym
+            ( #{l @monthly.first_day} - #{l @monthly.last_day} )
+          = link_to "»", intra_staff_stamps_path(@staff, @monthly.next_year, @monthly.next_month)
 
-      .row.text-center
-        .col-sm-2
-          日付
-        .col-sm-2
-          出勤時刻
-        .col-sm-2
-          退勤時刻
-        .col-sm-2
-          休憩開始時刻
-        .col-sm-2
-          休憩終了時刻
-        .col-sm-2
-          実働時間
-      - staff.stamped_dailies.each do |s|
-        .row.pt5.pb5.text-center
-          .col-sm-2
-            = s.ymd
-          .col-sm-2
-            = s.work_start_at ? l(s.work_start_at, format: :hm) : ""
-          .col-sm-2
-            = s.work_end_at ? l(s.work_end_at, format: :hm) : ""
-          .col-sm-2
-            = s.rest_start_at ? l(s.rest_start_at, format: :hm) : ""
-          .col-sm-2
-            = s.rest_end_at ? l(s.rest_end_at, format: :hm) : ""
-          .col-sm-2
-            = s.worked_time ? l(s.worked_time, format: :hm) : ""
+    .row
+      %table.table.t-center
+        %tr
+          %td 合計
+          %td
+          %td
+          %td
+          %td
+          %td.border-left= @monthly.worked_hm
+          %td= @monthly.overtime_hm
+          %td= @monthly.midnight_hm
+        %tr{style: "background-color: #eee"}
+          %th 日付
+          %th 出勤
+          %th 退勤
+          %th 休開
+          %th 休終
+          %th.border-left 実働
+          %th 残業
+          %th 深夜
+        - @monthly.stamped_dailies.each do |s|
+          %tr
+            %td=l s.ymd.to_date, format: :md
+            %td= s.work_start_at ? l(s.work_start_at, format: :hm) : ""
+            %td= s.work_end_at ? l(s.work_end_at, format: :hm) : ""
+            %td= s.rest_start_at ? l(s.rest_start_at, format: :hm) : ""
+            %td= s.rest_end_at ? l(s.rest_end_at, format: :hm) : ""
+            %td.border-left= s.worked_hm
+            %td= s.overtime_hm
+            %td= s.midnight_hm

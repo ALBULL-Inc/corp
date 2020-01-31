@@ -1,0 +1,16 @@
+
+.row
+  .col-2
+  .col-8
+    %h1 組織一覧
+
+    %table.table
+      %tr
+        %th= Organization.human_attribute_name :name
+        %th{colspan: 3}
+
+      - @organizations.each do |organization|
+        %tr
+          %td= organization.name
+          %td{style: "width: 240px;"}
+            = link_to "詳細", [:intra,organization], class: 'btn btn-info'

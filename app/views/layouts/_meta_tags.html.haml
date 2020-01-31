@@ -4,7 +4,7 @@
 %meta{name:"viewport", content:viewport_content}
 
 = display_meta_tags site: t('site.name'), description: t('site.description'),
-  og: { title: t('site.name'), url: root_url, type: "website", site_name: t('site.name'),
+  og: { title: t('site.title'), url: root_url, type: "website", site_name: t('site.og_site_name'),
     image: asset_url('layout/header/logo.png') },
   reverse: true,
   twitter: {card: 'summary_large_image', site: '@dartsbarrailly'},
