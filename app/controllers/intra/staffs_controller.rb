@@ -20,6 +20,7 @@ class Intra::StaffsController < Intra::ApplicationController
 
   # GET /staffs/1/edit
   def edit
+    @organizations = Organization.all
   end
 
   # POST /staffs
@@ -42,7 +43,7 @@ class Intra::StaffsController < Intra::ApplicationController
   def update
     respond_to do |format|
       if @staff.update(staff_params)
-        format.html { redirect_to [:cms,@staff], notice: 'Staff was successfully updated.' }
+        format.html { redirect_to [:intra,@staff], notice: 'Staff was successfully updated.' }
         format.json { render :show, status: :ok, location: @staff }
       else
         format.html { render :edit }

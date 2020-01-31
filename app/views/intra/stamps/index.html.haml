@@ -7,47 +7,46 @@
 .row
   .col-md-2
   .col-md-8
-    - @staffs.each do |staff|
-      .row
-        .col-sm-12
-          %h2.f20
-            = staff.code
-            = staff.name
+    .row
+      .col-sm-12
+        %h2.f20
+          = @staff.code
+          = @staff.name
 
+    .row.pt5.pb5.text-center
+      .col-sm-2
+        合計
+      .col-sm-2
+      .col-sm-2
+      .col-sm-2
+      .col-sm-2
+      .col-sm-2.border
+        = @monthly.worked_hm
+
+    .row.text-center
+      .col-sm-2
+        日付
+      .col-sm-2
+        出勤時刻
+      .col-sm-2
+        退勤時刻
+      .col-sm-2
+        休憩開始時刻
+      .col-sm-2
+        休憩終了時刻
+      .col-sm-2
+        実働時間
+    - @monthly.stamped_dailies.each do |s|
       .row.pt5.pb5.text-center
         .col-sm-2
-          合計
+          = s.ymd
         .col-sm-2
+          = s.work_start_at ? l(s.work_start_at, format: :hm) : ""
         .col-sm-2
+          = s.work_end_at ? l(s.work_end_at, format: :hm) : ""
         .col-sm-2
+          = s.rest_start_at ? l(s.rest_start_at, format: :hm) : ""
         .col-sm-2
-        .col-sm-2.border
-          =l staff.stamped_dailies.map(&:worked_time).compact.sum, format: :hm
-
-      .row.text-center
+          = s.rest_end_at ? l(s.rest_end_at, format: :hm) : ""
         .col-sm-2
-          日付
-        .col-sm-2
-          出勤時刻
-        .col-sm-2
-          退勤時刻
-        .col-sm-2
-          休憩開始時刻
-        .col-sm-2
-          休憩終了時刻
-        .col-sm-2
-          実働時間
-      - staff.stamped_dailies.each do |s|
-        .row.pt5.pb5.text-center
-          .col-sm-2
-            = s.ymd
-          .col-sm-2
-            = s.work_start_at ? l(s.work_start_at, format: :hm) : ""
-          .col-sm-2
-            = s.work_end_at ? l(s.work_end_at, format: :hm) : ""
-          .col-sm-2
-            = s.rest_start_at ? l(s.rest_start_at, format: :hm) : ""
-          .col-sm-2
-            = s.rest_end_at ? l(s.rest_end_at, format: :hm) : ""
-          .col-sm-2
-            = s.worked_time ? l(s.worked_time, format: :hm) : ""
+          = s.worked_hm
