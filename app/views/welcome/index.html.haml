@@ -1,47 +1,70 @@
 - set_meta_tags site: "Darts Bar Railly | 赤坂・溜池山王でダーツするならダーツバーレイリー", canonical: root_url,
   description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)。営業時間18:00〜29:00,DARTSLIVE2EXが3台,TouchLive1台,バーメイト1台!赤坂、溜池山王でダーツならRailly(レイリー)!会員登録することでお得にご利用いただけます。",
   og: {description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)。営業時間18:00〜29:00,DARTSLIVE2EXが3台,TouchLive1台,バーメイト1台!赤坂、溜池山王でダーツならRailly(レイリー)!会員登録することでお得にご利用いただけます。"},
-  keywords: "赤坂,ダーツバー,Railly,レイリー,溜池山王,貸切,パーティ,投げ放題,ウィスキー,二次会,三次会"
+  keywords: "赤坂,ダーツ,ダーツバー,レイリー,darts,dartsbar,Railly,溜池山王,赤坂見附,六本木,貸切,パーティ,投げ放題,ウィスキー,二次会,三次会"
 
 - content_for(:jsonld) do
   = jsonld_script_tag
 
-.eye-catch.mb20
-  .text-center.pt80.c-white
-    %h1.mt0.mb40
-      %ruby
-        %rb.f50 Darts
-        %rt.f14 ダーツ
-      %ruby
-        %rb.f50 Bar
-        %rt.f14 バー
-      %ruby
-        %rb.f50 Railly
-        %rt.f14 レイリー
-    %p.lead
-      ダーツするならレイリーで
 
-.row
-  .col-md-2
-    .card
-      = image_tag "thema.jpg", class: 'card-img-top', alt: ''
-    .card-body
-      .card-text
-  .col-md-2
-    .card
-      = image_tag "drink.jpg", class: 'card-img-top', alt: ''
-  .col-md-2
-    .card
-      = image_tag "whisky.jpg", class: 'card-img-top', alt: ''
-  .col-md-2
-    .card
-      = image_tag "floor_a.jpg", class: 'card-img-top', alt: ''
-  .col-md-2
-    .card
-      = image_tag "floor_b.jpg", class: 'card-img-top', alt: ''
-  .col-md-2
-    .card
-      = image_tag "floor_c.jpg", class: 'card-img-top', alt: ''
+
+
+
+#carousel-topic.carousel.slide(data-ride="carousel" height="512px")
+  %ol.carousel-indicators
+    %li.active(data-target="#carousel-topic" data-slide-to="0")
+    %li(data-target="#carousel-topic" data-slide-to="1")
+    %li(data-target="#carousel-topic" data-slide-to="2")
+    -# @carousels.each.with_index do |carousel, i|
+      %li.active(data-target="#carousel-topic" data-slide-to="#{i}")
+
+  .carousel-inner(role="listbox")
+    .carousel-item.active(data-interval="10000")
+      .carousel-1
+      .carousel-caption.d-none.d-md-block
+        %h1.mt0.mb40.f-bold
+          %ruby
+            %rb.f50 Darts
+            %rt.f14 ダーツ
+          %ruby
+            %rb.f50 Bar
+            %rt.f14 バー
+          %ruby
+            %rb.f50 Railly
+            %rt.f14 レイリー
+        %p.lead.pt30.pb30
+          赤坂でDARTSLIVEを遊ぶならRailly
+          %br
+          DARTSLIVE2が2台とDARTSLIVE3が1台
+
+    .carousel-item(data-interval="10000")
+      .carousel-2
+      .carousel-caption.d-none.d-md-block
+        %h2.pb40.f50.f-bold パーティプランもご用意
+        %p.lead
+          歓送迎会や忘年会新年会など各種宴会で貸切利用
+          %br
+          スペースをご自由にご利用いただけるスペースレンタルもご相談ください
+          %br
+          ご要望に合わせて柔軟に対応いたします。
+
+    .carousel-item(data-interval="10000")
+      .carousel-3
+      .carousel-caption.d-none.d-md-block
+        %h2.f50.f-bold 赤坂駅 徒歩2分
+        %p.lead
+          東京メトロ千代田線赤坂駅から徒歩2分
+          %br
+          その他、溜池山王駅、赤坂見附駅も徒歩圏内
+
+  %a.carousel-control-prev(href="#carousel-topic" role="button" data-slide="prev")
+    %span.carousel-control-prev-icon
+    %span.sr-only
+      Previous
+  %a.carousel-control-next(href="#carousel-topic" role="button" data-slide="next")
+    %span.carousel-control-next-icon
+    %span.sr-only
+      Next
 
 %p.text-center
   <!-- 横長1-1 -->
@@ -118,10 +141,6 @@
 
 
   .col-3
-    .row.mb20
-      .col
-        .card
-          = link_to image_tag("p_banner.png", size: '260x260'), parties_path
     .row
       .col
         = link_to "Tweets by DartsBarRailly", "https://twitter.com/DartsBarRailly?ref_src=twsrc%5Etfw", class: "twitter-timeline", data: {width: 285, height: 750, dnt: false, chrome: "noheader nofooter"}
