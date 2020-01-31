@@ -1,7 +1,51 @@
-%p
-  %b #{Organization.human_attribute_name(:organization)}:
-  = @organization.name
 
-= link_to 'Edit', edit_intra_organization_path(@organization)
-\|
-= link_to 'Back', intra_organizations_path
+%section.mb40
+  %h1= @organization.name
+
+%section.mb40
+  %h3
+    この組織の店舗一覧
+    - if false
+      = link_to '店舗登録', new_intra_organization_store_path(@organization), class: 'btn btn-info'
+  .row
+    .col-6
+
+      %table.table
+        - @stores.each do |store|
+          %tr
+            %td{style: "vertical-align: middle; width: 220px"}
+              = store.name
+            %td.t-right
+              - if false
+                = link_to '店舗スタッフ一覧', intra_store_staffs_path(store), class: "btn btn-success"
+              = link_to '打刻ページ', intra_store_stamper_path(store), class: "btn btn-success"
+
+%section
+  %h3
+    この組織のスタッフ一覧
+    = link_to 'スタッフ登録', new_intra_organization_staff_path(@organization), class: 'btn btn-info'
+
+  .row
+    .col-6
+      %table.table
+        %tr
+          %th= Staff.human_attribute_name :code
+          %th= Staff.human_attribute_name :name
+          %th
+        - @staffs.each do |staff|
+          %tr
+            %td{style: "vertical-align: middle; width: 100px"}
+              = staff.code
+            %td{style: "vertical-align: middle;"}
+              %ruby
+                %rb
+                  #{staff.last_name}
+                %rt
+                  #{staff.last_kana}
+              %ruby
+                %rb
+                  #{staff.first_name}
+                %rt
+                  #{staff.first_kana}
+            %td{style: "vertical-align: middle;width: 120px"}
+              = link_to '勤務実績', intra_staff_stamps_path(staff), class: "btn btn-info"

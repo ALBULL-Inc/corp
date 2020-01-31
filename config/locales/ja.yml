@@ -37,6 +37,7 @@ ja:
       short: ! '%m/%d'
       topic: ! '%Y.%m.%d'
       ym: ! '%Y/%m'
+      md: ! '%m/%d'
     month_names:
     -
     - 1月
@@ -195,6 +196,7 @@ ja:
       full: ! '%Y/%m/%d %H:%M:%S'
       long: ! '%Y年%m月%d日(%a) %H時%M分%S秒 %z'
       short: ! '%y/%m/%d %H:%M'
+      mdhm: ! '%m/%d %H:%M'
       ymd: ! '%y/%m/%d'
       hm: ! '%H:%M'
     pm: 午後

@@ -9,13 +9,12 @@ class StampedEach < ApplicationRecord
     I18n.t(StampedType::WORDS[self.stamped_type_id])
   end
 
-  def rounded_at
-    case self.stamped_type_id
-    when StampedType::WORKING_START
-      self.stamped_at.ceil_to(1.minute)
-    when StampedType::WORKING_END
-      self.stamped_at.floor_to(1.minute)
-    end
+  def rounded_at(s=1.minute)
+    self.stamped_at.floor_to(s)
+  end
+
+  def stamped_text
+    %{#{self.staff.name}さんが#{I18n.l(self.rounded_at, format: :hm)}に#{stamped_type}しました}
   end
 
   private

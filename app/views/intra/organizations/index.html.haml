@@ -1,20 +1,16 @@
-%h1 Listing organizations
 
-%table.table
-  %thead
-    %tr
-      %th= Organization.human_attribute_name :name
-      %th{colspan: 3}
+.row
+  .col-2
+  .col-8
+    %h1 組織一覧
 
-  %tbody
-    - @organizations.each do |organization|
+    %table.table
       %tr
-        %td= organization.name
-        %td
-          = link_to 'Show', [:intra,organization], class: 'btn btn-info'
-          = link_to 'Edit', edit_intra_organization_path(organization), class: 'btn btn-warning'
-          = link_to 'Destroy', [:intra,organization], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+        %th= Organization.human_attribute_name :name
+        %th{colspan: 3}
 
-%br
-
-= link_to 'New Organization', new_intra_organization_path
+      - @organizations.each do |organization|
+        %tr
+          %td= organization.name
+          %td{style: "width: 240px;"}
+            = link_to "詳細", [:intra,organization], class: 'btn btn-info'

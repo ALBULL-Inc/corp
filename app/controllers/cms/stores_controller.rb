@@ -14,7 +14,7 @@ class Cms::StoresController < Cms::ApplicationController
 
   # GET /stores/new
   def new
-    @store = Store.new
+    @store = @organization.stores.build
   end
 
   # GET /stores/1/edit
@@ -24,7 +24,7 @@ class Cms::StoresController < Cms::ApplicationController
   # POST /stores
   # POST /stores.json
   def create
-    @store = Store.new(store_params)
+    @store = @organization.store.build(store_params)
 
     respond_to do |format|
       if @store.save

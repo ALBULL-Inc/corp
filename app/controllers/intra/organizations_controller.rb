@@ -11,6 +11,8 @@ class Intra::OrganizationsController < Intra::ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @stores = @organization.stores
+    @staffs = @organization.employees
   end
 
   # GET /organizations/new

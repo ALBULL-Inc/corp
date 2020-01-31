@@ -57,15 +57,20 @@ Rails.application.routes.draw do
   end
   namespace :intra do
     root to: "dashboards#index"
-    resources :organizations
-    resources :staffs do
-      resources :stamps
+    resources :organizations do
+      resources :stores
+      resources :staffs, only: [:index,:new,:create]
     end
-    resources :stamps
-    resource :stamper
-    resources :stores, only: [:index,:show] do
+    resources :stores, only: [] do
       resource :stamper
       resources :staffs, only: [:index]
     end
+    resources :staffs, only: [:show,:edit,:update,:destroy] do
+      resources :stamps, only: [] do
+        get '(/:year/:month)', to: 'stamps#index', on: :collection, as: ""
+      end
+    end
+    resources :stamps
+    resource :stamper
   end
 end

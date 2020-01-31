@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      store: 店舗
+    attributes:
+      store:
+        name: 名称

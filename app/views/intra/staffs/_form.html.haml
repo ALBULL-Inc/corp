@@ -1,4 +1,4 @@
-= form_for [:intra,@staff] do |f|
+= nested_form_for [:intra,@organization,@staff] do |f|
   - if @staff.errors.any?
     #error_explanation
       %h2= "#{pluralize(@staff.errors.count, "error")} prohibited this staff from being saved:"
@@ -6,9 +6,16 @@
         - @staff.errors.full_messages.each do |msg|
           %li= msg
 
-  .form-group
-    = f.label :organization
-    = f.collection_select :organization_id, @organizations, :id, :name, class: "form-control"
+  = f.fields_for :stores_staffs do |s_f|
+    .form-inline
+      = s_f.hidden_field :id
+      = s_f.collection_select :store_id, @stores, :id, :name, {}, {style: "width: 50%", class: "form-control mr5"}
+      - if not s_f.object.new_record?
+        = s_f.check_box :_destroy
+      - else
+        = s_f.link_to_remove "削除", class: 'btn btn-danger'
+
+  = f.link_to_add "所属先追加", :stores_staffs, class: 'btn btn-info'
   .form-group
     = f.label :code
     = f.text_field :code, class: "form-control"
