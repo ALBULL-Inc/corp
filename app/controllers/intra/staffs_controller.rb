@@ -23,7 +23,7 @@ class Intra::StaffsController < Intra::ApplicationController
 
   # GET /staffs/1/edit
   def edit
-    @stores = @store.organization.stores
+    @stores = @organization.stores
   end
 
   # POST /staffs

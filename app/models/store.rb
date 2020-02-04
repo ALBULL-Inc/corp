@@ -12,13 +12,13 @@ class Store < ApplicationRecord
   end
 
   def change_hour
-    @change_hour = 12 #12時で営業日を切り替える
+    @change_hour = 10 #10時で営業日を切り替える
   end
 
   def ymd(dt=nil)
     dt ||= DateTime.current
     if dt.hour < self.change_hour
-      dt = DateTime.yesterday
+      dt = dt.yesterday
     end
     dt.ymd
   end

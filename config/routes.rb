@@ -59,13 +59,13 @@ Rails.application.routes.draw do
     root to: "dashboards#index"
     resources :organizations do
       resources :stores
-      resources :staffs, only: [:index,:new,:create]
+      resources :staffs
     end
     resources :stores, only: [] do
       resource :stamper
       resources :staffs, only: [:index]
     end
-    resources :staffs, only: [:show,:edit,:update,:destroy] do
+    resources :staffs, only: [] do
       resources :stamps, only: [] do
         get '(/:year/:month)', to: 'stamps#index', on: :collection, as: ""
       end

@@ -14,6 +14,4 @@
   %b #{Staff.human_attribute_name(:first_kana)}:
   = @staff.first_kana
 
-= link_to 'Edit', edit_intra_staff_path(@staff)
-\|
-= link_to 'Back', intra_staffs_path
+= link_to 'Edit', edit_intra_organization_staff_path(@organization,@staff)

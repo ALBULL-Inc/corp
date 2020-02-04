@@ -15,6 +15,14 @@ class StampedDaily < ApplicationRecord
     "%02d:%02d" % worked_sec.div(1.minute).divmod(60)
   end
 
+  def fixed_sec
+    (self.worked_sec - self.overtime_sec)
+  end
+
+  def fixed_hm
+    "%02d:%02d" % fixed_sec.div(1.minute).divmod(60)
+  end
+
   def overtime_sec
     (s = worked_sec - 8.hour) > 0 ? s : 0
   end
@@ -27,7 +35,7 @@ class StampedDaily < ApplicationRecord
     dt = DateTime.parse("#{self.ymd}220000 +0900")
     mid = self.work_end_at - dt
     return 0 if mid <= 0
-    dt = DateTime.parse("#{self.ymd+1}050000 +0900")
+    dt = DateTime.parse("#{self.ymd.to_date.next.ymd}050000 +0900")
     mid2 = self.work_end_at - dt
     mid2 = 0 if mid2 < 0
     return mid - mid2

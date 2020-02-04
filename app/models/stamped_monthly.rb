@@ -21,6 +21,13 @@ class StampedMonthly
     @worked_hm ||= "%02d:%02d" % worked_sec.div(1.minute).divmod(60)
   end
 
+  def fixed_sec
+    @fixed_sec ||= stamped_dailies.map(&:fixed_sec).sum
+  end
+  def fixed_hm
+    @fixed_hm ||= "%02d:%02d" % fixed_sec.div(1.minute).divmod(60)
+  end
+
   def overtime_sec
     @overtime_sec ||= stamped_dailies.map(&:overtime_sec).sum
   end

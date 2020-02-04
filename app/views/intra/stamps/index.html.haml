@@ -28,9 +28,22 @@
           %td
           %td
           %td
-          %td.border-left= @monthly.worked_hm
-          %td= @monthly.overtime_hm
-          %td= @monthly.midnight_hm
+          %td.border-left
+            = @monthly.worked_hm
+            %br
+            %span.f10= (@monthly.worked_sec / 1.hour).ceil(2)
+          %td
+            = @monthly.fixed_hm
+            %br
+            %span.f10= (@monthly.fixed_sec / 1.hour).ceil(2)
+          %td
+            = @monthly.overtime_hm
+            %br
+            %span.f10= (@monthly.overtime_sec / 1.hour).ceil(2)
+          %td
+            = @monthly.midnight_hm
+            %br
+            %span.f10= (@monthly.midnight_sec / 1.hour).ceil(2)
         %tr{style: "background-color: #eee"}
           %th 日付
           %th 出勤
@@ -38,6 +51,7 @@
           %th 休開
           %th 休終
           %th.border-left 実働
+          %th 所定
           %th 残業
           %th 深夜
         - @monthly.stamped_dailies.each do |s|
@@ -48,5 +62,6 @@
             %td= s.rest_start_at ? l(s.rest_start_at, format: :hm) : ""
             %td= s.rest_end_at ? l(s.rest_end_at, format: :hm) : ""
             %td.border-left= s.worked_hm
+            %td= s.fixed_hm
             %td= s.overtime_hm
             %td= s.midnight_hm
