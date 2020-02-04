@@ -1,4 +1,6 @@
 class Intra::StampersController < Intra::ApplicationController
+  skip_before_action :basic_auth, only: [:show, :create]
+
   def show
     @store = Store.find(params[:store_id])
     @staffs = @store.organization.employees
