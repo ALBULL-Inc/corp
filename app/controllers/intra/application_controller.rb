@@ -6,8 +6,9 @@ class Intra::ApplicationController < ActionController::Base
 
   private
     def basic_auth
-      http_basic_authenticate_with \
-        name: Settings.basic.cms.name, password: Settings.basic.cms.password
+      authenticate_or_request_with_http_basic("Application") do |name, password|
+        name == Settings.basic.cms.name && password == Settings.basic.cms.password
+      end
     end
 
     def use_basic_auth?
