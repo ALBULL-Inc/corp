@@ -3,8 +3,8 @@
   .container
     %ul.breadcrumb
       - elements[0..-2].each do |element|
-        %li.breadcrumb-item{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
+        %li.breadcrumb-item{itemscope: true, itemtype: "http://schema.org/Breadcrumb"}
           = link_to content_tag(:span, element.name.html_safe, itemprop: 'title'), element.path, itemprop: 'url'
 
-      %li.breadcrumb-item.active{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb", "aria-current": "page"}
+      %li.breadcrumb-item.active{itemscope: true, itemtype: "http://schema.org/Breadcrumb", "aria-current": "page"}
         = content_tag(:span, elements.last.name.html_safe, itemprop: 'title')
