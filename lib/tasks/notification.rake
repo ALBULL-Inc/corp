@@ -3,7 +3,6 @@ namespace :notification do
     desc "前日の勤怠の通知"
     task yesterday: :environment do
       target = DateTime.yesterday
-      target = DateTime.current
       notifier = Slack::Notifier.new Settings.slack.worked.webhook_url, username: "#{target.strftime("%Y-%m-%d")} Working Records"
       #notifier.ping "#{target.strftime("%m/%d")}の勤務状況"
       begin
