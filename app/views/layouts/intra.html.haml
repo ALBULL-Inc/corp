@@ -15,25 +15,21 @@
     = javascript_include_tag "intra", "data-turbolinks-track" => true
 
   %body
-    .navbar.navbar-expand-lg.navbar-light.bg-light.pa0
-      .container
-        .navbar-header
-          %button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-collapse")
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand(href=intra_root_path) Intra::Railly
-        .collapse.navbar-collapse#navbar-collapse
-          %ul.navbar-nav.mr-auto
-            %li.nav-item= link_to '組織一覧', intra_organizations_path, class: "nav-link"
-          %ul.navbar-nav
-            %li.nav-item
-              - if true
-                = link_to intra_root_path, class: "nav-link" do
-                  = fa_icon 'sign-in-alt'
-              - else
-                = link_to intra_root_path, class: "nav-link" do
-                  = fa_icon 'sign-out-alt'
+    .navbar.navbar-expand-lg.navbar-light.bg-light
+      %a.navbar-brand(href=intra_root_path) Intra::Railly
+      %button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-collapse")
+        %span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbar-collapse
+        .navbar-nav.mr-auto
+          = link_to '組織一覧', intra_organizations_path, class: "nav-item nav-link"
+        %span.navbar-text
+          .nav-item
+            - if true
+              = link_to intra_root_path, class: "nav-link" do
+                = fa_icon 'sign-in-alt'
+            - else
+              = link_to intra_root_path, class: "nav-link" do
+                = fa_icon 'sign-out-alt'
 
     .container
 

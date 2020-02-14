@@ -1,24 +1,19 @@
 
-.row
-  .col-md-2
-  .col-md-8
-    %h1 打刻実績
 
 .row
-  .col-md-1
-  .col-md-10
-    .row
-      .col-sm-12
-        %h2.f20
-          = @staff.code
-          = @staff.name
+  .offset-sm-1
+  .col.col-sm-10
+    %h1.f20.mb20
+      = @staff.code
+      = @staff.name
+      打刻実績
 
-        %h3.f18.t-center
-          = link_to "«", intra_staff_stamps_path(@staff, @monthly.prev_year, @monthly.prev_month)
-          %span.ml20.mr20
-            = l @monthly.date, format: :ym
-            ( #{l @monthly.first_day} - #{l @monthly.last_day} )
-          = link_to "»", intra_staff_stamps_path(@staff, @monthly.next_year, @monthly.next_month)
+    %h3.f18.t-center
+      = link_to "«", intra_staff_stamps_path(@staff, @monthly.prev_year, @monthly.prev_month)
+      %span.ml20.mr20
+        = l @monthly.date, format: :ym
+        ( #{l @monthly.first_day} - #{l @monthly.last_day} )
+      = link_to "»", intra_staff_stamps_path(@staff, @monthly.next_year, @monthly.next_month)
 
     .row
       %table.table.t-center

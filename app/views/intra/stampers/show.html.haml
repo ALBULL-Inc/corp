@@ -1,43 +1,51 @@
 .row
-  .col-md-2
-  .col-md-8
+  .offset-md-2
+  .col.col-md-8
     %h1.mb20
       = @store.name
       打刻ページ
 
     %h3
 
-    %table.table
-      %tr
-        %th= Staff.human_attribute_name :code
-        %th= Staff.human_attribute_name :name
-        %th
-        %th
-      - @staffs.each do |staff|
-        %tr
-          %td{style: "vertical-align: middle;"}
-            = staff.code
-          %td{style: "vertical-align: middle;"}
-            %ruby
-              %rb
-                #{staff.last_name}
-              %rt
-                #{staff.last_kana}
-            %ruby
-              %rb
-                #{staff.first_name}
-              %rt
-                #{staff.first_kana}
-          %td{style: "text-align: right; width: 120px;"}
-            = form_for @stamp, url: intra_stamper_path do |f|
-              = f.hidden_field :store_id, value: @store.id
-              = f.hidden_field :staff_id, value: staff.id
-              = f.button "出勤", class: "btn btn-success pl30 pr30 stamping", data: {type: StampedType::WORKING_START}
-              = l(@dailies[staff.id].work_start_at, format: :mdhm) if @dailies[staff.id]&.work_start_at
 
-          %td{style: "text-align: right; width: 120px;"}
-            = form_for @stamp, url: intra_stamper_path do |f|
-              = f.hidden_field :store_id, value: @store.id
-              = f.hidden_field :staff_id, value: staff.id
-              = f.button "退勤", class: "btn btn-danger pl30 pr30 stamping", data: {type: StampedType::WORKING_END}
-              = l(@dailies[staff.id].work_end_at, format: :mdhm) if @dailies[staff.id]&.work_end_at
+    .row.no-gutters.border-bottom.pb10
+      .col-2.col-md-2
+        = Staff.human_attribute_name :code
+      .col
+        = Staff.human_attribute_name :name
+      .col-5
+
+    - @staffs.each do |staff|
+      .row.no-gutters.align-items-center.border-bottom.mt10.pb10
+        .col-2.col-md-2
+          = staff.code
+        .col
+          %ruby
+            %rb
+              #{staff.last_name}
+            %rt
+              #{staff.last_kana}
+          %ruby
+            %rb
+              #{staff.first_name}
+            %rt
+              #{staff.first_kana}
+        .col-4.col-sm-6.col-lg-5
+          .row.no-gutters
+            .col.t-center
+              = form_for @stamp, url: intra_stamper_path do |f|
+                = f.hidden_field :store_id, value: @store.id
+                = f.hidden_field :staff_id, value: staff.id
+                = f.button "出勤", class: "btn btn-success pl30 pr30 stamping", data: {type: StampedType::WORKING_START}
+              .row
+                .col
+                  = l(@dailies[staff.id].work_start_at, format: :mdhm) if @dailies[staff.id]&.work_start_at
+            .col.t-center
+              = form_for @stamp, url: intra_stamper_path do |f|
+                = f.hidden_field :store_id, value: @store.id
+                = f.hidden_field :staff_id, value: staff.id
+                = f.button "退勤", class: "btn btn-danger pl30 pr30 stamping", data: {type: StampedType::WORKING_END}
+              .row
+                .col
+                  = l(@dailies[staff.id].work_end_at, format: :mdhm) if @dailies[staff.id]&.work_end_at
+
