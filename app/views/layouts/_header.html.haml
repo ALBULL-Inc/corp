@@ -15,7 +15,7 @@
         //%li= link_to "#{fa_icon 'newspaper'} 求人情報".html_safe, recruits_path
         %li.nav-item= link_to "#{fa_icon 'book-open'} ブログ".html_safe, blogs_path, class: "nav-link"
       %ul.navbar-nav
-        %li.nav-item= link_to "#{fa_icon 'door-open'} ご予約はこちら".html_safe, new_inquiry_path(concern: 5), class: "nav-link"
+        %li.nav-item= link_to "#{fa_icon 'door-open'} お問い合わせ".html_safe, new_inquiry_path(concern: 5), class: "nav-link"
 
         - if account_signed_in?
           %li.nav-item{style: 'float: left'}

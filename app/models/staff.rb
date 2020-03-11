@@ -1,6 +1,6 @@
 class Staff < ApplicationRecord
-  has_many :employment_contracts
-  # has_many :employers, through: :employment_contracts,source: :organization
+  has_one :employment_contract
+  has_one :employer, through: :employment_contract, source: :organization
   has_many :stores_staffs
   has_many :stores, through: :stores_staffs
   has_many :stamped_dailies, ->{ order(ymd: :asc) }

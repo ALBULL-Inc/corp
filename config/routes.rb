@@ -70,7 +70,7 @@ Rails.application.routes.draw do
         get '(/:year/:month)', to: 'stamps#index', on: :collection, as: ""
       end
     end
-    resources :stamps
+    resources :stamps, only: [:index]
     resource :stamper
   end
 end

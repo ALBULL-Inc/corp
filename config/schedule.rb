@@ -24,7 +24,10 @@ every 1.day, at: '4:30 am' do
   runner 'DartsliveCard.all_sync'
 end
 
-every 1.day, at: '10:00 am' do
+every 1.day, at: '09:00 am' do
   rake 'notification:worked:yesterday'
+end
+
+every 1.day, at: '10:00 am' do
   rake 'payjp:sync_payment'
 end

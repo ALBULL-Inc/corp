@@ -46,10 +46,14 @@
               %li.list-group-item.text-right.bt-none
                 = link_to 'more »', store
 
-.row
-  %p.text-center
-    <!-- 横長1-1 -->
-    = render partial: 'common/adsense', locals: {slot_id: 4877223498, w: 728, h: 90}
+- if false
+  .row
+    %p.text-center
+      <!-- 横長1-1 -->
+      = render partial: 'common/adsense', locals: {slot_id: 4877223498, w: 728, h: 90}
+
+.row.m-auto{style: "width: 268px"}
+  %script(type="text/javascript" src="https://www.hotpepper.jp/hpdsReserveGadget/" charset="UTF-8" data-style="{'bgcolor': 'white', 'btncolor': 'blue'}" data-stores="[{'J001216399': null}]")
 
 .row
   .col-12
