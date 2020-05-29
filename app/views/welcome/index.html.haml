@@ -71,7 +71,7 @@
     <!-- 横長1-1 -->
     = render partial: 'common/adsense', locals: {slot_id: 4877223498, w: 728, h: 90}
 
-.row.mb50
+.row.mt30.mb50
   .col-9
     .row
       .col-3
@@ -142,9 +142,10 @@
 
 
   .col-3
-    .row
-      .col
-        %script(type="text/javascript" src="https://www.hotpepper.jp/hpdsReserveGadget/" charset="UTF-8" data-style="{'bgcolor': 'white', 'btncolor': 'blue'}" data-stores="[{'J001216399': null}]")
+    - if false
+      .row
+        .col
+          %script(type="text/javascript" src="https://www.hotpepper.jp/hpdsReserveGadget/" charset="UTF-8" data-style="{'bgcolor': 'white', 'btncolor': 'blue'}" data-stores="[{'J001216399': null}]")
     .row
       .col
         = link_to "Tweets by DartsBarRailly", "https://twitter.com/DartsBarRailly?ref_src=twsrc%5Etfw", class: "twitter-timeline", data: {width: 285, height: 750, dnt: false, chrome: "noheader nofooter"}
