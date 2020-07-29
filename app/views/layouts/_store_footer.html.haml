@@ -22,13 +22,13 @@
       %br
       = link_to "&copy;ALBULL Inc.".html_safe, '//albull.co.jp', style: "color: #333;", target: :_blank
     .col-md-6
-      .fb-page(data-href="https://business.facebook.com/ALBULL-Inc/" data-width="500" data-hide-cover="false" data-show-facepile="true" data-show-posts="false")
+      .fb-page(data-href="https://business.facebook.com/#{@fb_id}/" data-width="500" data-hide-cover="false" data-show-facepile="true" data-show-posts="false")
         .fb-xfbml-parse-ignore
-          %blockquote(cite="https://www.facebook.com/ALBULL-Inc")
-            %a(href="https://www.facebook.com/#ALBULL-Inc")
+          %blockquote(cite="https://www.facebook.com/#{@fb_id}")
+            %a(href="https://www.facebook.com/#{@fb_id}")
               = @fb_id
     .col-md-3.feedback
-      %small ご意見をお願いします
+      %small #{t('site.name')}にご意見をお願いします
       %form
         %textarea.form-control(rows="5")
         %input.btn.btn-outline-dark.btn-light.btn-sm.btn-block(type="submit" value="意見を送信する")

@@ -55,17 +55,17 @@ label.pause:after {
 
 
 .carousel-1 {
-  background: center 0 / 100% no-repeat image-url("top_image.jpg");
+  background: center 0 / 100% no-repeat image-url("header-bg.jpg");
   height: 520px;
 }
 
 .carousel-2 {
-  background: center 0 / 100% no-repeat image-url("party.jpg");
+  background: center 0 / 100% repeat-x image-url("top_image.jpg");
   height: 520px;
 }
 
 .carousel-3 {
-  background: center 0 / 60% repeat-x image-url("thema.jpg");
+  background: center 0 / 100% no-repeat image-url("party.jpg");
   height: 520px;
 }
 

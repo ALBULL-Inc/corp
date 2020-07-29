@@ -6,7 +6,7 @@ class StoresController < ApplicationController
   # GET /stores.json
   def index
     @stores = Store.enables
-    redirect_to @stores.first if @stores.count == 1
+    #redirect_to @stores.first if @stores.count == 1
   end
 
   # GET /stores/1
@@ -14,6 +14,8 @@ class StoresController < ApplicationController
   def show
     add_breadcrumb @store.name, store_url(@store)
     @menus = Menu.all
+    @fb_id = "railly.AKASAKA"
+    render layout: 'store'
   end
 
   private

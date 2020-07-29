@@ -2,17 +2,16 @@
 = render partial: 'common/fb_root'
 %nav.navbar.navbar-expand-md.navbar-light.bg-light.pa0.mb20
   .container
-    %a.navbar-brand(href=root_path)= image_tag(asset_url('layout/header/albull.png'), alt: t('site.name'))
+    %a.navbar-brand(href=root_path)= image_tag(asset_url('layout/header/railly.png'), alt: t('site.name'))
     %button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation")
       %span.navbar-toggler-icon
 
     .collapse.navbar-collapse.ml20#navbar-collapse
       %ul.nav.navbar-nav.mr-auto
-        %li.nav-item= link_to "#{fa_icon 'bell'} トピックス".html_safe, stores_path, class: "nav-link"
-        %li.nav-item= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path, class: "nav-link"
-        //%li.nav-item= link_to "#{fa_icon 'credit-card'} 月額プラン".html_safe, plans_path, class: "nav-link"
+        //%li= link_to "#{fa_icon 'file-alt'} メニュー".html_safe, menu_path
+        %li.nav-item= link_to "#{fa_icon 'cocktail'} パーティー".html_safe, parties_path, class: "nav-link"
+        %li.nav-item= link_to "#{fa_icon 'credit-card'} 月額プラン".html_safe, plans_path, class: "nav-link"
         //%li= link_to "#{fa_icon 'newspaper'} 求人情報".html_safe, recruits_path
-        %li.nav-item= link_to "#{fa_icon 'book-open'} ブログ".html_safe, blogs_path, class: "nav-link"
       %ul.navbar-nav
         %li.nav-item= link_to "#{fa_icon 'door-open'} お問い合わせ".html_safe, new_inquiry_path(concern: 5), class: "nav-link"
 
