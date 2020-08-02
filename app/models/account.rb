@@ -8,13 +8,16 @@ class Account < ApplicationRecord
   attr_writer :email_require
 
   # Association
-  has_one :profile, dependent: :destroy
+  has_one :profile, as: :profileable, dependent: :destroy
   delegate :firstname, :lastname, :nickname, :gender, :blood, :birthday, :fullname, to: :profile
   has_many :oauths, class_name: 'AccountOAuth', dependent: :destroy
   has_many :entries, dependent: :destroy
   has_one :subscription
   has_one :line_oauth, -> { where(provider: 'line') }, class_name: 'AccountOAuth'
   has_many :dartslive_cards
+
+  has_many :organizations_accounts, dependent: :destroy
+  has_many :organizations, through: :organizations_accounts
 
   # Scope
   default_scope -> { eager_load(:profile) }

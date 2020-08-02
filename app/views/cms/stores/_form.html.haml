@@ -10,6 +10,9 @@
     = f.label :enable
     = f.check_box :enable
   .field
+    = f.label :uid
+    = f.text_field :uid, class: "form-control"
+  .field
     = f.label :name
     = f.text_field :name, class: "form-control"
   .field
@@ -53,7 +56,7 @@
     = f.date_select :opened_on, class: "form-control"
   .field
     = f.label :closed_on
-    = f.date_select :closed_on, class: "form-control"
+    = f.date_select :closed_on, class: "form-control", include_blank: true
   .field
     = f.label :near_station
     = f.text_area :near_station, class: "form-control"
@@ -63,5 +66,11 @@
   .field
     = f.label :position
     = f.number_field :position, class: "form-control"
+  .field
+    = f.label :facebook_uid
+    = f.text_field :facebook_uid, class: "form-control"
+  .field
+    = f.label :twitter_uid
+    = f.text_field :twitter_uid, class: "form-control"
   .actions
     = f.submit 'Save', class: "btn btn-primary"

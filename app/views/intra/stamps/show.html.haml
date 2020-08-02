@@ -1,0 +1,54 @@
+.row
+  .offset-sm-1
+  .col.col-sm-10
+
+    %h1.f20.mb20
+      = @staff.code
+      = @staff.name
+      打刻実績
+
+    %h3.f18.t-center
+      = link_to "«", ymd_intra_organization_staff_stamps_path(@organization, @staff, @daily.date.prev_day.ymd)
+      %span.ml20.mr20
+        = l @daily.date
+      = link_to "»", ymd_intra_organization_staff_stamps_path(@organization, @staff, @daily.date.next_day.ymd)
+
+    .row
+      %table.table.t-center
+        %tr{style: "background-color: #eee"}
+          %th 実働
+          %th 所定
+          %th 残業
+          %th 深夜
+        %tr
+          %td
+            = @daily.worked_hm
+            %br
+            %span.f10= (@daily.worked_sec / 1.hour).ceil(2)
+          %td
+            = @daily.fixed_hm
+            %br
+            %span.f10= (@daily.fixed_sec / 1.hour).ceil(2)
+          %td
+            = @daily.overtime_hm
+            %br
+            %span.f10= (@daily.overtime_sec / 1.hour).ceil(2)
+          %td
+            = @daily.midnight_hm
+            %br
+            %span.f10= (@daily.midnight_sec / 1.hour).ceil(2)
+
+    .row
+      %table.table.t-center
+        %tr{style: "background-color: #eee"}
+          %th 勤務地
+          %th 打刻種別
+          %th 打刻時刻
+        - @daily.stamped_eaches.each do |e|
+          %tr
+            %td= e.workplace.name
+            %td= t(StampedType::WORDS[e.stamped_type_id])
+            %td= e.stamped_at ? l(e.stamped_at, format: :hm) : ""
+
+
+      = link_to "«#{@daily.date.year}年#{@daily.date.month}月に戻る", intra_organization_staff_stamps_path(@organization, @staff, @daily.date.year, @daily.date.month)

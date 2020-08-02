@@ -4,4 +4,26 @@ ja:
       store: 店舗
     attributes:
       store:
-        name: 名称
+        enable: 有効?
+        comming_soon: オープン前?
+        name: 店舗名
+        postcode: 郵便番号
+        address: 住所
+        gmap_query: google map
+        tel: TEL
+        fax: FAX
+        opening_time: 開店時間
+        closing_time: 閉店時間
+        regular_holiday: 定休日
+        opened_on: オープン日
+        closed_on: クローズ日
+        spec: 仕様
+        position: 順番
+        created_at:
+        updated_at:
+        latitude: 緯度(latitude)
+        longitude: 軽度(longitude)
+        near_station: 最寄り駅
+        region: 都道府県
+        locality: 市区町村
+        organization_id: 所属組織

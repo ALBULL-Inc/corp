@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      employment_contract: 雇用契約
+    attributes:
+      employment_contract:
+        organization: 組織
+        staff: スタッフ
+        workplace: 勤務地
+        employment_type: 雇用形態
+        effective_on: 入社日
+        expiration_on: 退職日
+
+  regular: "正社員"
+  contractor: "契約社員"
+  parttime: "パート・アルバイト"

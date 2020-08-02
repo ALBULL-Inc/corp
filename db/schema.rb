@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190712040121) do
+ActiveRecord::Schema.define(version: 20200731031353) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -64,12 +64,15 @@ ActiveRecord::Schema.define(version: 20190712040121) do
   end
 
   create_table "blogs", force: :cascade do |t|
-    t.boolean  "enable",     default: true, null: false
+    t.integer  "organization_id"
+    t.boolean  "enable",          default: true, null: false
     t.string   "title"
     t.text     "body"
     t.datetime "publish_at"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["organization_id", "enable", "publish_at"], name: "index_blogs_on_organization_id_and_enable_and_publish_at"
+    t.index ["organization_id"], name: "index_blogs_on_organization_id"
   end
 
   create_table "dartslive_cards", force: :cascade do |t|
@@ -87,12 +90,16 @@ ActiveRecord::Schema.define(version: 20190712040121) do
   create_table "employment_contracts", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "staff_id"
+    t.integer  "workplace_id"
+    t.integer  "employment_type"
     t.date     "effective_on"
     t.date     "expiration_on"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["employment_type"], name: "index_employment_contracts_on_employment_type"
     t.index ["organization_id"], name: "index_employment_contracts_on_organization_id"
     t.index ["staff_id"], name: "index_employment_contracts_on_staff_id"
+    t.index ["workplace_id"], name: "index_employment_contracts_on_workplace_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -117,6 +124,7 @@ ActiveRecord::Schema.define(version: 20190712040121) do
   end
 
   create_table "menus", force: :cascade do |t|
+    t.integer  "store_id"
     t.boolean  "enable",           default: false, null: false
     t.integer  "menu_category_id"
     t.string   "name"
@@ -126,15 +134,29 @@ ActiveRecord::Schema.define(version: 20190712040121) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.index ["menu_category_id"], name: "index_menus_on_menu_category_id"
+    t.index ["store_id", "enable", "menu_category_id"], name: "index_menus_on_store_id_and_enable_and_menu_category_id"
+    t.index ["store_id"], name: "index_menus_on_store_id"
   end
 
   create_table "organizations", force: :cascade do |t|
+    t.bigint   "corporate_number", null: false
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["corporate_number"], name: "index_organizations_on_corporate_number"
+  end
+
+  create_table "organizations_accounts", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.integer  "account_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["account_id"], name: "index_organizations_accounts_on_account_id"
+    t.index ["organization_id"], name: "index_organizations_accounts_on_organization_id"
   end
 
   create_table "parties", force: :cascade do |t|
+    t.integer  "store_id"
     t.boolean  "enable",     default: false, null: false
     t.string   "name"
     t.integer  "position"
@@ -142,6 +164,7 @@ ActiveRecord::Schema.define(version: 20190712040121) do
     t.text     "content"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["store_id"], name: "index_parties_on_store_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -162,16 +185,17 @@ ActiveRecord::Schema.define(version: 20190712040121) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.integer  "account_id"
+    t.bigint   "profileable_id"
+    t.string   "profileable_type"
     t.string   "firstname"
     t.string   "lastname"
     t.string   "nickname"
-    t.integer  "gender",     limit: 1, default: 0
-    t.integer  "blood",      limit: 1, default: 0
+    t.integer  "gender",           limit: 1, default: 0
+    t.integer  "blood",            limit: 1, default: 0
     t.date     "birthday"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.index ["account_id"], name: "index_profiles_on_account_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["profileable_type", "profileable_id"], name: "index_profiles_on_profileable_type_and_profileable_id"
   end
 
   create_table "recruits", force: :cascade do |t|
@@ -207,13 +231,16 @@ ActiveRecord::Schema.define(version: 20190712040121) do
     t.integer  "ymd"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["staff_id", "ymd"], name: "index_stamped_dailies_on_staff_id_and_ymd", unique: true
     t.index ["staff_id"], name: "index_stamped_dailies_on_staff_id"
+    t.index ["status"], name: "index_stamped_dailies_on_status"
+    t.index ["ymd"], name: "index_stamped_dailies_on_ymd"
   end
 
   create_table "stamped_eaches", force: :cascade do |t|
     t.integer  "stamped_daily_id"
     t.integer  "staff_id"
-    t.integer  "store_id"
+    t.integer  "workplace_id"
     t.integer  "stamped_type_id"
     t.datetime "stamped_at"
     t.integer  "ymd"
@@ -221,16 +248,20 @@ ActiveRecord::Schema.define(version: 20190712040121) do
     t.datetime "updated_at",       null: false
     t.index ["staff_id"], name: "index_stamped_eaches_on_staff_id"
     t.index ["stamped_daily_id"], name: "index_stamped_eaches_on_stamped_daily_id"
-    t.index ["store_id"], name: "index_stamped_eaches_on_store_id"
+    t.index ["workplace_id"], name: "index_stamped_eaches_on_workplace_id"
+    t.index ["ymd"], name: "index_stamped_eaches_on_ymd"
   end
 
   create_table "stores", force: :cascade do |t|
+    t.integer  "organization_id"
     t.boolean  "enable",          default: false, null: false
-    t.boolean  "comming_soon",    default: false, null: false
+    t.string   "pkey",                            null: false
     t.string   "name"
-    t.string   "postcode"
+    t.integer  "postcode"
+    t.string   "region"
+    t.string   "locality"
     t.string   "address"
-    t.string   "gmap_query"
+    t.string   "building"
     t.string   "tel"
     t.string   "fax"
     t.string   "opening_time"
@@ -239,27 +270,19 @@ ActiveRecord::Schema.define(version: 20190712040121) do
     t.date     "opened_on"
     t.date     "closed_on"
     t.text     "spec"
+    t.text     "near_station"
+    t.string   "gmap_query"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "facebook_uid"
+    t.string   "twitter_uid"
+    t.string   "instagram_uid"
     t.integer  "position",        default: 0,     null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.string   "latitude"
-    t.string   "longitude"
-    t.text     "near_station"
-    t.string   "region"
-    t.string   "locality"
-    t.integer  "organization_id"
     t.index ["organization_id"], name: "index_stores_on_organization_id"
-  end
-
-  create_table "stores_staffs", force: :cascade do |t|
-    t.integer  "store_id"
-    t.integer  "staff_id"
-    t.date     "effective_on"
-    t.date     "expiration_on"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["staff_id"], name: "index_stores_staffs_on_staff_id"
-    t.index ["store_id"], name: "index_stores_staffs_on_store_id"
+    t.index ["pkey", "enable"], name: "index_stores_on_pkey_and_enable"
+    t.index ["position", "enable"], name: "index_stores_on_position_and_enable"
   end
 
   create_table "subscribers", force: :cascade do |t|
@@ -299,14 +322,36 @@ ActiveRecord::Schema.define(version: 20190712040121) do
 
   create_table "topics", force: :cascade do |t|
     t.boolean  "enable"
+    t.bigint   "topicable_id"
+    t.string   "topicable_type"
     t.string   "title"
     t.text     "body"
     t.datetime "publish_at"
-    t.boolean  "carousel"
-    t.string   "carousel_img"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["enable", "publish_at", "carousel"], name: "index_topics_on_enable_and_publish_at_and_carousel"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["topicable_type", "topicable_id", "enable", "publish_at"], name: "ttep_idx"
+  end
+
+  create_table "workplaces", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.boolean  "enable",           null: false
+    t.string   "name"
+    t.integer  "postcode"
+    t.string   "region"
+    t.string   "locality"
+    t.string   "address"
+    t.string   "building"
+    t.integer  "tel"
+    t.integer  "fax"
+    t.string   "gmap_query"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.integer  "date_change_hour"
+    t.string   "position"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["organization_id"], name: "index_workplaces_on_organization_id"
+    t.index ["position"], name: "index_workplaces_on_position"
   end
 
 end

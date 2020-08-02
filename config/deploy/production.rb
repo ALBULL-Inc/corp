@@ -2,7 +2,7 @@
 require 'aws-sdk'
 
 set :rails_env, 'production'
-set :deploy_to, "/var/www/railly/#{fetch :rails_env}"
+set :deploy_to, "/var/www/corp/#{fetch :rails_env}"
 set :branch, 'master'
 set :pty, false
 

@@ -6,30 +6,41 @@
         - @staff.errors.full_messages.each do |msg|
           %li= msg
 
-  = f.fields_for :stores_staffs do |s_f|
-    .form-inline
-      = s_f.hidden_field :id
-      = s_f.collection_select :store_id, @stores, :id, :name, {}, {style: "width: 50%", class: "form-control mr5"}
-      - if not s_f.object.new_record?
-        = s_f.check_box :_destroy
-      - else
-        = s_f.link_to_remove "削除", class: 'btn btn-danger'
+  = f.fields_for :current_contract do |c_f|
+    .form-group
+      = f.label :code
+      = f.text_field :code, class: "form-control"
+    .form-group
+      = c_f.label :employment_type, EmploymentContract.human_attribute_name(:employment_type)
+      = c_f.collection_select :employment_type, @employment_types, :first, :last, {}, {style: "width: 50%", class: "form-control mr5"}
 
-  = f.link_to_add "所属先追加", :stores_staffs, class: 'btn btn-info'
-  .form-group
-    = f.label :code
-    = f.text_field :code, class: "form-control"
-  .form-group
-    = f.label :last_name
-    = f.text_field :last_name, class: "form-control"
-  .form-group
-    = f.label :first_name
-    = f.text_field :first_name, class: "form-control"
-  .form-group
-    = f.label :last_kana
-    = f.text_field :last_kana, class: "form-control"
-  .form-group
-    = f.label :first_name
-    = f.text_field :first_kana, class: "form-control"
+    .form-inline
+      .form-group
+        = f.label :last_name
+        = f.text_field :last_name, class: "form-control"
+      .form-group
+        = f.label :first_name
+        = f.text_field :first_name, class: "form-control"
+    .form-inline
+      .form-group
+        = f.label :last_kana
+        = f.text_field :last_kana, class: "form-control"
+      .form-group
+        = f.label :first_kana
+        = f.text_field :first_kana, class: "form-control"
+
+    = c_f.hidden_field :id
+    .form-group
+      = c_f.label :workplace, EmploymentContract.human_attribute_name(:workplace)
+      = c_f.collection_select :workplace_id, @workplaces, :id, :name, {}, {style: "width: 50%", class: "form-control mr5"}
+    .form-inline
+      .form-group
+        = c_f.label :effective_on, EmploymentContract.human_attribute_name(:effective_on)
+        = c_f.date_select :effective_on, {}, class: "form-control"
+    .form-inline
+      .form-group
+        = c_f.label :expiration_on, EmploymentContract.human_attribute_name(:expiration_on)
+        = c_f.date_select :expiration_on, {include_blank: true}, class: "form-control"
+
   .actions
     = f.submit 'Save', class: "btn btn-primary"

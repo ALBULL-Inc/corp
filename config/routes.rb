@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   resources :blogs
 
   resource :profile, only: [:show, :edit, :update]
-  resources :stores, only: [:index, :show]
+  resources :stores, only: [:index, :show] do
+    resources :parties, only: [:index, :show]
+    resources :menus, only: [:show]
+  end
   resources :plans, only: [:index, :show] do
     resources :subscriptions, only: [:create, :update]
   end
@@ -31,7 +34,6 @@ Rails.application.routes.draw do
     put :pause,  on: :member
     put :resume, on: :member
   end
-  resources :parties, only: [:index, :show]
   resources :dartslive_cards, only: [:new, :edit, :create, :update, :destroy]
 
   resources :feedbacks, only: [:create]
@@ -39,7 +41,6 @@ Rails.application.routes.draw do
     resource :entry, only: [:new, :create]
   end
   resource :inquiry, only: [:new, :create]
-  resources :menus, only: [:show]
 
   resources :web_push_subscribers, only: [:create]
 
@@ -58,17 +59,18 @@ Rails.application.routes.draw do
   namespace :intra do
     root to: "dashboards#index"
     resources :organizations do
-      resources :stores
-      resources :staffs
+      resources :workplaces
+      resources :staffs do
+        resources :stamps, only: [] do
+          get '(/:year/:month)', to: 'stamps#index', on: :collection, as: ""
+        get '/:ymd', to: 'stamps#show', on: :collection, as: "ymd"
+        end
+      end
+      resources :stamps, only: [:new, :create]
     end
-    resources :stores, only: [] do
+    resources :workplaces, only: [] do
       resource :stamper
       resources :staffs, only: [:index]
-    end
-    resources :staffs, only: [] do
-      resources :stamps, only: [] do
-        get '(/:year/:month)', to: 'stamps#index', on: :collection, as: ""
-      end
     end
     resources :stamps, only: [:index]
     resource :stamper

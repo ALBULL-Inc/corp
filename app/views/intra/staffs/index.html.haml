@@ -1,25 +1,37 @@
-%h1 Listing staffs
+%h1 #{@workplace.name}の勤務スタッフ一覧
 
-%table.table
+%table.table.mt30
   %thead
-    %tr
+    %tr.t-center
       %th= Staff.human_attribute_name :code
-      %th= Staff.human_attribute_name :last_name
-      %th= Staff.human_attribute_name :first_name
-      %th= Staff.human_attribute_name :last_kana
-      %th= Staff.human_attribute_name :first_kana
+      %th= Staff.human_attribute_name :name
+      %th= EmploymentContract.human_attribute_name :employment_type
+      %th= EmploymentContract.human_attribute_name :workplace
+      %th= EmploymentContract.human_attribute_name :effective_on
+      %th= EmploymentContract.human_attribute_name :expiration_on
       %th{colspan: 3}
 
   %tbody
     - @staffs.each do |staff|
       %tr
         %td= staff.code
-        %td= staff.last_name
-        %td= staff.first_name
-        %td= staff.last_kana
-        %td= staff.first_kana
         %td
-          = link_to 'Show', [:intra,staff], class: 'btn btn-info'
-          = link_to 'Edit', edit_intra_staff_path(staff), class: 'btn btn-warning'
-          = link_to 'Destroy', [:intra,staff], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+          %ruby
+            %rb
+              #{staff.last_name}
+            %rt
+              #{staff.last_kana}
+          %ruby
+            %rb
+              #{staff.first_name}
+            %rt
+              #{staff.first_kana}
+        %td= staff.current_contract.employment_type_name
+        %td= staff.current_contract.workplace.name
+        %td.t-center= l staff.current_contract.effective_on, format: :short
+        %td.t-center= staff.current_contract.expiration_on ? l(staff.current_contract.expiration_on, format: :short) : "-"
+        %td
+          = link_to 'Show', intra_organization_staff_path(@workplace.organization, staff.code), class: 'btn btn-info'
+          = link_to 'Edit', edit_intra_organization_staff_path(@workplace.organization, staff), class: 'btn btn-warning'
+          = link_to 'Destroy', [:intra,@workplace.organization,staff], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
 

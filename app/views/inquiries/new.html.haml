@@ -17,10 +17,10 @@
         = f.select :concern, @concerns, {}, class: "form-control"
       .form-group
         = f.label :email, class: "require"
-        = f.email_field :email, class: "form-control", placeholder: "your@domain.com"
+        = f.email_field :email, class: "form-control", placeholder: "name@yourdomain.com"
       .form-group
         = f.label :name, class: "require"
-        = f.text_field :name, class: "form-control", placeholder: "折振 怜悧"
+        = f.text_field :name, class: "form-control", placeholder: "折振 太郎"
       .form-group
         = f.label :body, class: "require"
         = f.text_area :body, size: "10x10", class: "form-control"

@@ -1,5 +1,3 @@
-
-
 .row
   .offset-sm-1
   .col.col-sm-10
@@ -9,11 +7,11 @@
       打刻実績
 
     %h3.f18.t-center
-      = link_to "«", intra_staff_stamps_path(@staff, @monthly.prev_year, @monthly.prev_month)
+      = link_to "«", intra_organization_staff_stamps_path(@organization, @staff, @monthly.prev_year, @monthly.prev_month)
       %span.ml20.mr20
         = l @monthly.date, format: :ym
         ( #{l @monthly.first_day} - #{l @monthly.last_day} )
-      = link_to "»", intra_staff_stamps_path(@staff, @monthly.next_year, @monthly.next_month)
+      = link_to "»", intra_organization_staff_stamps_path(@organization, @staff, @monthly.next_year, @monthly.next_month)
 
     .row
       %table.table.t-center
@@ -51,7 +49,7 @@
           %th 深夜
         - @monthly.stamped_dailies.each do |s|
           %tr
-            %td=l s.ymd.to_date, format: :md
+            %td= link_to l(s.date, format: :md), ymd_intra_organization_staff_stamps_path(@organization, @staff, s.date.ymd)
             %td= s.work_start_at ? l(s.work_start_at, format: :hm) : ""
             %td= s.work_end_at ? l(s.work_end_at, format: :hm) : ""
             %td= s.rest_start_at ? l(s.rest_start_at, format: :hm) : ""
@@ -60,3 +58,5 @@
             %td= s.fixed_hm
             %td= s.overtime_hm
             %td= s.midnight_hm
+
+    = link_to "«組織ページに戻る", intra_organization_path(@organization)

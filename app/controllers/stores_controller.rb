@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   before_action :add_breadcrumb_of_index
-  before_action :set_store, only: [:show, :edit, :update, :destroy]
+  before_action :set_store, only: [:show]
 
   # GET /stores
   # GET /stores.json
@@ -13,15 +13,15 @@ class StoresController < ApplicationController
   # GET /stores/1.json
   def show
     add_breadcrumb @store.name, store_url(@store)
-    @menus = Menu.all
-    @fb_id = "railly.AKASAKA"
+    @menus = @store.menus
+    @fb_id = @store.facebook_uid
     render layout: 'store'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_store
-      @store = Store.find(params[:id])
+      @store = Store.find_by(pkey: params[:id])
     end
 
     def add_breadcrumb_of_index

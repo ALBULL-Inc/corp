@@ -2,14 +2,14 @@ class CreateTopics < ActiveRecord::Migration
   def change
     create_table :topics do |t|
       t.boolean :enable
+      t.bigint :topicable_id
+      t.string :topicable_type
       t.string :title
       t.text :body
       t.datetime :publish_at
-      t.boolean :carousel
-      t.string :carousel_img
 
       t.timestamps null: false
     end
-    add_index :topics, [:enable, :publish_at, :carousel]
+    add_index :topics, [:topicable_type, :topicable_id, :enable, :publish_at], name: 'ttep_idx'
   end
 end

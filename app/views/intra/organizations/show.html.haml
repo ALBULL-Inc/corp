@@ -5,25 +5,28 @@
     %h1= @organization.name
 
     %section.mt30
-      %h2.f16 店舗一覧
-      - if false
-        = link_to '店舗登録', new_intra_organization_store_path(@organization), class: 'btn btn-info'
+      %h2.f18
+        勤務地一覧
+        = link_to '新規登録', new_intra_organization_workplace_path(@organization), class: 'btn-sm btn-info'
       .row
         .col-12
-          - @stores.each do |store|
+          - @workplaces.each do |workplace|
             .row.no-gutters.align-items-center.border-bottom.mt10.pb10
               .col
-                = store.name
-              - if false
-                .col-4.col-md-2
-                  = link_to '店舗スタッフ一覧', intra_store_staffs_path(store), class: "btn btn-success"
+                - if workplace.enable?
+                  %span(style="color: #00ff00;") ●
+                - else
+                  %span(style="color: #aaaaaa;") ●
+                = workplace.name
               .col-4.col-md-2
-                = link_to '打刻ページ', intra_store_stamper_path(store), class: "btn btn-success"
+                = link_to '勤務者一覧', intra_workplace_staffs_path(workplace), class: "btn btn-success"
+              .col-4.col-md-2
+                = link_to '打刻ページ', intra_workplace_stamper_path(workplace), class: "btn btn-success"
 
     %section.mt30
-      %h2.f16
+      %h2.f18
         スタッフ一覧
-        = link_to 'スタッフ登録', new_intra_organization_staff_path(@organization), class: 'btn-sm btn-info'
+        = link_to '新規登録', new_intra_organization_staff_path(@organization), class: 'btn-sm btn-info'
 
 
       .row.no-gutters.border-bottom.pb10
@@ -48,5 +51,7 @@
                 #{staff.first_name}
               %rt
                 #{staff.first_kana}
+            %span.f10
+              = link_to "編集", edit_intra_organization_staff_path(@organization, staff)
           .col-4.col-lg-2
-            = link_to '勤務実績', intra_staff_stamps_path(staff), class: "btn btn-info"
+            = link_to '勤務実績', intra_organization_staff_stamps_path(@organization, staff), class: "btn btn-info"

@@ -1,0 +1,18 @@
+
+.row
+  .offset-sm-1
+  .col.col-sm-10
+    %h1.f20.mb20
+      打刻実績インポート
+
+    .row.no-gutters.border-bottom.pb10
+      .col
+        MoneyForwardクラウド勤怠移行用CSV
+    .row
+      .col
+        = form_tag intra_organization_stamps_path(@organization), multipart: true do
+          .form-group
+            = file_field_tag :csv_file, class: "form-control"
+          .actions
+            = submit_tag
+

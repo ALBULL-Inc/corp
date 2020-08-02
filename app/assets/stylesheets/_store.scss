@@ -1,0 +1,13 @@
+
+.thema {
+  width: 300px;
+  height: 150px;
+  transform: rotate(-13deg);
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  background-color: rgba(255,255,255,0.85);
+  background-blend-mode: lighten;
+  z-index: -1;
+}

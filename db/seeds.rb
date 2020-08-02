@@ -57,13 +57,15 @@ s1 = Store.find_or_initialize_by(id: 1)
 s1.update_attributes(
   {
     enable: true,
-    comming_soon: false,
-    name: "Railly 赤坂店",
-    postcode: "107-0052",
-    city: "東京都港区赤坂2丁目",
-    address: "14-8 赤坂SKビル3F-A",
-    tel: "03-6807-4025",
-    fax: "03-6807-4024",
+    pkey: "railly-akasaka",
+    name: "Darts Bar Railly",
+    postcode: 1070052,
+    region: "東京都",
+    locality: "港区",
+    address: "赤坂2-14-8",
+    building: "赤坂SKビル3F-A",
+    tel: "0368074025",
+    fax: "0368074024",
     opening_time: "18:00",
     closing_time: "05:00",
     regular_holiday: "原則日曜日※月曜が祝日の場合は日曜営業の月曜休み",
@@ -71,31 +73,33 @@ s1.update_attributes(
     closed_on: nil,
     position: 10,
     gmap_query: "pb=!1m18!1m12!1m3!1d3241.2026038076124!2d139.73609731525855!3d35.67201298019645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b86dd390f13%3A0x3b7e17727a060986!2sDarts+Bar+Railly!5e0!3m2!1sja!2sjp!4v1541042053189",
-    spec: <<-SPEC
-ダーツ: DARTSLIVE2 x 3
-touchlive x 1
-月替りスロット x 1
-けん玉: ノーマル x 1　電玉(IoTけん玉) x 1
-neu(ノイ)[カードゲーム] x 1
-
-カウンター7席
-2人掛けテーブル×4
-2人掛け丸テーブルx1
-着席合計 17名
-
-スタンディング収容人数20名程度
-
-壁掛け50インチモニター
-音響設備あり(SPx2 MICx1)
-SPEC
+    latitude: 35.67208,
+    longitude: 139.738217,
+    near_station: "赤坂駅徒歩2分!\n溜池山王駅徒歩3分!!\n赤坂見附駅徒歩8分!!!",
+    spec: "ダーツ: DARTSLIVE2 x 3\ntouchlive x 1\n月替りスロット x 1\nけん玉: ノーマル x 1　電玉(IoTけん玉) x 1\nneu(ノイ)[カードゲーム] x 1\n\nカウンター7席\n2人掛けテーブル×4\n2人掛け丸テーブルx1\n着席合計 17名\n\nスタンディング収容人数20名程度\n\n壁掛け50インチモニター\n音響設備あり(SPx2 MICx1)",
+  facebook_uid: "railly.AKASAKA",
+  twitter_uid: "DartsBarRailly",
+  instagram_uid: "DartsBarRailly"
   }
 )
 s2 = Store.find_or_initialize_by(id: 2)
 s2.update_attributes(
   {
-    enable: true,
-    comming_soon: true,
-    name: "Railly 2号店",
+    enable: false,
+    pkey: "lockstock-omiya",
+    name: "cafe&bar LOCKSTOCK",
+    postcode: 3330854,
+    region: "埼玉県",
+    locality: "さいたま市大宮区",
+    address: "桜木町1-175",
+    building: "KGビル2F",
+    tel: "0487883144",
+    fax: "0487883299",
+    opening_time: "18:00",
+    closing_time: "05:00",
+    regular_holiday: "",
+    opened_on: "2020-08-17",
+    closed_on: nil,
     position: 20,
   }
 )
@@ -104,6 +108,7 @@ pa1 = Party.find_or_initialize_by(id: 1)
 pa1.update_attributes(
   {
     enable: true,
+    store_id: 1,
     name: "選べる満足コース！3時間飲み放題付7品♪【3500円/人】",
     position: 10,
     lead: "時間はたっぷり3時間！
@@ -132,6 +137,7 @@ pa2 = Party.find_or_initialize_by(id: 2)
 pa2.update_attributes(
   {
     enable: true,
+    store_id: 1,
     name: "選べるまんぷくコース！3時間飲み放題付9品♪【4500円/人】",
     position: 20,
     lead: "ほぼ誰でも満腹になれること間違いなし！
@@ -163,5 +169,5 @@ CONTENT
 
 CSV.foreach('db/seeds/menus.csv') do |row|
   m = Menu.find_or_initialize_by(name: row[1])
-  m.update_attributes(enable: true, menu_category_id: row[0], name: row[1], amount: row[2])
+  m.update_attributes(enable: true, store_id: 1, menu_category_id: row[0], name: row[1], amount: row[2])
 end

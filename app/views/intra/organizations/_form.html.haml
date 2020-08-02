@@ -9,5 +9,8 @@
   .form-group
     = f.label :name
     = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :corporate_number
+    = f.number_field :corporate_number, class: "form-control"
   .actions
     = f.submit 'Save', class: "btn btn-primary"

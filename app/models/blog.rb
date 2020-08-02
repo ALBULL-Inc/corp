@@ -1,6 +1,8 @@
 class Blog < ApplicationRecord
   include Rails.application.routes.url_helpers
 
+  belongs_to :organization
+
   after_save :post_pubsubhubbub
 
   default_scope ->{ order(publish_at: :desc) }

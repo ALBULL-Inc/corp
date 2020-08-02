@@ -1,25 +1,16 @@
 class Store < ApplicationRecord
+  validates :pkey, presence: true
+
   belongs_to :organization
 
-  has_many :stores_staffs
-  has_many :staffs, through: :stores_staffs
+  has_many :menus
+  has_many :parties
+  has_many :topics, as: :topicable
 
   default_scope ->{ order(:position) }
   scope :enables, ->{ where(arel_table[:enable].eq(true)) }
 
   def full_address
     @full_address ||= [self.region, self.locality, self.address].join
-  end
-
-  def change_hour
-    @change_hour = 10 #10時で営業日を切り替える
-  end
-
-  def ymd(dt=nil)
-    dt ||= DateTime.current
-    if dt.hour < self.change_hour
-      dt = dt.yesterday
-    end
-    dt.ymd
   end
 end

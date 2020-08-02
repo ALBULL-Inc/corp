@@ -29,22 +29,16 @@
         .card-body.pa0
           %ul.list-group.list-group-flush
             %li.list-group-item
-              - if store.comming_soon?
-                Comming soon...
-              - else
-                #{fa_icon 'map-marker'}
-                = store.full_address
-                %br
-                #{fa_icon 'phone-square'}
-                = store.tel
-                %br
-                #{fa_icon 'clock'}
-                = store.opening_time
-                \-
-                = store.closing_time
-            - unless store.comming_soon?
-              %li.list-group-item.text-right.bt-none
-                = link_to 'more »', store
+              #{fa_icon 'map-marker'}
+              = store.full_address
+              %br
+              #{fa_icon 'phone-square'}
+              = store.tel
+              %br
+              #{fa_icon 'clock'}
+              = store.opening_time
+              \-
+              = store.closing_time
 
 - if false
   .row

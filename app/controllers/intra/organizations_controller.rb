@@ -1,17 +1,18 @@
 class Intra::OrganizationsController < Intra::ApplicationController
+  before_action :authenticate_account!
   # サイト管理者のみアクセス可能
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.page(params[:page]).per(50)
+    @organizations = current_account.organizations.page(params[:page]).per(50)
   end
 
   # GET /organizations/1
   # GET /organizations/1.json
   def show
-    @stores = @organization.stores
+    @workplaces = @organization.workplaces
     @staffs = @organization.employees
   end
 
@@ -29,7 +30,7 @@ class Intra::OrganizationsController < Intra::ApplicationController
   def create
     @organization = Organization.new(organization_params)
     respond_to do |format|
-      if @organization.save
+      if current_account.organizations << @organization
         format.html { redirect_to [:intra,@organization], notice: 'Organization was successfully created.' }
         format.json { render :show, status: :created, location: @organization }
       else
@@ -66,11 +67,11 @@ class Intra::OrganizationsController < Intra::ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
-      @organization = Organization.find(params[:id])
+      @organization = current_account.organizations.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name)
+      params.require(:organization).permit(:name, :corporate_number)
     end
 end

@@ -1,12 +1,10 @@
-- set_meta_tags site: "Darts Bar Railly | 赤坂・溜池山王でダーツするならダーツバーレイリー", canonical: root_url,
-  description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)。営業時間18:00〜29:00,DARTSLIVE2EXが3台,TouchLive1台,バーメイト1台!赤坂、溜池山王でダーツならRailly(レイリー)!会員登録することでお得にご利用いただけます。",
-  og: {description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)。営業時間18:00〜29:00,DARTSLIVE2EXが3台,TouchLive1台,バーメイト1台!赤坂、溜池山王でダーツならRailly(レイリー)!会員登録することでお得にご利用いただけます。"},
-  keywords: "赤坂,ダーツ,ダーツバー,レイリー,darts,dartsbar,Railly,溜池山王,赤坂見附,六本木,貸切,パーティ,投げ放題,ウィスキー,二次会,三次会"
+- set_meta_tags site: "株式会社オルブル | 喜怒哀楽が創出される場を提供し、あなたの想い出を創造していく会社です。", canonical: root_url,
+  description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)や大宮駅徒歩3分のcafe&bar LOCKSTOCK(ロックストック)を展開しています。システム開発の受託も承っております。お問い合わせはお気軽にどうぞ！",
+  og: {description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)や大宮駅徒歩3分のcafe&bar LOCKSTOCK(ロックストック)を展開しています。システム開発の受託も承っております。お問い合わせはお気軽にどうぞ！"},
+  keywords: "ダーツ,ダーツバー,赤坂,大宮,ロックストック,レイリー,darts,dartsbar,LOCKSTOCK,Railly,埼玉県,溜池山王,赤坂見附,六本木,貸切,パーティ,投げ放題,ウィスキー,ハイボール,二次会,三次会"
 
 - content_for(:jsonld) do
   = jsonld_script_tag
-
-
 
 
 
@@ -24,12 +22,12 @@
       .carousel-caption.d-none.d-md-block
         %h1.mt0.mb40.f-bold
           %ruby
-            %rb.f60(style="font-family: Nixie One") ALBULL Inc
+            %rb.f50(style="font-family: Nixie One") ALBULL Inc
             %rt.f14 株式会社 オルブル
         %p.lead.pt30.pb30
           喜怒哀楽が創出される場を提供し、
           %br
-          あなたの想い出を想像していく会社です。
+          あなたの想い出を創造していく会社です。
 
     .carousel-item(data-interval="6000")
       .carousel-2
@@ -103,30 +101,23 @@
         %ul.list-menu
           %li= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path
 
-      - @stores.each do |store|
-        .col-9
+      .col-9
+        - @stores.each do |store|
           .card.mb30
-            .card-header.f16= store.name
-            .card-body.pb0
+            .card-header.f16= link_to store.name, store_path(store.pkey)
+            .card-body.pb20
               %ul.list-group.list-group-flush
                 %li.list-group-item
-                  - if store.comming_soon?
-                    Comming soon...
-                  - else
-                    #{fa_icon 'map-marker'}
-                    = store.full_address
-                    %br
-                    #{fa_icon 'phone-square'}
-                    = store.tel
-                    %br
-                    #{fa_icon 'clock'}
-                    = store.opening_time
-                    \-
-                    = store.closing_time
-                - unless store.comming_soon?
-                  %li.list-group-item.text-right
-                    = link_to 'more »', store
-
+                  #{fa_icon 'map-marker'}
+                  = store.full_address
+                  %br
+                  #{fa_icon 'phone-square'}
+                  = store.tel
+                  %br
+                  #{fa_icon 'clock'}
+                  = store.opening_time
+                  \-
+                  = store.closing_time
 
     .row
       .col-3

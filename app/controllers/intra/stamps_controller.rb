@@ -1,10 +1,15 @@
 class Intra::StampsController < Intra::ApplicationController
-  before_action :set_organization, only: [:new, :create]
+  before_action :set_organization, only: [:index, :show, :new, :create]
 
   def index
-    @staff = Staff.find(params[:staff_id])
+    @staff = @organization.employees.find_by(code: params[:staff_id])
     @year, @month = [params[:year]&.to_i||Date.today.year,params[:month]&.to_i||Date.today.month]
     @monthly = StampedMonthly.new(@staff,@year,@month)
+  end
+
+  def show
+    @staff = @organization.employees.find_by(code: params[:staff_id])
+    @daily = @staff.stamped_dailies.where(ymd: params[:ymd]).first_or_initialize
   end
 
   def new

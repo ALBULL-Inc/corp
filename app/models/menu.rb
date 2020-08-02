@@ -1,4 +1,7 @@
 class Menu < ApplicationRecord
+  belongs_to :store
+
+  scope :enables, ->{ where(enable: true) }
 
   def price
     @price ||= "#{self.amount.to_s(:delimited)}円"

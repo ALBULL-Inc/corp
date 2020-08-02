@@ -2,14 +2,14 @@
 = render partial: 'common/fb_root'
 %nav.navbar.navbar-expand-md.navbar-light.bg-light.pa0.mb20
   .container
-    %a.navbar-brand(href=root_path)= image_tag(asset_url('layout/header/railly.png'), alt: t('site.name'))
+    %a.navbar-brand(href="#{store_path(@store.pkey)}")= image_tag(asset_url('layout/header/railly.png'), alt: t('site.name'))
     %button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation")
       %span.navbar-toggler-icon
 
     .collapse.navbar-collapse.ml20#navbar-collapse
       %ul.nav.navbar-nav.mr-auto
         //%li= link_to "#{fa_icon 'file-alt'} メニュー".html_safe, menu_path
-        %li.nav-item= link_to "#{fa_icon 'cocktail'} パーティー".html_safe, parties_path, class: "nav-link"
+        %li.nav-item= link_to "#{fa_icon 'cocktail'} パーティー".html_safe, store_parties_path(@store.pkey), class: "nav-link"
         %li.nav-item= link_to "#{fa_icon 'credit-card'} 月額プラン".html_safe, plans_path, class: "nav-link"
         //%li= link_to "#{fa_icon 'newspaper'} 求人情報".html_safe, recruits_path
       %ul.navbar-nav

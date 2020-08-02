@@ -2,7 +2,7 @@
   description: "株式会社オルブルが運営するDarts Bar Railly(レイリー)の#{@store.name}の情報やお得な情報を掲載しています。さらに会員登録することでお得に#{@store.name}をご利用いただけます。#{@store.near_station}。#{@store.spec}"
 
 .row
-  %h1= "Darts Bar Railly #{@store.name}"
+  %h1= @store.name
   .col-md-12
     %p
       = fa_icon 'phone-square'

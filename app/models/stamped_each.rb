@@ -1,7 +1,7 @@
 class StampedEach < ApplicationRecord
   belongs_to :stamped_daily
   belongs_to :staff
-  belongs_to :store
+  belongs_to :workplace
 
   after_save :stamping_daily
 

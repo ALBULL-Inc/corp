@@ -14,7 +14,7 @@ class Cms::StoresController < Cms::ApplicationController
 
   # GET /stores/new
   def new
-    @store = @organization.stores.build
+    @store = Store.new
   end
 
   # GET /stores/1/edit
@@ -70,7 +70,7 @@ class Cms::StoresController < Cms::ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
       params.require(:store).permit(
-        :enable, :name, :postcode, :region, :locality, :address, :tel, :fax, :near_station,
+        :enable, :uid, :faceboo_uid, :twitter_uid, :change_hour, :name, :postcode, :region, :locality, :address, :tel, :fax, :near_station,
         :gmap_query, :latitude, :longitude,
         :opening_time, :closing_time, :regular_holiday, :opened_on, :closed_on, :spec,
         :position

@@ -58,4 +58,8 @@ class StampedDaily < ApplicationRecord
   def midnight_hm
     @midnight_hm ||= "%02d:%02d" % midnight_sec.div(1.minute).divmod(60)
   end
+
+  def date
+    @date ||= self.ymd.to_date
+  end
 end

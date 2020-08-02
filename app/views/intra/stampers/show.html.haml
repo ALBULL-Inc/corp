@@ -2,7 +2,7 @@
   .offset-md-2
   .col.col-md-8
     %h1.mb20
-      = @store.name
+      = @workplace.name
       打刻ページ
 
     %h3
@@ -34,7 +34,7 @@
           .row.no-gutters
             .col.t-center
               = form_for @stamp, url: intra_stamper_path do |f|
-                = f.hidden_field :store_id, value: @store.id
+                = f.hidden_field :workplace_id, value: @workplace.id
                 = f.hidden_field :staff_id, value: staff.id
                 = f.button "出勤", class: "btn btn-success pl30 pr30 stamping", data: {type: StampedType::WORKING_START}
               .row
@@ -42,10 +42,29 @@
                   = l(@dailies[staff.id].work_start_at, format: :mdhm) if @dailies[staff.id]&.work_start_at
             .col.t-center
               = form_for @stamp, url: intra_stamper_path do |f|
-                = f.hidden_field :store_id, value: @store.id
+                = f.hidden_field :workplace_id, value: @workplace.id
                 = f.hidden_field :staff_id, value: staff.id
                 = f.button "退勤", class: "btn btn-danger pl30 pr30 stamping", data: {type: StampedType::WORKING_END}
               .row
                 .col
                   = l(@dailies[staff.id].work_end_at, format: :mdhm) if @dailies[staff.id]&.work_end_at
+
+
+    = form_for @stamp, url: intra_stamper_path do |f|
+      .row.no-gutters.align-items-center.border-bottom.mt10.pb10
+        .col
+          = text_field_tag :code, "", class: "form-control", placeholder: "スタッフコードを入力"
+        .col-4.col-sm-6.col-lg-5
+          .row.no-gutters
+            .col.t-center
+              = f.hidden_field :workplace_id, value: @workplace.id
+              = f.button "出勤", class: "btn btn-success pl30 pr30 stamping", data: {type: StampedType::WORKING_START}
+            .row
+              .col
+                
+            .col.t-center
+              = f.button "退勤", class: "btn btn-danger pl30 pr30 stamping", data: {type: StampedType::WORKING_END}
+              .row
+                .col
+                  
 

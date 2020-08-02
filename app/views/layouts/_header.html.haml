@@ -8,13 +8,12 @@
 
     .collapse.navbar-collapse.ml20#navbar-collapse
       %ul.nav.navbar-nav.mr-auto
-        %li.nav-item= link_to "#{fa_icon 'bell'} トピックス".html_safe, stores_path, class: "nav-link"
+        %li.nav-item= link_to "#{fa_icon 'bell'} トピックス".html_safe, topics_path, class: "nav-link"
         %li.nav-item= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path, class: "nav-link"
-        //%li.nav-item= link_to "#{fa_icon 'credit-card'} 月額プラン".html_safe, plans_path, class: "nav-link"
         //%li= link_to "#{fa_icon 'newspaper'} 求人情報".html_safe, recruits_path
         %li.nav-item= link_to "#{fa_icon 'book-open'} ブログ".html_safe, blogs_path, class: "nav-link"
       %ul.navbar-nav
-        %li.nav-item= link_to "#{fa_icon 'door-open'} お問い合わせ".html_safe, new_inquiry_path(concern: 5), class: "nav-link"
+        %li.nav-item= link_to "#{fa_icon 'door-open'} お問い合わせ".html_safe, new_inquiry_path, class: "nav-link"
 
         - if account_signed_in?
           %li.nav-item{style: 'float: left'}

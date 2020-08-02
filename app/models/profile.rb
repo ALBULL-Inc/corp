@@ -1,5 +1,5 @@
 class Profile < ApplicationRecord
-  belongs_to :account
+  belongs_to :profileable, polymorphic: true
 
   validates :nickname, presence: true, on: :update
 
