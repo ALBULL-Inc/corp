@@ -2,7 +2,7 @@ lock '3.7.2'
 
 set :log_level, :info
 
-set :application, 'railly'
+set :application, 'corp'
 set :repo_url, 'git@github.com:ALBULL-Inc/railly.git'
 
 set :rbenv_ruby, File.read('.ruby-version').strip

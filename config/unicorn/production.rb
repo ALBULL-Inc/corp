@@ -1,11 +1,11 @@
 # -*- encoding : utf-8 -*-
 
-current_dir = "/var/www/railly/production/current"
-shared_dir  = "/var/www/railly/production/shared"
+current_dir = "/var/www/corp/production/current"
+shared_dir  = "/var/www/corp/production/shared"
 
 
 #listen 8080
-listen "/tmp/railly_unicorn.sock"
+listen "/tmp/corp_unicorn.sock"
 preload_app true
 worker_processes 2
 working_directory current_dir

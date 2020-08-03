@@ -1,5 +1,5 @@
 Rails.application.configure do
-  routes.default_url_options[:host]     = 'railly.tokyo'
+  routes.default_url_options[:host]     = 'albull.co.jp'
   routes.default_url_options[:protocol] = 'https'
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -56,7 +56,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "railly_#{Rails.env}"
+  # config.active_job.queue_name_prefix = "corp_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.

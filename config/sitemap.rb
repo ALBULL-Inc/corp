@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = 'https://railly.tokyo/'
+SitemapGenerator::Sitemap.default_host = 'https://albull.co.jp/'
 SitemapGenerator::Sitemap.sitemaps_path = ''
 
 SitemapGenerator::Sitemap.create do
