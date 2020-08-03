@@ -11,16 +11,16 @@
       %br
       %br
       %span.f10 #{fa_icon 'external-link-alt'}
-      = link_to "Instagram", 'https://www.instagram.com/DartsBarRailly/', target: '_blank'
+      = link_to "Instagram", "https://www.instagram.com/#{t('sns.instagram.id')}", target: '_blank'
       %br
       %span.f10 #{fa_icon 'external-link-alt'}
-      = link_to "Facebook", 'https://www.facebook.com/railly.AKASAKA', target: '_blank'
+      = link_to "Facebook", "https://www.facebook.com/#{t('sns.facebook.id')}", target: '_blank'
       %br
       %span.f10 #{fa_icon 'external-link-alt'}
-      = link_to "Twitter", 'https://twitter.com/DartsBarRailly', target: '_blank'
+      = link_to "Twitter", "https://twitter.com/#{t('sns.twitter.id')}", target: '_blank'
       %br
       %br
-      = link_to "&copy;ALBULL Inc.".html_safe, '//albull.co.jp', style: "color: #333;", target: :_blank
+      = link_to "&copy;ALBULL Inc.".html_safe, 'https://albull.co.jp', style: "color: #333;", target: :_blank
     .col-md-6
       .fb-page(data-href="https://business.facebook.com/#{@fb_id}/" data-width="500" data-hide-cover="false" data-show-facepile="true" data-show-posts="false")
         .fb-xfbml-parse-ignore

@@ -1,17 +1,21 @@
 ja:
   site:
-    title: "Darts Bar Railly | 赤坂・溜池山王でダーツするならダーツバーレイリー"
-    name: 'Darts Bar Railly'
-    short_name: 'railly'
+    title: "株式会社オルブル | ALBULL Inc"
+    name: 'ALBULL Inc'
+    short_name: 'albull'
     description: ''
     mission: '想い出は一生の財産'
-    email: 'railly[at]albull.co.jp'
-    og_site_name: 'Darts Bar Railly(レイリー) 赤坂店'
+    email: 'contact[at]albull.co.jp'
+    og_site_name: '株式会社オルブル | ALBULL Inc'
+
+  sns:
+    id:
+      twitter: 'ALBULL_Inc'
+      facebook: 'ALBULL.Inc'
+      instagram: 'DartsBarRailly'
 
   Send: "送信"
   Back: "« 戻る"
   "cancel": "キャンセル"
-  "What is Playlist?": プレイリストとは?
-  "What is Artist?": アーティストとは?
   "Timesaver": ワンポイントアドバイス
   "month": "月"
