@@ -70,10 +70,10 @@ class Cms::StoresController < Cms::ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
       params.require(:store).permit(
-        :enable, :uid, :faceboo_uid, :twitter_uid, :change_hour, :name, :postcode, :region, :locality, :address, :tel, :fax, :near_station,
-        :gmap_query, :latitude, :longitude,
-        :opening_time, :closing_time, :regular_holiday, :opened_on, :closed_on, :spec,
-        :position
+        :enable, :pkey, :name, :postcode, :region, :locality, :address, :building,
+        :tel, :fax, :opening_time, :closing_time, :regular_holiday, :opened_on,
+        :closed_on, :spec, :near_station, :gmap_query, :latitude, :longitude,
+        :faceboo_uid, :twitter_uid, :instagram_uid, :position
       )
     end
 end
