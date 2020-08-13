@@ -18,11 +18,5 @@
   .form-group
     = f.label :publish_at
     = f.datetime_select :publish_at, class: "form-control"
-  .form-group
-    = f.label :carousel
-    = f.check_box :carousel
-  .form-group
-    = f.label :carousel_img
-    = f.text_field :carousel_img, class: "form-control"
   .actions
     = f.submit 'Save', class: "btn btn-primary"

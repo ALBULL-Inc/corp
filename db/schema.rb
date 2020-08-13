@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 20200731031353) do
     t.string   "last_name"
     t.string   "first_kana"
     t.string   "last_kana"
+    t.string   "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

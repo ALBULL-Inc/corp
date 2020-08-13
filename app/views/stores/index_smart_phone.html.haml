@@ -1,0 +1,26 @@
+- set_meta_tags title: "店舗一覧", canonical: stores_url,
+  description: "株式会社オルブルが運営する店舗の情報やお得情報を掲載しています。さらに会員登録することでお得に店舗をご利用いただけます。"
+
+.row
+  .col-12
+    %h1.f22.mb30 店舗一覧
+
+- @stores.each do |store|
+  .row.mb60
+    .col-12
+      .thema{style: "background-image: url(#{asset_url("store/#{store.id}.png")})"}
+      .panel.panel-default
+        .panel-heading
+          %h2.panel-title.f18= link_to store.name, store_path(store.pkey)
+        .panel-body
+          %div.f14{style: 'padding: 10px;'}
+            #{fa_icon 'map-marker'}
+            = store.full_address
+            %br
+            #{fa_icon 'phone-square'}
+            = store.tel
+            %br
+            #{fa_icon 'clock'}
+            = store.opening_time
+            \-
+            = store.closing_time

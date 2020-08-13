@@ -1,26 +1,46 @@
-- set_meta_tags site: "Darts Bar Railly | 赤坂・溜池山王でダーツするならダーツバーレイリー", canonical: root_url,
-  description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)。営業時間18:00〜29:00,DARTSLIVE2EXが3台,TouchLive1台,バーメイト1台!赤坂、溜池山王でダーツならRailly(レイリー)!会員登録することでお得にご利用いただけます。",
-  og: {description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)。営業時間18:00〜29:00,DARTSLIVE2EXが3台,TouchLive1台,バーメイト1台!赤坂、溜池山王でダーツならRailly(レイリー)!会員登録することでお得にご利用いただけます。"},
-  keywords: "赤坂,ダーツ,ダーツバー,レイリー,darts,dartsbar,Railly,溜池山王,赤坂見附,六本木,貸切,パーティ,投げ放題,ウィスキー,二次会,三次会"
+- set_meta_tags site: "株式会社オルブル | 喜怒哀楽が創出される場を提供し、あなたの想い出を創造していく会社です。", canonical: root_url,
+  description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)や大宮駅徒歩3分のcafe&bar LOCKSTOCK(ロックストック)を展開しています。システム開発の受託も承っております。お問い合わせはお気軽にどうぞ！",
+  og: {description: "赤坂駅徒歩2分のDarts Bar Railly(レイリー)や大宮駅徒歩3分のcafe&bar LOCKSTOCK(ロックストック)を展開しています。システム開発の受託も承っております。お問い合わせはお気軽にどうぞ！"},
+  keywords: "ダーツ,ダーツバー,赤坂,大宮,ロックストック,レイリー,darts,dartsbar,LOCKSTOCK,Railly,埼玉県,溜池山王,赤坂見附,六本木,貸切,パーティ,投げ放題,ウィスキー,ハイボール,二次会,三次会"
 
 - content_for(:jsonld) do
   = jsonld_script_tag
+
 
 .eye-catch.mb20{style: "height: 240px"}
   .text-center.pt60.c-white
     %h1.mt0.mb40
       %ruby
-        %rb.f34 Darts
-        %rt.f12 ダーツ
-      %ruby
-        %rb.f34 Bar
-        %rt.f12 バー
-      %ruby
-        %rb.f34 Railly
-        %rt.f12 レイリー
-    %p.lead
-      ダーツするならレイリーで
+        %rb.f30(style="font-family: Nixie One") ALBULL Inc
+        %rt.f14 株式会社 オルブル
+    %p.lead.f16
+      喜怒哀楽が創出される場を提供し、
+      %br
+      あなたの想い出を創造していく会社です。
 
+.row
+  .col-12
+    %ul.list-menu
+      %li= link_to "#{fa_icon 'bell'} トピックス".html_safe, topics_path
+.row
+  .col-12
+    .card.mb30
+      .card-header.f16 弊社から最新お知らせ
+      .card-body.pa0
+        %ul.list-group.list-group-flush
+          - @topics.each do |topic|
+            %li.list-group-item
+              %span.card-link
+                =l topic.publish_at.to_date, format: :topic
+              %span.card-link
+                = link_to topic.title, topic
+          %li.list-group-item.text-right
+            = link_to 'more »', topics_path
+
+.row
+  .col-12
+    %ul.list-menu
+      %li= link_to "#{fa_icon 'store-alt'} 店舗情報".html_safe, stores_path
 .row
   - @stores.each do |store|
     .col-12
@@ -46,24 +66,10 @@
       <!-- 横長1-1 -->
       = render partial: 'common/adsense', locals: {slot_id: 4877223498, w: 728, h: 90}
 
-.row.m-auto{style: "width: 268px"}
-  %script(type="text/javascript" src="https://www.hotpepper.jp/hpdsReserveGadget/" charset="UTF-8" data-style="{'bgcolor': 'white', 'btncolor': 'blue'}" data-stores="[{'J001216399': null}]")
-
 .row
   .col-12
-    .card.mb30
-      .card-header.f16 トピックス
-      .card-body.pb0
-        %ul.list-group.list-group-flush
-          - @topics.each do |topic|
-            %li.list-group-item
-              %span.card-link
-                =l topic.publish_at.to_date, format: :topic
-              %span.card-link
-                = link_to topic.title, topic
-          %li.list-group-item.text-right
-            = link_to 'more »', topics_path
-
+    %ul.list-menu
+      %li= link_to "#{fa_icon 'book-open'} ALBULL Blog".html_safe, blogs_path
 .row
   .col-12
     .card.mb30
@@ -82,4 +88,3 @@
 .row
   .col-md-12
     .text-center
-      = link_to image_tag("p_banner.png", style: 'width: 90%'), parties_path

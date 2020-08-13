@@ -29,6 +29,10 @@
         = f.label :first_kana
         = f.text_field :first_kana, class: "form-control"
 
+    .form-group
+      = f.label :nickname
+      = f.text_field :nickname, class: "form-control"
+
     = c_f.hidden_field :id
     .form-group
       = c_f.label :workplace, EmploymentContract.human_attribute_name(:workplace)
