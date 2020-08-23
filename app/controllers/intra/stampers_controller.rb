@@ -2,7 +2,8 @@ class Intra::StampersController < Intra::ApplicationController
   skip_before_action :basic_auth, only: [:show, :create]
 
   def show
-    @workplace = Workplace.where(organization: current_account.organizations).find(params[:workplace_id])
+    #@workplace = Workplace.where(organization: current_account.organizations).find(params[:workplace_id])
+    @workplace = Workplace.find(params[:workplace_id])
     @staffs = @workplace.staffs
     @dailies = {}
     StampedDaily.where(ymd: @workplace.ymd).each{|sd| @dailies[sd.staff_id] = sd}
