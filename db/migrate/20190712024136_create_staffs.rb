@@ -6,6 +6,7 @@ class CreateStaffs < ActiveRecord::Migration[5.0]
       t.string :last_name
       t.string :first_kana
       t.string :last_kana
+      t.string :nickname
 
       t.timestamps
     end

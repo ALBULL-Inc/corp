@@ -14,7 +14,7 @@ class StoresController < ApplicationController
   def show
     add_breadcrumb @store.name, store_url(@store)
     @menus = @store.menus
-    @fb_id = @store.facebook_uid
+    @sns_uids = {fb: @store.facebook_uid, ig: @store.instagram_uid, tw: @store.twitter_uid}
     render layout: 'store'
   end
 
