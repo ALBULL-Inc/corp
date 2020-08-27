@@ -6,12 +6,20 @@ class StampedDaily < ApplicationRecord
   belongs_to :staff
   has_many :stamped_eaches
 
+  def rested_sec
+    return @rested_sec if @rested_sec
+    @rested_sec = if self.rest_end_at.nil? || self.rest_start_at.nil?
+      0
+    else
+      (self.rest_end_at - self.rest_start_at)
+    end
+  end
   def worked_sec
     return @worked_sec if @worked_sec
     @worked_sec = if self.work_end_at.nil? || self.work_start_at.nil?
       0
     else
-      (self.work_end_at - self.work_start_at)
+      (self.work_end_at - self.work_start_at - rested_sec)
     end
   end
   def worked_hour
