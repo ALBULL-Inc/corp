@@ -6,9 +6,9 @@ namespace :notification do
       notifier = Slack::Notifier.new Settings.slack.worked.webhook_url, username: "#{target.strftime("%Y-%m-%d")} Working Records"
       #notifier.ping "#{target.strftime("%m/%d")}の勤務状況"
       begin
-        Store.all.each do |store|
-          StampedDaily.where(staff: store.staffs, ymd: target.ymd).includes(:staff).each_with_index do |sd,i|
-            notifier.ping "_#{store.name}_" if i == 0
+        Workplace.all.each do |wp|
+          StampedDaily.where(staff: wp.staffs, ymd: target.ymd).includes(:staff).each_with_index do |sd,i|
+            notifier.ping "_#{wp.name}_" if i == 0
             staff = sd.staff
 
             t = "【 *#{staff.code}* *#{staff.name}* 】  "

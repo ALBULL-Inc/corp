@@ -24,6 +24,10 @@ class StampedEach < ApplicationRecord
         self.stamped_daily.work_start_at ||= self.rounded_at
       when StampedType::WORKING_END
         self.stamped_daily.work_end_at = self.rounded_at
+      when StampedType::REST_START
+        self.stamped_daily.rest_start_at ||= self.rounded_at
+      when StampedType::REST_END
+        self.stamped_daily.rest_end_at = self.rounded_at
       end
       self.stamped_daily.save
     end
