@@ -4,6 +4,7 @@ class StampedEach < ApplicationRecord
   belongs_to :workplace
 
   after_save :stamping_daily
+  after_create :notification_to_slack
 
   def stamped_type
     I18n.t(StampedType::WORDS[self.stamped_type_id])
@@ -30,5 +31,11 @@ class StampedEach < ApplicationRecord
         self.stamped_daily.rest_end_at = self.rounded_at
       end
       self.stamped_daily.save
+    end
+
+    def notification_to_slack
+      notifier = Slack::Notifier.new Settings.slack.worked.webhook_url, username: "Working Recorder"
+      notifier.ping "【#{self.workplace.name}】#{self.stamped_text}"
+      true
     end
 end
