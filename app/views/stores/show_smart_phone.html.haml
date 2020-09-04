@@ -1,5 +1,6 @@
-- set_meta_tags title: @store.name, canonical: store_url(@store),
-  description: "株式会社オルブルが運営するDarts Bar Railly(レイリー)の#{@store.name}の情報やお得な情報を掲載しています。さらに会員登録することでお得に#{@store.name}をご利用いただけます。#{@store.near_station}。#{@store.spec}"
+- set_meta_tags title: "#{@store.name}", canonical: store_url(@store.pkey),
+  description: "株式会社オルブルが運営する#{@store.name}の情報やお得な情報を掲載しています。#{@store.near_station}。#{@store.spec}",
+  twitter: {card: "summary_large_image", site: "@#{@store.twitter_uid}", title: @store.name, image: asset_url("store/full/#{@store.id}.png")}
 
 - content_for(:jsonld) do
   = jsonld_script_tag

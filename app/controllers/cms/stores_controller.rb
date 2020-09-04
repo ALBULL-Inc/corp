@@ -24,7 +24,7 @@ class Cms::StoresController < Cms::ApplicationController
   # POST /stores
   # POST /stores.json
   def create
-    @store = @organization.store.build(store_params)
+    @store = Store.new(store_params)
 
     respond_to do |format|
       if @store.save
