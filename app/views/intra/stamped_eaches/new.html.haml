@@ -1,0 +1,23 @@
+.row
+  .offset-sm-1
+  .col.col-sm-10
+    %h1 打刻追加
+
+
+    = form_for [:intra, @organization, @stamped_each] do |f|
+      .field
+        = f.label :staff_id
+        = f.collection_select :staff_id, @staffs, :id, :name, {}, class: "form-control"
+
+      .row
+        %table.table.t-center
+          %tr{style: "background-color: #eee"}
+            %th 勤務地
+            %th 打刻種別
+            %th 打刻時刻
+          %tr
+            %td= f.collection_select :workplace_id, @workplaces, :id, :name, {}, class: "form-control"
+            %td= f.collection_select :stamped_type_id, StampedType::WORDS.to_a, :first, :last, {}, class: "form-control"
+            %td= f.datetime_select :stamped_at
+
+      = f.submit

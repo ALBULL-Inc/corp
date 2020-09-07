@@ -59,4 +59,7 @@
             %td= s.overtime_hm
             %td= s.midnight_hm
 
-    = link_to "«組織ページに戻る", intra_organization_path(@organization)
+    .row
+      = link_to "打刻追加", new_intra_organization_stamped_each_path(@organization), class: "btn btn-info"
+    .row
+      = link_to "«組織ページに戻る", intra_organization_path(@organization)

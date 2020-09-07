@@ -44,11 +44,16 @@
           %th 勤務地
           %th 打刻種別
           %th 打刻時刻
+          %th
         - @daily.stamped_eaches.each do |e|
           %tr
             %td= e.workplace.name
             %td= t(StampedType::WORDS[e.stamped_type_id])
             %td= e.stamped_at ? l(e.stamped_at, format: :hm) : ""
+            %td= link_to "修正", edit_intra_organization_stamped_each_path(@organization, e), class: "btn btn-warning"
 
 
+    .row
+      = link_to "打刻追加", new_intra_organization_stamped_each_path(@organization), class: "btn btn-info"
+    .row
       = link_to "«#{@daily.date.year}年#{@daily.date.month}月に戻る", intra_organization_staff_stamps_path(@organization, @staff, @daily.date.year, @daily.date.month)

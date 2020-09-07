@@ -63,10 +63,11 @@ Rails.application.routes.draw do
       resources :staffs do
         resources :stamps, only: [] do
           get '(/:year/:month)', to: 'stamps#index', on: :collection, as: ""
-        get '/:ymd', to: 'stamps#show', on: :collection, as: "ymd"
+          get '/:ymd', to: 'stamps#show', on: :collection, as: "ymd"
         end
       end
       resources :stamps, only: [:new, :create]
+      resources :stamped_eaches, only: [:new, :edit, :create, :update]
     end
     resources :workplaces, only: [] do
       resource :stamper

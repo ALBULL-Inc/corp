@@ -1,0 +1,22 @@
+.row
+  .offset-sm-1
+  .col.col-sm-10
+    %h1.f20.mb20
+      = @stamped_each.staff.code
+      = @stamped_each.staff.name
+      打刻修正
+
+
+    = form_for [:intra, @organization, @stamped_each] do |f|
+      .row
+        %table.table.t-center
+          %tr{style: "background-color: #eee"}
+            %th 勤務地
+            %th 打刻種別
+            %th 打刻時刻
+          %tr
+            %td= @stamped_each.workplace.name
+            %td= @stamped_each.stamped_type
+            %td= f.datetime_select :stamped_at
+
+      = f.submit
