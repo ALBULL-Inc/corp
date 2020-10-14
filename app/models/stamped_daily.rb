@@ -52,7 +52,7 @@ class StampedDaily < ApplicationRecord
   def midnight_sec
     return 0 if self.work_end_at.blank?
     dt = DateTime.parse("#{self.ymd}220000 +0900")
-    dt = self.work_start_at if dt < self.work_start_at
+    dt = self.work_start_at if work_start_at && dt < self.work_start_at
     mid = self.work_end_at - dt
     return 0 if mid <= 0
     dt = DateTime.parse("#{self.ymd.to_date.next.ymd}050000 +0900")
