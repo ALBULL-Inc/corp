@@ -3,8 +3,9 @@ class StampedEach < ApplicationRecord
   belongs_to :staff
   belongs_to :workplace
 
-  after_save :stamping_daily
+  after_create :stamping_daily_on_create
   after_create :notification_to_slack
+  after_update :stamping_daily_on_update
 
   def stamped_type
     I18n.t(StampedType::WORDS[self.stamped_type_id])
@@ -19,7 +20,7 @@ class StampedEach < ApplicationRecord
   end
 
   private
-    def stamping_daily
+    def stamping_daily_on_create
       case self.stamped_type_id
       when StampedType::WORKING_START
         self.stamped_daily.work_start_at ||= self.rounded_at
@@ -27,6 +28,20 @@ class StampedEach < ApplicationRecord
         self.stamped_daily.work_end_at = self.rounded_at
       when StampedType::REST_START
         self.stamped_daily.rest_start_at ||= self.rounded_at
+      when StampedType::REST_END
+        self.stamped_daily.rest_end_at = self.rounded_at
+      end
+      self.stamped_daily.save
+    end
+
+    def stamping_daily_on_update
+      case self.stamped_type_id
+      when StampedType::WORKING_START
+        self.stamped_daily.work_start_at = self.rounded_at
+      when StampedType::WORKING_END
+        self.stamped_daily.work_end_at = self.rounded_at
+      when StampedType::REST_START
+        self.stamped_daily.rest_start_at = self.rounded_at
       when StampedType::REST_END
         self.stamped_daily.rest_end_at = self.rounded_at
       end
