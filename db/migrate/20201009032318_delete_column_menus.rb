@@ -1,6 +1,6 @@
 class DeleteColumnMenus < ActiveRecord::Migration[5.0]
   def up
-    remove_index :menus, [:store_id, :enable, :menu_category_id]
+    #remove_index :menus, [:store_id, :enable, :menu_category_id]
     remove_column :menus, :store_id
     remove_column :menus, :amount
     add_index :menus, [:enable, :menu_category_id]
