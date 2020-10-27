@@ -1,6 +1,6 @@
 - set_meta_tags title: @topic.title
 
-%h1.f22= @topic.title
+%h1.f26= @topic.title
 
 .col-md-8
   %p.t-right
@@ -11,4 +11,4 @@
 
 
 .mt15
-  = link_to t('Back'), topics_path
+  = link_to t('Back'), store_topics_path(@store.pkey)

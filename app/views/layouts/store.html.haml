@@ -39,4 +39,4 @@
 
     .footer
       .container
-        = render 'layouts/store_footer'
+        = render partial: 'layouts/store_footer', locals: {snsids: @store.snsids}

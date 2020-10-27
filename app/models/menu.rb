@@ -1,11 +1,8 @@
 class Menu < ApplicationRecord
-  belongs_to :store
+  has_many :stores_menus
+  has_many :stores, through: :stores_menus
 
   scope :enables, ->{ where(enable: true) }
-
-  def price
-    @price ||= "#{self.amount.to_s(:delimited)}円"
-  end
 
   def content_md
     return @content_md if @content_md

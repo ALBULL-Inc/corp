@@ -4,8 +4,11 @@
   %b Enable:
   = @menu.enable
 %p
+  %b Store:
+  = @menu.store.name
+%p
   %b MenuCategory:
-  = @menu.menu_category_id
+  = MenuCategory::WORDS[@menu.menu_category_id]
 %p
   %b Name:
   = @menu.name

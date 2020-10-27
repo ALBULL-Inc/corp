@@ -15,10 +15,12 @@ class Cms::MenusController < Cms::ApplicationController
   # GET /menus/new
   def new
     @menu = Menu.new
+    @stores = Store.all
   end
 
   # GET /menus/1/edit
   def edit
+    @stores = Store.all
   end
 
   # POST /menus
@@ -69,6 +71,6 @@ class Cms::MenusController < Cms::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:enable, :name, :content, :amount, :memo)
+      params.require(:menu).permit(:enable, :store_id, :menu_category_id, :name, :content, :amount, :memo)
     end
 end

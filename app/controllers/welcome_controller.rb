@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
   #= Topページ
   # GET /welcome
   def index
-    @topics = Topic.enables
+    @topics = Topic.where(topicable: nil).enables
     @stores = Store.enables
     @blogs = Blog.enables.limit(3)
   end

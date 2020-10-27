@@ -10,6 +10,9 @@
     = f.check_box :enable
     = f.label :enable
   .field
+    = f.label :store
+    = f.collection_select :store_id, @stores, :id, :name, class: "form-control"
+  .field
     = f.label :menu_category_id
     = f.select :menu_category_id, [['ドリンク', MenuCategory::DRINK],['フード', MenuCategory::FOOD]], class: "form-control"
   .field

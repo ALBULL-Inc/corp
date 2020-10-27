@@ -37,7 +37,7 @@
     .row
       - @menus.each do |m|
         .col-8
-          .ml10= link_to_if m.content.present?, m.name, m
+          .ml10= link_to_if m.content.present?, m.name, [@store,m]
         .col-4.t-right
           .mr20= m.price
 

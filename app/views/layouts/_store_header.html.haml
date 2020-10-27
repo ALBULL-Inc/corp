@@ -2,7 +2,7 @@
 = render partial: 'common/fb_root'
 %nav.navbar.navbar-expand-md.navbar-light.bg-light.pa0.mb20
   .container
-    %a.navbar-brand(href="#{store_path(@store.pkey)}")= image_tag(asset_url('layout/header/railly.png'), alt: t('site.name'))
+    %a.navbar-brand(href="#{store_path(@store.pkey)}")= image_tag(asset_url("layout/header/#{@store.pkey}.png"), alt: t('site.name'))
     %button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation")
       %span.navbar-toggler-icon
 

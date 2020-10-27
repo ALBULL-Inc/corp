@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   resource :profile, only: [:show, :edit, :update]
   resources :stores, only: [:index, :show] do
     resources :parties, only: [:index, :show]
-    resources :menus, only: [:show]
+    resources :topics, only: [:index, :show], controller: 'stores/topics'
   end
+  resources :menus, only: [:show]
   resources :plans, only: [:index, :show] do
     resources :subscriptions, only: [:create, :update]
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200731031353) do
+ActiveRecord::Schema.define(version: 20201009032318) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer  "account_id"
@@ -124,18 +124,15 @@ ActiveRecord::Schema.define(version: 20200731031353) do
   end
 
   create_table "menus", force: :cascade do |t|
-    t.integer  "store_id"
     t.boolean  "enable",           default: false, null: false
     t.integer  "menu_category_id"
     t.string   "name"
-    t.integer  "amount",           default: 0,     null: false
     t.text     "content"
     t.text     "memo"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.index ["enable", "menu_category_id"], name: "index_menus_on_enable_and_menu_category_id"
     t.index ["menu_category_id"], name: "index_menus_on_menu_category_id"
-    t.index ["store_id", "enable", "menu_category_id"], name: "index_menus_on_store_id_and_enable_and_menu_category_id"
-    t.index ["store_id"], name: "index_menus_on_store_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -217,7 +214,6 @@ ActiveRecord::Schema.define(version: 20200731031353) do
     t.string   "last_name"
     t.string   "first_kana"
     t.string   "last_kana"
-    t.string   "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -284,6 +280,16 @@ ActiveRecord::Schema.define(version: 20200731031353) do
     t.index ["organization_id"], name: "index_stores_on_organization_id"
     t.index ["pkey", "enable"], name: "index_stores_on_pkey_and_enable"
     t.index ["position", "enable"], name: "index_stores_on_position_and_enable"
+  end
+
+  create_table "stores_menus", force: :cascade do |t|
+    t.integer  "menu_id"
+    t.integer  "store_id"
+    t.integer  "amount",     default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["menu_id"], name: "index_stores_menus_on_menu_id"
+    t.index ["store_id"], name: "index_stores_menus_on_store_id"
   end
 
   create_table "subscribers", force: :cascade do |t|

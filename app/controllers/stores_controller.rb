@@ -13,8 +13,7 @@ class StoresController < ApplicationController
   # GET /stores/1.json
   def show
     add_breadcrumb @store.name, store_url(@store)
-    @menus = @store.menus
-    @sns_uids = {fb: @store.facebook_uid, ig: @store.instagram_uid, tw: @store.twitter_uid}
+    @menus = @store.stores_menus.includes(:menu)
     render layout: 'store'
   end
 
@@ -25,6 +24,6 @@ class StoresController < ApplicationController
     end
 
     def add_breadcrumb_of_index
-      add_breadcrumb "店舗一覧", stores_url
+      add_breadcrumb "店舗情報", stores_url
     end
 end

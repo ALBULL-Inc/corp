@@ -1,7 +1,14 @@
 - set_meta_tags title: "#{@menu.name} - メニュー", canonical: menu_url(@menu),
-  description: "#{@store.name}のメニュー「#{@menu.name}」について掲載しています。#{@menu.name}は#{@menu.content}"
+  description: "「#{@menu.name}」について掲載しています。#{@menu.name}は#{@menu.content}"
 
 %h1.f40= @menu.name
 
 %p
   = @menu.content_md.html_safe
+
+- @stores_menus.each do |sm|
+  %p.mb5
+    = link_to sm.store.name, store_path(sm.store.pkey)
+    では
+    = sm.amount
+    円で提供いたしております。

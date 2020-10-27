@@ -2,7 +2,8 @@ class MenusController < ApplicationController
   before_action :set_menu, only: [:show]
 
   def show
-    add_breadcrumb "メニュー", menu_path
+    add_breadcrumb @menu.name, menu_path(@menu)
+    @stores_menus = StoresMenu.includes(:store).where(menu: @menu).all
   end
 
   private

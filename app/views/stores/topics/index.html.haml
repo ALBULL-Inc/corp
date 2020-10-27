@@ -1,0 +1,22 @@
+- set_meta_tags title: "Store's Topics - #{@store.name}のトピックス一覧", canonical: store_topics_url(@store.pkey),
+  description: "#{@store.name}からのお知らせです。お得な情報や楽しいお知らせを発信していきますので、ぜひチェックしてください。"
+
+
+.row
+  .col-2
+  .col-8
+    %h1.mt0.mb50 #{@store.name}のトピックス一覧
+    .card
+      .card-header
+        %h2.mb0.f18 #{fa_icon 'exclamation'} 新着#{Topic.model_name.human}
+      .card-body
+        %ul.list-group.list-group-flush
+          - @topics.each do |topic|
+            %li.list-group-item
+              %p.card-text.mb0
+                %small.f10.text-muted=l topic.publish_at
+              %span.card-link
+                = link_to topic.title, store_topic_path(@store.pkey, topic)
+
+    .mt20
+      .pagination= paginate @topics

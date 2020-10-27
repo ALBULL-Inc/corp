@@ -8,6 +8,7 @@ class PartiesController < ApplicationController
   # GET /parties.json
   def index
     @parties = @store.parties
+    @sns_uids = {fb: @store.facebook_uid, ig: @store.instagram_uid, tw: @store.twitter_uid}
   end
 
   # GET /parties/1
@@ -27,7 +28,7 @@ class PartiesController < ApplicationController
     end
 
     def add_breadcrumb_of_index
-      add_breadcrumb "店舗一覧", stores_url
+      add_breadcrumb "店舗情報", stores_url
       add_breadcrumb @store.name, store_url(@store.pkey)
       add_breadcrumb "パーティ", store_parties_url(@store.pkey)
     end
