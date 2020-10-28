@@ -8,5 +8,5 @@
     image: asset_url('layout/header/albull.png') },
   reverse: true,
   twitter: {card: 'summary_large_image', site: t('sns.id.twitter')},
-  canonical: @breadcrumbs.try(:last).try(:path) || root_url
+  canonical: breadcrumbs.try(:last).try(:path) || root_url
 %meta{property: 'fb:app_id', content: "#{Settings.auth.facebook.id}"}

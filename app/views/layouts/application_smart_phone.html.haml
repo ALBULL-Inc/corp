@@ -27,7 +27,7 @@
 
   %body{data: {"signed-in": account_signed_in? ? "t" : "f"}}
     = render partial: 'layouts/header'
-    = render partial: 'common/breadcrumbs', locals: {elements: @breadcrumbs} if @breadcrumbs.present?
+    = render partial: 'common/breadcrumbs', locals: {elements: breadcrumbs} if breadcrumbs.present?
 
     .main
       .container
