@@ -1,6 +1,6 @@
-lock '3.7.2'
+lock '3.14.1'
 
-set :log_level, :info
+set :log_level, :debug
 
 set :application, 'corp'
 set :repo_url, 'git@github.com:ALBULL-Inc/railly.git'
