@@ -5,9 +5,11 @@ SitemapGenerator::Sitemap.sitemaps_path = ''
 SitemapGenerator::Sitemap.create do
   # The root path '/' and sitemap index file are added automatically for you.
   # Links are added to the Sitemap in the order they are specified.
-  add policy_privacy_path,      priority: 0.7, changefreq: 'daily'
-  add terms_path,               priority: 0.7, changefreq: 'daily'
+#  add policy_privacy_path,      priority: 0.7, changefreq: 'daily' #noindex
+#  add terms_path,               priority: 0.7, changefreq: 'daily' #noindex
+#  add law_path,                 priority: 0.7, changefreq: 'daily' #noindex
   add new_inquiry_path,         priority: 0.7, changefreq: 'daily'
+  add new_registration_path('account') priority: 0.7, changefreq: 'daily'
   add new_account_session_path, priority: 0.7, changefreq: 'daily'
 
   add topics_path,         priority: 0.7, changefreq: 'daily'
