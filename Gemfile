@@ -23,7 +23,6 @@ gem 'nagareboshi'
 gem 'mechanize'
 gem 'jb'
 gem 'rounding'
-gem 'mini_racer'
 
 gem 'meta-tags', require: 'meta_tags'
 gem 'breadcrumbs_on_rails'
