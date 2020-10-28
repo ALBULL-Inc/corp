@@ -13,7 +13,7 @@ class Intra::OrganizationsController < Intra::ApplicationController
   # GET /organizations/1.json
   def show
     @workplaces = @organization.workplaces
-    @staffs = @organization.employees
+    @staffs = @organization.employees.joins(:current_contract)
   end
 
   # GET /organizations/new

@@ -7,7 +7,7 @@ class Intra::StaffsController < Intra::ApplicationController
   # GET /staffs.json
   def index
     @workplace = Workplace.where(organization: current_account.organizations).find(params[:workplace_id])
-    @staffs = @workplace.staffs.order(code: :asc).page(params[:page]).per(50)
+    @staffs = @workplace.staffs.joins(:current_contract).order(code: :asc).page(params[:page]).per(50)
   end
 
   # GET /staffs/1
