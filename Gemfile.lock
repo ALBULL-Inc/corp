@@ -235,7 +235,7 @@ GEM
     payjp (0.0.6)
       rest-client (~> 2.0)
     popper_js (1.14.5)
-    puma (3.12.2)
+    puma (3.12.6)
     rack (2.2.3)
     rack-test (0.6.3)
       rack (>= 1.0)
