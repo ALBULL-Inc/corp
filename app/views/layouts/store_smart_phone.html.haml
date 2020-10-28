@@ -25,7 +25,7 @@
     = yield :jsonld
 
   %body{data: {"signed-in": account_signed_in? ? "t" : "f"}}
-    = render partial: 'layouts/header'
+    = render partial: 'layouts/store_header'
     = render partial: 'common/breadcrumbs', locals: {elements: @breadcrumbs} if @breadcrumbs.present?
 
     .main
@@ -39,4 +39,4 @@
 
     .footer
       .container
-        = render 'layouts/store_footer'
+        = render partial: 'layouts/store_footer', locals: {snsids: @store.snsids}
