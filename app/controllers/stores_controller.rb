@@ -20,7 +20,11 @@ class StoresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_store
-      @store = Store.find_by(pkey: params[:id])
+      @store = Store.find_by(pkey: params[:id]) rescue nil
+      if @store.nil?
+        s = Store.find(params[:id])
+        redirect_to store_url(s.pkey), status: 301
+      end
     end
 
     def add_breadcrumb_of_index
