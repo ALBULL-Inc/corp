@@ -9,7 +9,7 @@ SitemapGenerator::Sitemap.create do
 #  add terms_path,               priority: 0.7, changefreq: 'daily' #noindex
 #  add law_path,                 priority: 0.7, changefreq: 'daily' #noindex
   add new_inquiry_path,         priority: 0.7, changefreq: 'daily'
-  add new_registration_path('account') priority: 0.7, changefreq: 'daily'
+  add new_account_registration_path, priority: 0.7, changefreq: 'daily'
   add new_account_session_path, priority: 0.7, changefreq: 'daily'
 
   add topics_path,         priority: 0.7, changefreq: 'daily'
