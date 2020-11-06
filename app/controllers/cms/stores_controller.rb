@@ -73,7 +73,7 @@ class Cms::StoresController < Cms::ApplicationController
         :enable, :pkey, :name, :postcode, :region, :locality, :address, :building,
         :tel, :fax, :opening_time, :closing_time, :regular_holiday, :opened_on,
         :closed_on, :spec, :near_station, :gmap_query, :latitude, :longitude,
-        :faceboo_uid, :twitter_uid, :instagram_uid, :position
+        :facebook_uid, :twitter_uid, :instagram_uid, :position
       )
     end
 end
