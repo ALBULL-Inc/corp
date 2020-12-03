@@ -7,7 +7,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'font-awesome-rails'
 gem 'bootstrap', '~> 4.3.1'
 #gem 'mini_racer'
-gem 'mysql2'
 gem 'haml-rails'
 gem 'gravtastic'
 gem 'unicorn'
@@ -41,6 +40,10 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+group :production do
+  gem 'mysql2'
+end
 
 group :development, :test do
   gem 'byebug'

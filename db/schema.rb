@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_032318) do
+ActiveRecord::Schema.define(version: 2020_10_09_032044) do
 
   create_table "account_o_auths", force: :cascade do |t|
     t.integer "account_id"
@@ -124,15 +124,18 @@ ActiveRecord::Schema.define(version: 2020_10_09_032318) do
   end
 
   create_table "menus", force: :cascade do |t|
+    t.integer "store_id"
     t.boolean "enable", default: false, null: false
     t.integer "menu_category_id"
     t.string "name"
+    t.integer "amount", default: 0, null: false
     t.text "content"
     t.text "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["enable", "menu_category_id"], name: "index_menus_on_enable_and_menu_category_id"
     t.index ["menu_category_id"], name: "index_menus_on_menu_category_id"
+    t.index ["store_id", "enable", "menu_category_id"], name: "index_menus_on_store_id_and_enable_and_menu_category_id"
+    t.index ["store_id"], name: "index_menus_on_store_id"
   end
 
   create_table "organizations", force: :cascade do |t|

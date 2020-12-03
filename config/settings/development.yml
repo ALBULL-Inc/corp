@@ -3,8 +3,8 @@ aws:
   secret_access_key: ''
 
 payjp:
-  secret_key: ''
-  public_key: ''
+  secret_key: 'sk_test_ae73e1a3ee055d7d15e47484'
+  public_key: 'pk_test_902c4e2cb9912430f822e508'
 
 
 auth:

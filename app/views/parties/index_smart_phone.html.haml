@@ -1,4 +1,4 @@
-- set_meta_tags title: "パーティプラン一覧", canonical: parties_url,
+- set_meta_tags title: "パーティプラン一覧", canonical: store_parties_url(@store.pkey),
   description: "株式会社オルブルが運営する店舗のパーティプランを掲載しています。さらに会員登録することでお得にパーティをご利用いただけます。"
 
 %h1.f22.mb30 パーティプラン一覧
@@ -13,4 +13,4 @@
           %div.f14{style: 'padding: 10px;'}
             = bbr party.content
           .t-right
-            = link_to 'more »', party, class: "btn btn-success btn-sm"
+            = link_to 'more »', store_party_path(@store.pkey, party), class: "btn btn-success btn-sm"

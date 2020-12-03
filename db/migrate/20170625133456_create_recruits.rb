@@ -1,4 +1,4 @@
-class CreateRecruits < ActiveRecord::Migration
+class CreateRecruits < ActiveRecord::Migration[5.0]
   def change
     create_table :recruits do |t|
       t.boolean :enable
