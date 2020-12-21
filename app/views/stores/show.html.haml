@@ -10,6 +10,10 @@
     .row
       .col-8.v-mid
         %h1.f40= @store.name
+        %div
+          営業時間: #{@store.opening_time} - #{@store.closing_time}
+        %div
+          定休日: #{@store.regular_holiday}
       .col-4
         .card
           .card-body.pt0.pb0

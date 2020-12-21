@@ -4,7 +4,7 @@ class Intra::StampersController < Intra::ApplicationController
   def show
     #@workplace = Workplace.where(organization: current_account.organizations).find(params[:workplace_id])
     @workplace = Workplace.find(params[:workplace_id])
-    @staffs = @workplace.staffs
+    @staffs = @workplace.staffs.joins(:current_contract)
     @dailies = {}
     StampedDaily.where(ymd: @workplace.ymd).each{|sd| @dailies[sd.staff_id] = sd}
     @stamp = StampedEach.new

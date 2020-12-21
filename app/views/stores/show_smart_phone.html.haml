@@ -8,6 +8,11 @@
 .row
   .col-12
     %h1.f28= @store.name
+    %p
+      .f12
+        営業時間: #{@store.opening_time} - #{@store.closing_time}
+      .f12
+        定休日: #{@store.regular_holiday}
 
     .card
       .card-body.pt0.pb0
